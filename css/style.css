@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+.header{
+    grid-column: 1/13;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 5vh;
+    position: fixed;
+    left: 0%;
+    top:0%;
+}
+
+.header .list{
+    display: flex;  
+    list-style: none;
+}
+
+.header .list .list-item{
+    padding: 25px;
+    border-bottom: 5px solid royalblue;
+    cursor: pointer;
+    background-color: #eee;
+    width: 175px;
+    text-align: center;
+    transition: 300ms ease-in-out;
+}
+
+.header .list .list-item:hover{
+    background-color: #ddd;
+}
+
+.obrazek.active{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.main{
+    grid-column: 4/11;
+    grid-row: 3/13;
+    padding: 10px;
+}
+
+
+.pytanie{
+    width: auto;
+    height: auto;
+    background-color: #eee;
+    padding: 25px 50px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    width: 775px;
+    height: auto;
+    background-color: #ddd;
+    padding: 15px;
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.img{
+    margin-top: 15px;
+}
+
+.answers{
+    width: 775px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answers-list{
+    list-style: none;
+}
+
+.answer{
+    width: 775px;
+    height: 62.5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: darkgray;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.answer.active{
+    background-color: green;
+}
+
+.answer:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
+
+.show{
+    margin-top: 50px;
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
+    color: white;
+    border: none;
+    background-color: royalblue;
+}
+
+.show:hover{
+    background-color: rgb(74, 113, 230);
+}
+
+.rate{
+    display: none;
+}
+
+.level{
+    font-size: 1.25rem;
+    margin-right: 650px;
+}
+
+.star{
+    width: 16px;
+    height: 16px;
+}
+
+.star-icon{
+    color: gold;
+    font-size: 1.35rem;
+}
+
+.pivot{
+    width: 100px;
+    height: 10px;
+    background-color: royalblue;
+}
