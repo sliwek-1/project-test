@@ -35,7 +35,7 @@ async function getData(pageNum){
         
         response.forEach(res => {
             let text = `
-                        <dic class="id">Pytanie: ${res.ID}</div>
+                        <div class="id">Pytanie: ${res.ID}</div>
                         <div class="img">
                             <img src="${res.obrazek}" alt="">
                         </div>

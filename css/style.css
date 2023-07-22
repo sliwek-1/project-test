@@ -144,18 +144,50 @@ a{
     margin-right: 650px;
 }
 
-.star{
-    width: 16px;
-    height: 16px;
-}
-
-.star-icon{
-    color: gold;
-    font-size: 1.35rem;
-}
-
 .pivot{
     width: 100px;
     height: 10px;
     background-color: royalblue;
+}
+
+@media (orientation:portrait) {
+    .header{
+        padding-left: 0;
+    }
+    .header .list .list-item{
+        width: 50vw;
+    }
+    .main{
+        margin-top: 100px;
+        grid-column: 1/13;
+        grid-row: 3/13;
+        width: 100vw;
+        height: 100vh;
+    }
+    .pytanie{
+        height: auto;
+        font-size: 0.8rem;
+    }
+    .answers{
+        width: 100vw;
+        height: 45vh;
+        margin-bottom: 0;
+    }
+    .title{
+        width: 90vw;
+        margin-top: 0;
+    }
+    .answer{
+        width: 90vw;
+    }
+    .img img{
+        width: 300px;
+        margin-top: 0;
+    }
+    .show{
+        margin-top: 0px;
+    }
+    .level{
+        margin-right: 0px;
+    }
 }
