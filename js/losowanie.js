@@ -149,6 +149,13 @@ function sprawdzanie(element,poprawne){
                 result++;
             }else{
                 odpElement.classList.add('odpbad');
+                let answersElement = odpElement.parentElement;
+                let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                otherAnswers.forEach(answer => {
+                    if(answer.textContent == poprawnaOdpText){
+                        answer.classList.add('active');
+                    }
+                })
             }
         }   
     }
