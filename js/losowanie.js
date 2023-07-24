@@ -126,12 +126,12 @@ function sprawdzanie(element,poprawne){
                 a.classList.remove('odp')
             })
             currentAnswer.classList.add('odp');
-            dodaj_odpowiedzi_uzytkownika_do_tablicy();
+            dodajOdpowiedziUzytkownikaDoTablicy();
         })
     })
     //sprawdanie odpowiedzi
 
-    const dodaj_odpowiedzi_uzytkownika_do_tablicy = () => {
+    const dodajOdpowiedziUzytkownikaDoTablicy = () => {
         let odpowiedzi = document.querySelectorAll('.odp');
 
         odpowiedzi.forEach((odp, i) => {
@@ -142,7 +142,7 @@ function sprawdzanie(element,poprawne){
         })
     }
 
-    const sprawdz_czy_odpowiedzi_uzytkownika_poprawne = (user_odp, poprawne) => {
+    const sprawdzCzyOdpowiedziUzytkownikaPoprawne = (user_odp, poprawne) => {
         for(let i = 0; i < poprawne.length; i++){
             let odpElement = user_odp[i].odp;
             let odpText = odpElement.textContent;
@@ -166,10 +166,10 @@ function sprawdzanie(element,poprawne){
             }
         }   
         let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
-        pokaz_wynik(result,poprawne.length,wynik)
+        pokazWynik(result,poprawne.length,wynik)
     }
 
-    const pokaz_wynik = (result,wszystkie_odp,wynik) => {
+    const pokazWynik = (result,wszystkie_odp,wynik) => {
         let main = document.querySelector('.main');
         let questionCenter = document.querySelector('.question-center')
         let resultElement = document.querySelector('.result')
@@ -193,7 +193,7 @@ function sprawdzanie(element,poprawne){
 
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
-        sprawdz_czy_odpowiedzi_uzytkownika_poprawne(odpowiedzi_user,poprawne)
+        sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
         sprawdz.classList.add('schowaj')
     })
 }
