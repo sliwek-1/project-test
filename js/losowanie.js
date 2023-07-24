@@ -13,6 +13,12 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             let currentElement = e.currentTarget;
             let id = currentElement.dataset.id;
+            let resultTitle = document.querySelector('.result-title')
+            let resultWynik = document.querySelector('.wynik')
+            let resultProcent = document.querySelector('.procent')
+            resultTitle.textContent = "";
+            resultProcent.textContent = "";
+            resultWynik.textContent = "";
             main.innerHTML = "";
             sessionStorage.removeItem('response');
             sendData(id);
@@ -164,10 +170,13 @@ function sprawdzanie(element,poprawne){
     }
 
     const pokaz_wynik = (result,wszystkie_odp,wynik) => {
+        let main = document.querySelector('.main');
+        let questionCenter = document.querySelector('.question-center')
         let resultElement = document.querySelector('.result')
         let resultTitle = document.querySelector('.result-title')
         let resultWynik = document.querySelector('.wynik')
         let resultProcent = document.querySelector('.procent')
+
         if(wynik >= 50){    
             resultElement.classList.remove('niezdany')
             resultElement.classList.add('zdany');
@@ -180,13 +189,11 @@ function sprawdzanie(element,poprawne){
 
         resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
         resultProcent.textContent = `${wynik}%`;
-        main.insertBefore(element,questionCenter);
-
-        scrollTo(0,0);
     }
 
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
         sprawdz_czy_odpowiedzi_uzytkownika_poprawne(odpowiedzi_user,poprawne)
+        sprawdz.classList.add('schowaj')
     })
 }
