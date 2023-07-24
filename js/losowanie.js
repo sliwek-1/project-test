@@ -136,7 +136,6 @@ function sprawdzanie(element,poprawne){
     }
 
     const sprawdz_czy_odpowiedzi_uzytkownika_poprawne = (user_odp, poprawne) => {
-        let test = [];
         for(let i = 0; i < poprawne.length; i++){
             let odpElement = user_odp[i].odp;
             let odpText = odpElement.textContent;
@@ -149,6 +148,7 @@ function sprawdzanie(element,poprawne){
                 result++;
             }else{
                 odpElement.classList.add('odpbad');
+
                 let answersElement = odpElement.parentElement;
                 let otherAnswers = [...answersElement.querySelectorAll('.answer')];
                 otherAnswers.forEach(answer => {
@@ -158,6 +158,8 @@ function sprawdzanie(element,poprawne){
                 })
             }
         }   
+        let wynik = result/parseInt(poprawne.length) * 100 + "%";
+        console.log(wynik);
     }
 
     let sprawdz = document.querySelector('.sprawdz');
