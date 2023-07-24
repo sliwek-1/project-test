@@ -128,10 +128,11 @@ function sprawdzanie(element,poprawne){
     const dodaj_odpowiedzi_uzytkownika_do_tablicy = () => {
         let odpowiedzi = document.querySelectorAll('.odp');
 
-        odpowiedzi.forEach(odp => {
+        odpowiedzi.forEach((odp, i) => {
             let currentElement = odp.parentElement.parentElement.parentElement;
             let titleOdp = currentElement.querySelector('.title');
-            odpowiedzi_user.push({odp: odp})
+            odpowiedzi_user[i] = {odp: odp}
+            //console.log(odpowiedzi_user)
         })
     }
 
