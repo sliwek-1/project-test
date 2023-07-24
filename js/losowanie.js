@@ -159,7 +159,7 @@ function sprawdzanie(element,poprawne){
                 })
             }
         }   
-        let wynik = result/parseInt(poprawne.length) * 100 + "%";
+        let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1) + "%";
         console.log(wynik);
     }
 
@@ -167,5 +167,4 @@ function sprawdzanie(element,poprawne){
     sprawdz.addEventListener('click', () => {
         sprawdz_czy_odpowiedzi_uzytkownika_poprawne(odpowiedzi_user,poprawne)
     })
-
 }
