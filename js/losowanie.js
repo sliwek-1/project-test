@@ -159,8 +159,30 @@ function sprawdzanie(element,poprawne){
                 })
             }
         }   
-        let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1) + "%";
-        console.log(wynik);
+        let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
+        pokaz_wynik(result,poprawne.length,wynik)
+    }
+
+    const pokaz_wynik = (result,wszystkie_odp,wynik) => {
+        let resultElement = document.querySelector('.result')
+        let resultTitle = document.querySelector('.result-title')
+        let resultWynik = document.querySelector('.wynik')
+        let resultProcent = document.querySelector('.procent')
+        if(wynik >= 50){    
+            resultElement.classList.remove('niezdany')
+            resultElement.classList.add('zdany');
+            resultTitle.textContent = `Gratulacje zdałeś egzamin`;
+        }else{
+            resultElement.classList.remove('zdany');
+            resultElement.classList.add('niezdany')
+            resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
+        }
+
+        resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
+        resultProcent.textContent = `${wynik}%`;
+        main.insertBefore(element,questionCenter);
+
+        scrollTo(0,0);
     }
 
     let sprawdz = document.querySelector('.sprawdz');

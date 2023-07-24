@@ -51,6 +51,11 @@
             </div>
         </aside>
         <main class="main">
+            <div class="result">
+                <div class="result-title"></div>
+                <div class="wynik"></div>
+                <div class="procent"></div>
+            </div>
             <div class="question-center">
             </div>
         </main>

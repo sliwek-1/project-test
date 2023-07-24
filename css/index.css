@@ -8,7 +8,7 @@
 }
 
 body{
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .header{
@@ -51,23 +51,46 @@ a{
 
 .main{
     width: 70vw;
-    height: 85vh;
-    overflow-y: scroll;
+    height: auto;
     padding:10px 10px;
     margin-left: 50px;
     overflow-x: hidden;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .main::-webkit-scrollbar {
     display: none;
 }
 
+.result{
+    width:500px;
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.result.zdany{
+    color: green;
+}
+
+.result.niezdany{
+    color: red;
+}
+
 .question-center{
     display: flex;
     flex-direction: column;
     gap: 50px;
+    height: auto;
 }
 
 .btn-back{
@@ -158,11 +181,12 @@ ol > li > ul > li:hover{
 .pytanie .title{
     width: 775px;
     height: auto;
-    background-color: #ddd;
+    background-color: #555;
     padding: 15px;
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 5px;
     margin-top: 20px;
+    color: white;
 }
 
 .img{
