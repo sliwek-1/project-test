@@ -170,8 +170,6 @@ function sprawdzanie(element,poprawne){
     }
 
     const pokazWynik = (result,wszystkie_odp,wynik) => {
-        let main = document.querySelector('.main');
-        let questionCenter = document.querySelector('.question-center')
         let resultElement = document.querySelector('.result')
         let resultTitle = document.querySelector('.result-title')
         let resultWynik = document.querySelector('.wynik')
