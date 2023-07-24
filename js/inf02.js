@@ -35,7 +35,7 @@ async function getData(pageNum){
         
         response.forEach(res => {
             let text = `
-                        <dic class="id">Pytanie: ${res.ID}</div>
+                        <div class="id">Pytanie: ${res.ID}</div>
                         <div class="img">
                             <img src="${res.obrazek}" alt="">
                         </div>
@@ -44,10 +44,10 @@ async function getData(pageNum){
                         </div>
                         <div class="answers">
                             <ul class="answers-list">
-                                <li class="answer">${res.A}</li>
-                                <li class="answer">${res.B}</li>
-                                <li class="answer">${res.C}</li>
-                                <li class="answer">${res.D}</li>
+                                <li class="answer"><xmp>${res.A}</xmp></li>
+                                <li class="answer"><xmp>${res.B}</xmp></li>
+                                <li class="answer"><xmp>${res.C}</xmp></li>
+                                <li class="answer"><xmp>${res.D}</xmp></li>
                             </ul>
                         </div>
                         <button class="show">Pokaż odpowiedz</button>`;
@@ -70,9 +70,6 @@ async function getData(pageNum){
                         })
                     })
         })
-
-        console.log(response);
-
     }catch(error){
         console.log(error);
     }

@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    overflow: hidden;
+}
+
+.header{
+    width: 100vw;
+    height:15vh;
+    display:flex;
+    padding-left: 1vw;
+    justify-content: left;
+    align-items: center;
+    gap:50px;
+    background-color: #eee;
+}
+
+.logo img{
+    width: 150px;
+    height: 75px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.sidebar{
+    width: 465px;
+    height: 85vh;
+    border-right: 5px solid royalblue;
+    transition: 300ms ease-in-out;
+}
+
+.sidebar.active{
+    transform: translateX(-460px);
+}
+
+.center{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.main{
+    width: 70vw;
+    height: 85vh;
+    overflow-y: scroll;
+    padding:10px 10px;
+    margin-left: 50px;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.question-center{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.btn-back{
+    display: none;
+}
+
+.btn-back.active{
+    display: block;
+}
+
+.btn-forward.active{
+    display: none;
+}
+
+.btn-forward{
+    display: block;
+}
+
+.nav-sidebar{
+    height: 35px;
+    width: 465px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 15px;
+    margin-left: 65px;
+}
+
+.nav-sidebar .btn{
+    width: 50px;
+    height: 35px;
+    color: white;
+    background-color: royalblue;
+    border-right: 1px solid royalblue;
+    border-top: 1px solid royalblue;
+    border-bottom: 1px solid royalblue;
+    border-left: none;
+    outline:none;
+    cursor: pointer;
+}
+
+.list{
+    list-style: none;
+}
+
+.side-content h2{
+    padding-left: 5px;
+}
+
+ol > li{
+    font-weight: bold;
+    margin: 10px 0px;
+    padding-left: 10px;
+}
+
+ol > li > ul > li, .db-btn{
+    font-weight: normal;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #eee;
+    margin-top: 5px;
+    width: 440px;
+}
+
+ol > li > ul > li:hover{
+    background-color: #ddd;
+}
+
+.db-btn:hover{
+    background-color: #ddd;
+}
+
+.db-btn{
+    margin-left: 10px;
+}
+
+.pytanie{
+    width: auto;
+    height: auto;
+    background-color: #ddd;
+    padding: 50px 50px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pytanie .title{
+    width: 775px;
+    height: auto;
+    background-color: #ddd;
+    padding: 15px;
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.img{
+    margin-top: 15px;
+}
+
+.answers{
+    width: 775px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answers-list{
+    list-style: none;
+}
+
+.answer{
+    width: 775px;
+    height: 62.5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: darkgray;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.answer.active{
+    background-color: green;
+}
+
+.answer:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
+
+.answer.odp{
+    background-color: #ccc;
+}
+
+.odp.odpgood{
+    background-color: green;
+}
+
+.odp.odpbad{
+    background-color: red;
+}
+
+.sprawdz{
+    width: auto;
+    height: 75px;
+    color: white;
+    padding: 10px;
+    background-color: royalblue;
+    cursor: pointer;
+}
