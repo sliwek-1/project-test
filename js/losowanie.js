@@ -90,10 +90,10 @@ function generateData(response){
                 </div>
                 <div class="answers">
                     <ul class="answers-list">
-                        <li class="answer"><xmp>${res.A}</xmp></li>
-                        <li class="answer"><xmp>${res.B}</xmp></li>
-                        <li class="answer"><xmp>${res.C}</xmp></li>
-                        <li class="answer"><xmp>${res.D}</xmp></li>
+                        <li class="answer"><p></p></li>
+                        <li class="answer"><p></p></li>
+                        <li class="answer"><p></p></li>
+                        <li class="answer"><p></p></li>
                     </ul>
                 </div>`;
     
@@ -101,6 +101,18 @@ function generateData(response){
             element.classList.add('pytanie')
             element.innerHTML = text;
             main.insertBefore(element,element_sprawdz);
+
+            let answers = [res.A,res.B,res.C,res.D];
+            let newAnswer = [];
+            answers.forEach((answer,i) => {
+                newAnswer[i] = answer;
+            })
+
+            let answerEl = element.querySelectorAll('.answer');
+
+            answerEl.forEach((answer,i) => {
+                answer.textContent = newAnswer[i];
+            })
 
             let title = element.querySelector('.title')
             dobre_odpowiedzi.push({title: title, poprawna: res.poprawna_odp});

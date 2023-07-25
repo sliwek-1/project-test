@@ -45,10 +45,10 @@ async function getData(pageNum){
                         </div>
                         <div class="answers">
                             <ul class="answers-list">
-                                <li class="answer"><xmp>${res.A}</xmp></li>
-                                <li class="answer"><xmp>${res.B}</xmp></li>
-                                <li class="answer"><xmp>${res.C}</xmp></li>
-                                <li class="answer"><xmp>${res.D}</xmp></li>
+                                <li class="answer"><p></p></li>
+                                <li class="answer"><p></p></li>
+                                <li class="answer"><p></p></li>
+                                <li class="answer"><p></p></li>
                             </ul>
                         </div>
                         <button class="show">Pokaż odpowiedz</button>`;
@@ -58,13 +58,27 @@ async function getData(pageNum){
                     element.innerHTML = text;
                     main.insertBefore(element, loadMore);
 
+                    let answers = [res.A,res.B,res.C,res.D];
+                    let newAnswer = [];
+                    answers.forEach((answer,i) => {
+                        newAnswer[i] = answer.slice(3,answer.length);
+                    })
+
+                    let answerEl = element.querySelectorAll('.answer');
+
+                    answerEl.forEach((answer,i) => {
+                        answer.textContent = newAnswer[i];
+                    })
+
                     let showBtn = element.querySelector('.show');
 
-                    let answersElement = element.querySelectorAll('.answer');
+                    //let answersElement = element.querySelectorAll('.answer p');
 
                     showBtn.addEventListener('click', () => {
-                        answersElement.forEach(answer => {
-                            if(answer.textContent === res.poprawna_odp){
+                        answerEl.forEach(answer => {
+                            let poprawna = res.poprawna_odp.slice(3,res.poprawna_odp.length);
+                            console.log(answer.textContent+" = "+poprawna)
+                            if(answer.textContent === poprawna){
                                 answer.classList.toggle('active');
                             }
                         })

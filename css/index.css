@@ -14,7 +14,7 @@ body{
 
 .header{
     width: 100vw;
-    height:15vh;
+    height:10vh;
     display:flex;
     padding-left: 1vw;
     justify-content: left;
@@ -25,8 +25,8 @@ body{
 }
 
 .logo img{
-    width: 150px;
-    height: 75px;
+    width: 100px;
+    height: 50px;
 }
 
 a{
@@ -36,13 +36,13 @@ a{
 
 .sidebar{
     width: 465px;
-    height: 85vh;
+    height: 90vh;
     background-color: white;
     border-right: 5px solid royalblue;
     transition: 300ms ease-in-out;
     position: fixed;
     left: 0;
-    top: 15%;
+    top: 10%;
 }
 
 .sidebar.active{
@@ -216,15 +216,17 @@ ol > li > ul > li:hover{
 
 .answer{
     width: 775px;
-    height: 62.5px;
-    padding: 5px;
     margin-bottom: 5px;
+    padding: 20px 20px;
     background-color: #444;
-    color: white;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: left;
+    color: white;
+    cursor: pointer;
+}
+
+.answer p {
+    word-wrap: break-word;
 }
 
 .answer.active{

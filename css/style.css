@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 body{
@@ -14,6 +15,7 @@ body{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
+    background-color: #444;
 }
 
 .header{
@@ -36,15 +38,16 @@ body{
     padding: 25px;
     border-bottom: 5px solid royalblue;
     cursor: pointer;
-    background-color: #eee;
+    background-color: #666;
     width: 175px;
     text-align: center;
     transition: 300ms ease-in-out;
     font-size: 1.25rem;
+    color: white;
 }
 
 .header .list .list-item:hover{
-    background-color: #ddd;
+    background-color: #777;
 }
 
 .obrazek.active{
@@ -66,22 +69,25 @@ a{
 .pytanie{
     width: auto;
     height: auto;
-    background-color: #eee;
+    background-color: #777;
     padding: 25px 50px;
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+    border-radius: 10px;
 }
 
 .title{
     width: 775px;
     height: auto;
-    background-color: #ddd;
+    background-color: #333;
     padding: 15px;
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 5px;
     margin-top: 20px;
+    color: white;
 }
 
 .img{
@@ -102,10 +108,10 @@ a{
 
 .answer{
     width: 775px;
-    height: auto;
+    height: 62.5px;
     padding: 5px;
     margin-bottom: 5px;
-    background-color: darkgray;
+    background-color: #444;
     color: white;
     cursor: pointer;
     display: flex;
