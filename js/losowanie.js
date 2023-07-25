@@ -103,15 +103,10 @@ function generateData(response){
             main.insertBefore(element,element_sprawdz);
 
             let answers = [res.A,res.B,res.C,res.D];
-            let newAnswer = [];
-            answers.forEach((answer,i) => {
-                newAnswer[i] = answer;
-            })
-
             let answerEl = element.querySelectorAll('.answer');
 
             answerEl.forEach((answer,i) => {
-                answer.textContent = newAnswer[i];
+                answer.textContent = answers[i];
             })
 
             let title = element.querySelector('.title')
