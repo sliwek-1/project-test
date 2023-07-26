@@ -191,7 +191,7 @@ ol > li > ul > li:hover{
     width: 775px;
     height: auto;
     background-color: #333;
-    padding: 15px;
+    padding: 50px;
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 5px;
     margin-top: 20px;
@@ -270,4 +270,83 @@ ol > li > ul > li:hover{
 .sprawdz:hover{
     background-color: rgb(55, 91, 199);
     box-shadow: 5px 5px 0px rgb(109, 146, 255);
+}
+
+
+@media (orientation:portrait) {
+    body{
+        overflow-x: hidden;
+    }
+    .header{
+        width: 100vw;
+        position: relative;
+        font-size: .5rem;
+    }
+    .sidebar{
+        width: 100vw;
+        height: 90vh;
+        background-color: white;
+        position: relative;
+        border: none;
+        padding: 25px 0px;
+    }
+    
+    .sidebar.active{
+        transform: translateX(0px);
+    }
+
+    ol > li > ul > li, .db-btn{
+        font-weight: normal;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #eee;
+        margin-top: 5px;
+        width: 95vw;
+    }
+
+    .nav-sidebar{
+        display: none;
+    }
+    
+
+    .center{
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 0;
+    }
+
+    .main{
+        margin-top: 100px;
+        width: 100vw;
+        height: auto;
+        margin-left: 0px;
+    }
+
+    .pytanie{
+        height: auto;
+        padding: 10px 0px;
+        font-size: 0.8rem;
+    }
+
+    .answers{
+        width: 100vw;
+        height: 45vh;
+        margin-bottom: 0;
+    }
+
+    .pytanie .title{
+        width: 90vw;
+        margin-top: 0;
+        padding: 25px;
+    }
+
+    .answer{
+        width: 90vw;
+    }
+
+    .img img{
+        width: 300px;
+        margin-top: 0;
+    }
 }

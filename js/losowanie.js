@@ -55,7 +55,7 @@ async function fetchData(dbID, count){
             headers: {
                 'Content-type': "application/x-www-form-urlencoded",
             }
-        })
+        });
 
         let response = await request.json();
         let dataToStorage = JSON.stringify(response);
@@ -75,7 +75,7 @@ function generateData(response){
 
     sprawdz.classList.add('sprawdz');
     sprawdz.textContent = "Sprawdz Odpowiedzi";
-    main.append(sprawdz)
+    main.append(sprawdz);
 
     let element_sprawdz = document.querySelector('.sprawdz');
     if(response && response.length > 0){
@@ -98,7 +98,7 @@ function generateData(response){
                 </div>`;
     
             let element = document.createElement('div');
-            element.classList.add('pytanie')
+            element.classList.add('pytanie');
             element.innerHTML = text;
             main.insertBefore(element,element_sprawdz);
 
@@ -109,14 +109,14 @@ function generateData(response){
                 answer.textContent = answers[i];
             })
 
-            let title = element.querySelector('.title')
+            let title = element.querySelector('.title');;
             dobre_odpowiedzi.push({title: title, poprawna: res.poprawna_odp});
 
-            sprawdzanie(element,dobre_odpowiedzi)
+            sprawdzanie(element,dobre_odpowiedzi);
         })
     
     }else {
-        console.log("No data to generate.")
+        console.log("No data to generate.");
     }
 }
 
@@ -130,7 +130,7 @@ function sprawdzanie(element,poprawne){
         answer.addEventListener('click' ,(e) => {
             let currentAnswer = e.currentTarget;
             answers.forEach(a => {
-                a.classList.remove('odp')
+                a.classList.remove('odp');
             })
             currentAnswer.classList.add('odp');
             dodajOdpowiedziUzytkownikaDoTablicy();
@@ -144,7 +144,7 @@ function sprawdzanie(element,poprawne){
         odpowiedzi.forEach((odp, i) => {
             let currentElement = odp.parentElement.parentElement.parentElement;
             let titleOdp = currentElement.querySelector('.title');
-            odpowiedzi_user[i] = {odp: odp}
+            odpowiedzi_user[i] = {odp: odp};
             //console.log(odpowiedzi_user)
         })
     }
@@ -154,7 +154,7 @@ function sprawdzanie(element,poprawne){
             let odpElement = user_odp[i].odp;
             let odpText = odpElement.textContent;
             
-            let poprawnaOdp = poprawne[i]
+            let poprawnaOdp = poprawne[i];
             let poprawnaOdpText = poprawnaOdp.poprawna;
 
             if(odpText == poprawnaOdpText){
@@ -173,22 +173,22 @@ function sprawdzanie(element,poprawne){
             }
         }   
         let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
-        pokazWynik(result,poprawne.length,wynik)
+        pokazWynik(result,poprawne.length,wynik);
     }
 
     const pokazWynik = (result,wszystkie_odp,wynik) => {
-        let resultElement = document.querySelector('.result')
-        let resultTitle = document.querySelector('.result-title')
-        let resultWynik = document.querySelector('.wynik')
-        let resultProcent = document.querySelector('.procent')
+        let resultElement = document.querySelector('.result');
+        let resultTitle = document.querySelector('.result-title');
+        let resultWynik = document.querySelector('.wynik');
+        let resultProcent = document.querySelector('.procent');
 
         if(wynik >= 50){    
-            resultElement.classList.remove('niezdany')
+            resultElement.classList.remove('niezdany');
             resultElement.classList.add('zdany');
             resultTitle.textContent = `Gratulacje zdałeś egzamin`;
         }else{
             resultElement.classList.remove('zdany');
-            resultElement.classList.add('niezdany')
+            resultElement.classList.add('niezdany');
             resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
         }
 
@@ -198,7 +198,8 @@ function sprawdzanie(element,poprawne){
 
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
-        sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
-        sprawdz.classList.add('schowaj')
+        sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne);
+        sprawdz.classList.add('schowaj');
+        scrollTo(0,window.screenY);
     })
 }
