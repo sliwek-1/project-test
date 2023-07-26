@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let main = document.querySelector('.question-center');
     let data = sessionStorage.getItem('response');
 
-    if(data !== ""){
+    if(data !== null){
         generateData(JSON.parse(data));
     }else{
         console.log("e")
@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
             resultWynik.textContent = "";
             main.innerHTML = "";
             sessionStorage.removeItem('response');
+            sessionStorage.removeItem('odpowiedzi_user');
             sendData(id);
         })
     })
@@ -55,7 +56,7 @@ async function fetchData(dbID, count){
             headers: {
                 'Content-type': "application/x-www-form-urlencoded",
             }
-        });
+        })
 
         let response = await request.json();
         let dataToStorage = JSON.stringify(response);
@@ -75,7 +76,7 @@ function generateData(response){
 
     sprawdz.classList.add('sprawdz');
     sprawdz.textContent = "Sprawdz Odpowiedzi";
-    main.append(sprawdz);
+    main.append(sprawdz)
 
     let element_sprawdz = document.querySelector('.sprawdz');
     if(response && response.length > 0){
@@ -98,7 +99,7 @@ function generateData(response){
                 </div>`;
     
             let element = document.createElement('div');
-            element.classList.add('pytanie');
+            element.classList.add('pytanie')
             element.innerHTML = text;
             main.insertBefore(element,element_sprawdz);
 
@@ -109,28 +110,27 @@ function generateData(response){
                 answer.textContent = answers[i];
             })
 
-            let title = element.querySelector('.title');;
+            let title = element.querySelector('.title')
             dobre_odpowiedzi.push({title: title, poprawna: res.poprawna_odp});
 
-            sprawdzanie(element,dobre_odpowiedzi);
+            sprawdzanie(element,dobre_odpowiedzi)
         })
     
     }else {
-        console.log("No data to generate.");
+        console.log("No data to generate.")
     }
 }
 
 function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
     let answers = element.querySelectorAll('.answer');
-    let odpowiedzi_user = [];
     let result = 0;
 
     answers.forEach((answer) => {
         answer.addEventListener('click' ,(e) => {
             let currentAnswer = e.currentTarget;
             answers.forEach(a => {
-                a.classList.remove('odp');
+                a.classList.remove('odp')
             })
             currentAnswer.classList.add('odp');
             dodajOdpowiedziUzytkownikaDoTablicy();
@@ -139,56 +139,58 @@ function sprawdzanie(element,poprawne){
     //sprawdanie odpowiedzi
 
     const dodajOdpowiedziUzytkownikaDoTablicy = () => {
+        let odpowiedzi_user = [];
         let odpowiedzi = document.querySelectorAll('.odp');
 
-        odpowiedzi.forEach((odp, i) => {
-            let currentElement = odp.parentElement.parentElement.parentElement;
-            let titleOdp = currentElement.querySelector('.title');
-            odpowiedzi_user[i] = {odp: odp};
-            //console.log(odpowiedzi_user)
+        odpowiedzi.forEach((odp) => {
+            let index = Array.from(odpowiedzi).indexOf(odp);
+            odpowiedzi_user[index] = {odp: odp.textContent}
         })
+
+        sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
     }
 
     const sprawdzCzyOdpowiedziUzytkownikaPoprawne = (user_odp, poprawne) => {
-        for(let i = 0; i < poprawne.length; i++){
-            let odpElement = user_odp[i].odp;
-            let odpText = odpElement.textContent;
+        let answers = document.querySelectorAll('.odp');
+        
+        answers.forEach((answer,i) => {
             
-            let poprawnaOdp = poprawne[i];
-            let poprawnaOdpText = poprawnaOdp.poprawna;
-
-            if(odpText == poprawnaOdpText){
-                odpElement.classList.add('odpgood');
-                result++;
-            }else{
-                odpElement.classList.add('odpbad');
-
-                let answersElement = odpElement.parentElement;
-                let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                otherAnswers.forEach(answer => {
-                    if(answer.textContent == poprawnaOdpText){
-                        answer.classList.add('active');
-                    }
-                })
+            if(answer.textContent == user_odp[i].odp){
+                if(poprawne[i].poprawna == user_odp[i].odp){
+                    answer.classList.add('odpgood');
+                    result++;
+                }else{
+                    answer.classList.add('odpbad');
+                    let answersElement = answer.parentElement;
+                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                    otherAnswers.forEach(answer => {
+                        if(answer.textContent == poprawne[i].poprawna){
+                            answer.classList.add('active');
+                        }
+                    })
+                }
             }
-        }   
+        
+            //console.log(answer.textContent)
+        })    
+    
         let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
-        pokazWynik(result,poprawne.length,wynik);
+        pokazWynik(result,poprawne.length,wynik)
     }
 
     const pokazWynik = (result,wszystkie_odp,wynik) => {
-        let resultElement = document.querySelector('.result');
-        let resultTitle = document.querySelector('.result-title');
-        let resultWynik = document.querySelector('.wynik');
-        let resultProcent = document.querySelector('.procent');
+        let resultElement = document.querySelector('.result')
+        let resultTitle = document.querySelector('.result-title')
+        let resultWynik = document.querySelector('.wynik')
+        let resultProcent = document.querySelector('.procent')
 
         if(wynik >= 50){    
-            resultElement.classList.remove('niezdany');
+            resultElement.classList.remove('niezdany')
             resultElement.classList.add('zdany');
             resultTitle.textContent = `Gratulacje zdałeś egzamin`;
         }else{
             resultElement.classList.remove('zdany');
-            resultElement.classList.add('niezdany');
+            resultElement.classList.add('niezdany')
             resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
         }
 
@@ -198,8 +200,11 @@ function sprawdzanie(element,poprawne){
 
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
-        sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne);
-        sprawdz.classList.add('schowaj');
-        scrollTo(0,window.screenY);
+        let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
+        let odpowiedzi_user = JSON.parse(odpowiedzi) 
+        sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
+        sprawdz.classList.add('schowaj')
+        scrollTo(0,window.screenY)
     })
 }
+
