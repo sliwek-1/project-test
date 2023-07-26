@@ -1,16 +1,9 @@
 let result = 0;
+
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let main = document.querySelector('.question-center');
     let data = sessionStorage.getItem('response');
-    let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
-    let poprawne = sessionStorage.getItem('poprawne');
-
-    if(odpowiedzi !== null && poprawne !== null){
-        sprawdzCzyOdpowiedziUzytkownikaPoprawne(JSON.parse(odpowiedzi), JSON.parse(poprawne))
-    }else{
-        console.log("error");
-    }
     
     if(data !== null){
         generateData(JSON.parse(data));
@@ -35,8 +28,52 @@ window.addEventListener('DOMContentLoaded', () => {
             sendData(id);
         })
     })
+    let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
+    let poprawne = sessionStorage.getItem('poprawne');
+
+
+    if (odpowiedzi !== null && poprawne !== null) {
+        loadDataFromStorage(JSON.parse(odpowiedzi), JSON.parse(poprawne));
+    }
 })
 
+
+// funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
+// co poswala widzieć dobre i złe odpowiedzi udzielone podczas testu po odświeżeniu strony
+function loadDataFromStorage(odpowiedzi, poprawne){
+    
+    let answers = document.querySelectorAll('.pytanie');
+
+    answers.forEach((answer, i) => {
+        let odpowiedziUser = odpowiedzi[i].odp;
+        let odpowiedziEl = answer.querySelectorAll('.answer');
+        let poprawneOdp = poprawne[i].poprawna;
+
+        odpowiedziEl.forEach(odp => {
+            if(odp.textContent == odpowiedziUser){
+                odp.classList.add('odp');
+                let odpowiedz = answer.querySelector('.odp');
+                if(poprawneOdp == odpowiedz.textContent){
+                    odpowiedz.classList.add('odpgood');
+                    result++;
+                    console.log("true")
+                }else{
+                    odpowiedz.classList.add('odpbad');
+                    let answersElement = odpowiedz.parentElement;
+                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                    otherAnswers.forEach(answer => {
+                        if(answer.textContent == poprawne[i].poprawna){
+                            answer.classList.add('active');
+                        }
+                    })
+                    console.log("false")
+                }
+            }
+        })
+    })
+}
+
+// funkcja wywołuje funlcje fetchData z odpowiedznimi parametrami do każdego egzaminu
 async function sendData(id){
     try{
         switch(id){
@@ -58,6 +95,7 @@ async function sendData(id){
     }
 }
 
+// fetch data wysyła dane z parametrami do odpowiedniego pliku php aby uzyskać pytania
 async function fetchData(dbID, count){
     try{
         let request = await fetch(`php/${dbID}.php`,{
@@ -78,6 +116,7 @@ async function fetchData(dbID, count){
     }    
 }
 
+// funkcja generuje wszystkie pytania
 function generateData(response){
     let main = document.querySelector('.question-center');
     let dobre_odpowiedzi = [];
@@ -131,6 +170,9 @@ function generateData(response){
     }
 }
 
+
+// funkcja dodaje klase odp do każdej odpowiedzi uzytkownika dzięki temu zliczane są poprawne odpowiedzi
+//funkcja zawiera również definicję logiki przycisku sprawdz który wywołuje funkcję zliczającą punkty po kliknięci na tej samej zasadze co dunkcja loadDataFromStorage
 function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
     let answers = element.querySelectorAll('.answer');
@@ -151,16 +193,20 @@ function sprawdzanie(element,poprawne){
     sprawdz.addEventListener('click', () => {
         let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
         let odpowiedzi_user = JSON.parse(odpowiedzi) 
-        
+
         sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
         sprawdz.classList.add('schowaj')
         scrollTo(0,window.screenY)
     })
 }
 
+
+// funkcja zlicza poprawne odpowiedzi gdzy odpowiedz użydkownika do komkretnego pytania jest zgodna z poprawną
+// nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
 function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
+    //console.log(user_odp[0].odp)
     let answers = document.querySelectorAll('.odp');
-    
+    //console.log(answers)
     answers.forEach((answer,i) => {
         
         if(answer.textContent == user_odp[i].odp){
@@ -178,14 +224,13 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
                 })
             }
         }
-    
-        //console.log(answer.textContent)
     })    
 
     let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
     pokazWynik(result,poprawne.length,wynik)
 }
 
+// dodaje odpowiedzi użytkownika z klasą odp do tablicy
 function dodajOdpowiedziUzytkownikaDoTablicy(){
     let odpowiedzi_user = [];
     let odpowiedzi = document.querySelectorAll('.odp');
@@ -198,6 +243,8 @@ function dodajOdpowiedziUzytkownikaDoTablicy(){
     sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
 }
 
+
+//funckja wyswietla element z wynikiem testu
 function pokazWynik(result,wszystkie_odp,wynik){
     let resultElement = document.querySelector('.result')
     let resultTitle = document.querySelector('.result-title')

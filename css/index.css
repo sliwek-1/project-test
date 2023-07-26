@@ -241,11 +241,11 @@ ol > li > ul > li:hover{
     background-color: #888;
 }
 
-.odp.odpgood{
+.answer.odpgood{
     background-color: green;
 }
 
-.odp.odpbad{
+.answer.odpbad{
     background-color: red;
 }
 
