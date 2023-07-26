@@ -1,8 +1,17 @@
+let result = 0;
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let main = document.querySelector('.question-center');
     let data = sessionStorage.getItem('response');
+    let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
+    let poprawne = sessionStorage.getItem('poprawne');
 
+    if(odpowiedzi !== null && poprawne !== null){
+        sprawdzCzyOdpowiedziUzytkownikaPoprawne(JSON.parse(odpowiedzi), JSON.parse(poprawne))
+    }else{
+        console.log("error");
+    }
+    
     if(data !== null){
         generateData(JSON.parse(data));
     }else{
@@ -22,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
             main.innerHTML = "";
             sessionStorage.removeItem('response');
             sessionStorage.removeItem('odpowiedzi_user');
+            sessionStorage.removeItem('poprawne');
             sendData(id);
         })
     })
@@ -110,11 +120,11 @@ function generateData(response){
                 answer.textContent = answers[i];
             })
 
-            let title = element.querySelector('.title')
-            dobre_odpowiedzi.push({title: title, poprawna: res.poprawna_odp});
+            dobre_odpowiedzi.push({poprawna: res.poprawna_odp});
 
             sprawdzanie(element,dobre_odpowiedzi)
         })
+        sessionStorage.setItem('poprawne',JSON.stringify(dobre_odpowiedzi));
     
     }else {
         console.log("No data to generate.")
@@ -124,7 +134,6 @@ function generateData(response){
 function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
     let answers = element.querySelectorAll('.answer');
-    let result = 0;
 
     answers.forEach((answer) => {
         answer.addEventListener('click' ,(e) => {
@@ -138,73 +147,73 @@ function sprawdzanie(element,poprawne){
     })
     //sprawdanie odpowiedzi
 
-    const dodajOdpowiedziUzytkownikaDoTablicy = () => {
-        let odpowiedzi_user = [];
-        let odpowiedzi = document.querySelectorAll('.odp');
-
-        odpowiedzi.forEach((odp) => {
-            let index = Array.from(odpowiedzi).indexOf(odp);
-            odpowiedzi_user[index] = {odp: odp.textContent}
-        })
-
-        sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
-    }
-
-    const sprawdzCzyOdpowiedziUzytkownikaPoprawne = (user_odp, poprawne) => {
-        let answers = document.querySelectorAll('.odp');
-        
-        answers.forEach((answer,i) => {
-            
-            if(answer.textContent == user_odp[i].odp){
-                if(poprawne[i].poprawna == user_odp[i].odp){
-                    answer.classList.add('odpgood');
-                    result++;
-                }else{
-                    answer.classList.add('odpbad');
-                    let answersElement = answer.parentElement;
-                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                    otherAnswers.forEach(answer => {
-                        if(answer.textContent == poprawne[i].poprawna){
-                            answer.classList.add('active');
-                        }
-                    })
-                }
-            }
-        
-            //console.log(answer.textContent)
-        })    
-    
-        let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
-        pokazWynik(result,poprawne.length,wynik)
-    }
-
-    const pokazWynik = (result,wszystkie_odp,wynik) => {
-        let resultElement = document.querySelector('.result')
-        let resultTitle = document.querySelector('.result-title')
-        let resultWynik = document.querySelector('.wynik')
-        let resultProcent = document.querySelector('.procent')
-
-        if(wynik >= 50){    
-            resultElement.classList.remove('niezdany')
-            resultElement.classList.add('zdany');
-            resultTitle.textContent = `Gratulacje zdałeś egzamin`;
-        }else{
-            resultElement.classList.remove('zdany');
-            resultElement.classList.add('niezdany')
-            resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
-        }
-
-        resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
-        resultProcent.textContent = `${wynik}%`;
-    }
-
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
         let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
         let odpowiedzi_user = JSON.parse(odpowiedzi) 
+        
         sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
         sprawdz.classList.add('schowaj')
         scrollTo(0,window.screenY)
     })
 }
 
+function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
+    let answers = document.querySelectorAll('.odp');
+    
+    answers.forEach((answer,i) => {
+        
+        if(answer.textContent == user_odp[i].odp){
+            if(poprawne[i].poprawna == user_odp[i].odp){
+                answer.classList.add('odpgood');
+                result++;
+            }else{
+                answer.classList.add('odpbad');
+                let answersElement = answer.parentElement;
+                let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                otherAnswers.forEach(answer => {
+                    if(answer.textContent == poprawne[i].poprawna){
+                        answer.classList.add('active');
+                    }
+                })
+            }
+        }
+    
+        //console.log(answer.textContent)
+    })    
+
+    let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
+    pokazWynik(result,poprawne.length,wynik)
+}
+
+function dodajOdpowiedziUzytkownikaDoTablicy(){
+    let odpowiedzi_user = [];
+    let odpowiedzi = document.querySelectorAll('.odp');
+
+    odpowiedzi.forEach((odp) => {
+        let index = Array.from(odpowiedzi).indexOf(odp);
+        odpowiedzi_user[index] = {odp: odp.textContent}
+    })
+
+    sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
+}
+
+function pokazWynik(result,wszystkie_odp,wynik){
+    let resultElement = document.querySelector('.result')
+    let resultTitle = document.querySelector('.result-title')
+    let resultWynik = document.querySelector('.wynik')
+    let resultProcent = document.querySelector('.procent')
+
+    if(wynik >= 50){    
+        resultElement.classList.remove('niezdany')
+        resultElement.classList.add('zdany');
+        resultTitle.textContent = `Gratulacje zdałeś egzamin`;
+    }else{
+        resultElement.classList.remove('zdany');
+        resultElement.classList.add('niezdany')
+        resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
+    }
+
+    resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
+    resultProcent.textContent = `${wynik}%`;
+}
