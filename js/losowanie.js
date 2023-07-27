@@ -1,5 +1,3 @@
-let result = 0;
-
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let main = document.querySelector('.question-center');
@@ -25,6 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
             sessionStorage.removeItem('response');
             sessionStorage.removeItem('odpowiedzi_user');
             sessionStorage.removeItem('poprawne');
+            sessionStorage.removeItem('results');
             sendData(id);
         })
     })
@@ -50,25 +49,24 @@ function loadDataFromStorage(odpowiedzi, poprawne){
         let poprawneOdp = poprawne[i].poprawna;
 
         odpowiedziEl.forEach(odp => {
-            if(odp.textContent == odpowiedziUser){
-                odp.classList.add('odp');
-                let odpowiedz = answer.querySelector('.odp');
-                if(poprawneOdp == odpowiedz.textContent){
-                    odpowiedz.classList.add('odpgood');
-                    result++;
-                    console.log("true")
-                }else{
-                    odpowiedz.classList.add('odpbad');
-                    let answersElement = odpowiedz.parentElement;
-                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                    otherAnswers.forEach(answer => {
-                        if(answer.textContent == poprawne[i].poprawna){
-                            answer.classList.add('active');
-                        }
-                    })
-                    console.log("false")
+                if(odp.textContent == odpowiedziUser){
+                    odp.classList.add('odp');
+                    let odpowiedz = answer.querySelector('.odp');
+                    if(poprawneOdp == odpowiedz.textContent){
+                        odpowiedz.classList.add('odpgood');
+                        console.log("true")
+                    }else{
+                        odpowiedz.classList.add('odpbad');
+                        let answersElement = odpowiedz.parentElement;
+                        let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                        otherAnswers.forEach(answer => {
+                            if(answer.textContent == poprawne[i].poprawna){
+                                answer.classList.add('active');
+                            }
+                        })
+                        console.log("false")
+                    }
                 }
-            }
         })
     })
 }
@@ -187,8 +185,8 @@ function sprawdzanie(element,poprawne){
             dodajOdpowiedziUzytkownikaDoTablicy();
         })
     })
-    //sprawdanie odpowiedzi
 
+    //sprawdanie odpowiedzi
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
         let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
@@ -204,9 +202,8 @@ function sprawdzanie(element,poprawne){
 // funkcja zlicza poprawne odpowiedzi gdzy odpowiedz użydkownika do komkretnego pytania jest zgodna z poprawną
 // nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
 function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
-    //console.log(user_odp[0].odp)
+    let result = 0;
     let answers = document.querySelectorAll('.odp');
-    //console.log(answers)
     answers.forEach((answer,i) => {
         
         if(answer.textContent == user_odp[i].odp){
@@ -263,4 +260,6 @@ function pokazWynik(result,wszystkie_odp,wynik){
 
     resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
     resultProcent.textContent = `${wynik}%`;
+
+    sessionStorage.setItem('results', JSON.stringify({odp_dobrze: result, wszystkie_odp: wszystkie_odp,wynik: wynik}));
 }
