@@ -69,6 +69,9 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                 }
         })
     })
+
+    let sprawdz = document.querySelector('.sprawdz');
+    sprawdz.classList.add('schowaj');
 }
 
 // funkcja wywołuje funlcje fetchData z odpowiedznimi parametrami do każdego egzaminu
