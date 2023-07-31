@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
         console.log("e")
     }
 
+    
     btnsE.forEach(btn => {
         btn.addEventListener('click', (e) => {
             let currentElement = e.currentTarget;
@@ -40,9 +41,13 @@ window.addEventListener('DOMContentLoaded', () => {
 // funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
 // co poswala widzieć dobre i złe odpowiedzi udzielone podczas testu po odświeżeniu strony
 function loadDataFromStorage(odpowiedzi, poprawne){
-    
     let answers = document.querySelectorAll('.pytanie');
-
+    let dataResult = sessionStorage.getItem('results');
+    let data = JSON.parse(dataResult);
+    let dobreOdpowiedzi = data.odp_dobrze;
+    let wszystkie = data.wszystkie_odp;
+    let wynikProcentowy = data.wynik;
+    
     answers.forEach((answer, i) => {
         let odpowiedziUser = odpowiedzi[i].odp;
         let odpowiedziEl = answer.querySelectorAll('.answer');
@@ -69,6 +74,7 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                 }
         })
     })
+    pokazWynik(dobreOdpowiedzi,wszystkie,wynikProcentowy)
 
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.classList.add('schowaj');
@@ -163,9 +169,7 @@ function generateData(response){
             dobre_odpowiedzi.push({poprawna: res.poprawna_odp});
 
             sprawdzanie(element,dobre_odpowiedzi)
-        })
-        sessionStorage.setItem('poprawne',JSON.stringify(dobre_odpowiedzi));
-    
+        })    
     }else {
         console.log("No data to generate.")
     }
@@ -173,7 +177,8 @@ function generateData(response){
 
 
 // funkcja dodaje klase odp do każdej odpowiedzi uzytkownika dzięki temu zliczane są poprawne odpowiedzi
-//funkcja zawiera również definicję logiki przycisku sprawdz który wywołuje funkcję zliczającą punkty po kliknięci na tej samej zasadze co dunkcja loadDataFromStorage
+// funkcja zawiera również definicję logiki przycisku sprawdz który wywołuje funkcję zliczającą punkty 
+// po kliknięci na tej samej zasadze co funkcja loadDataFromStorage
 function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
     let answers = element.querySelectorAll('.answer');
@@ -189,12 +194,12 @@ function sprawdzanie(element,poprawne){
         })
     })
 
-    //sprawdanie odpowiedzi
+    // sprawdanie odpowiedzi
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.addEventListener('click', () => {
         let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
         let odpowiedzi_user = JSON.parse(odpowiedzi) 
-
+        sessionStorage.setItem('poprawne',JSON.stringify(poprawne));
         sprawdzCzyOdpowiedziUzytkownikaPoprawne(odpowiedzi_user,poprawne)
         sprawdz.classList.add('schowaj')
         scrollTo(0,window.screenY)
@@ -244,7 +249,7 @@ function dodajOdpowiedziUzytkownikaDoTablicy(){
 }
 
 
-//funckja wyswietla element z wynikiem testu
+// funckja wyswietla element z wynikiem testu
 function pokazWynik(result,wszystkie_odp,wynik){
     let resultElement = document.querySelector('.result')
     let resultTitle = document.querySelector('.result-title')
