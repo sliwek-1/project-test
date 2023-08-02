@@ -49,6 +49,7 @@
                     </li>
                 </ol>
             </div>
+            <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>
         <main class="main">
             <div class="result">

@@ -139,6 +139,13 @@ a{
     cursor: pointer;
 }
 
+.copyright{
+    font-size: 0.7rem;
+    position: absolute;
+    top: 95%;
+    left: 35%;
+}
+
 .list{
     list-style: none;
 }
