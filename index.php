@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <script src="./js/sidebar.js" defer></script>
     <script src="./js/losowanie.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Baza Pytań</title>
 </head>
 <body>

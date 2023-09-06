@@ -1,10 +1,13 @@
+const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
+const iv = CryptoJS.lib.WordArray.random(16);
+
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let main = document.querySelector('.question-center');
     let data = sessionStorage.getItem('response');
-    
+
     if(data !== null){
-        generateData(JSON.parse(data));
+        generateData(JSON.parse(deszyfrowanieDanych(data)));
     }else{
         console.log("e")
     }
@@ -115,12 +118,32 @@ async function fetchData(dbID, count){
 
         let response = await request.json();
         let dataToStorage = JSON.stringify(response);
-        sessionStorage.setItem('response', dataToStorage);
+        let zaszyfrowaneDane = szyfrowanieDanych(dataToStorage)
+        sessionStorage.setItem('response', zaszyfrowaneDane);
         let data = sessionStorage.getItem('response');
-        generateData(JSON.parse(data)); 
+        generateData(JSON.parse(deszyfrowanieDanych(data))); 
     }catch(error){
         console.log(error);
     }    
+}
+
+function szyfrowanieDanych(data){
+    const encryptedData = CryptoJS.AES.encrypt(
+      JSON.stringify(data),
+      secretKey,
+      { iv }
+    ).toString();
+        
+    deszyfrowanieDanych(encryptedData)
+
+    return encryptedData
+}
+
+function deszyfrowanieDanych(encryptedData){
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, secretKey, { iv });
+    const decryptedData = JSON.parse(decryptedBytes.toString(CryptoJS.enc.Utf8));
+
+    return decryptedData
 }
 
 // funkcja generuje wszystkie pytania
@@ -205,7 +228,6 @@ function sprawdzanie(element,poprawne){
         scrollTo(0,window.screenY)
     })
 }
-
 
 // funkcja zlicza poprawne odpowiedzi gdzy odpowiedz użydkownika do komkretnego pytania jest zgodna z poprawną
 // nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
