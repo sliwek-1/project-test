@@ -3,10 +3,10 @@
     include_once('./php/connection-users.php');
 
     if(!isset($_SESSION['id'])){
-        header('location: login.php');
+        header('location: index.php');
     }
 
-    $sql = "SELECT imie, nazwisko, permision FROM users WHERE id = :id";
+    $sql = "SELECT imie, nazwisko, klasa, permision FROM users WHERE id = :id";
 
     $request = $pdo->prepare($sql);
 

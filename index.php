@@ -47,6 +47,7 @@
 
                     <nav class="navigation">
                         <div class="bar">
+                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
                     </nav>
