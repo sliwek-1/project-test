@@ -27,33 +27,9 @@
 <body>
     <main class="main">
         <header class="header">
-            <?php if($response['permision'] == "admin") { ?>
-
-                <nav class="navigation">
-                    <div class="logo">
-                        <img src="./img/logo.png" alt="logo">
-                    </div>
-                    <div class="bar">
-                        <a href="admin.php?userID=<?= $_SESSION['id'] ?>" class="btn admin">Admin</a>
-                        <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn logout">Wyloguj</a>
-                    </div>
-                </nav>
-
-            <?php } else { ?>
-
-                <nav class="navigation">
-                    <div class="logo">
-                        <img src="./img/logo.png" alt="logo">
-                    </div>
-                    <div class="bar">
-                        <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn logout">Wyloguj</a>
-                    </div>
-                </nav>
-
-            <?php } ?>
         </header>
         <section class="container">
-            
+
         </section>
     </main>
 </body>

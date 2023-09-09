@@ -1,3 +1,18 @@
+<?php 
+    session_start();
+    include_once('./php/connection-users.php');
+
+    $sql = "SELECT imie, nazwisko, permision FROM users WHERE id = :id";
+
+    $request = $pdo->prepare($sql);
+
+    $request->bindParam(':id', $_SESSION['id']);
+
+    $request->execute();
+
+    $response = $request->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -16,10 +31,34 @@
         </div>
         <h1>Technik Informatyk - Gronowo</h1>
         <nav class="navigation">
-            <a href="./login.php" class="login-btn">
-                <img src="./img/user.png" class="login-img" alt="user img">
-                Zaloguj
-            </a>
+            <?php if(isset($_SESSION['id'])) { ?>
+
+                <?php if($response['permision'] == "admin") { ?>
+
+                    <nav class="navigation">
+                        <div class="bar">
+                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
+                            <a href="admin.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar admin">Admin</a>
+                            <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
+                        </div>
+                    </nav>
+
+                    <?php } else { ?>
+
+                    <nav class="navigation">
+                        <div class="bar">
+                            <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
+                        </div>
+                    </nav>
+
+                <?php } ?>
+
+            <?php } else { ?>
+                <a href="./login.php" class="btn-bar login-btn">
+                    <img src="./img/user.png" class="login-img" alt="user img">
+                    Zaloguj
+                </a>
+            <?php } ?>
         </nav>
     </header>
     <div class="center">

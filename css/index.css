@@ -38,14 +38,18 @@ a{
     position: absolute;
     right: 0;
     top: 0;
-    width: 10vw;
+    width: 15vw;
     height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-btn{
+.navigation .bar{
+    display: flex;
+}
+
+.btn-bar{
     display: block;
     font-size: .9rem;
     display: flex;
@@ -58,8 +62,13 @@ a{
     border-radius: 5px;
 }
 
-.login-btn:hover{
+.btn-bar:hover:not(.logout){
     background-color:#ccc;
+}
+
+.logout:hover{
+    background-color: red;
+    color: white;
 }
 
 .login-img{
@@ -316,11 +325,21 @@ ol > li > ul > li:hover{
     body{
         overflow-x: hidden;
     }
+
     .header{
         width: 100vw;
         position: relative;
         font-size: .5rem;
     }
+
+    .header h1{
+        display: none;
+    }
+
+    .navigation {
+        width: 60vw;
+    }
+
     .sidebar{
         width: 100vw;
         height: 90vh;
