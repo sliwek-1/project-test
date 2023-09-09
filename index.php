@@ -15,6 +15,12 @@
             <img src="./img/logo.png" alt="GLE">
         </div>
         <h1>Technik Informatyk - Gronowo</h1>
+        <nav class="navigation">
+            <a href="./login.php" class="login-btn">
+                <img src="./img/user.png" class="login-img" alt="user img">
+                Zaloguj
+            </a>
+        </nav>
     </header>
     <div class="center">
         <aside class="sidebar">
