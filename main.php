@@ -2,7 +2,7 @@
     session_start();
     include_once('./php/connection-users.php');
 
-    $sql = "SELECT imie, nazwisko, permision FROM users WHERE id = :id";
+    $sql = "SELECT id, imie, nazwisko, permision FROM users WHERE id = :id";
 
     $request = $pdo->prepare($sql);
 
@@ -30,16 +30,12 @@
             <img src="./img/logo.png" alt="GLE">
         </div>
         <h1>Technik Informatyk - Gronowo</h1>
-        <div class="user">
-            <?= $response['imie']." ".$response['nazwisko'] ?>
-        </div>
         <nav class="navigation">
             <?php if(isset($_SESSION['id'])) { ?>
                 <?php if($response['permision'] == "admin") { ?>
-
                     <nav class="navigation">
                         <div class="bar">
-                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
+                            <a href="php/sendUsersExams.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress"> <?= $response['imie']." ".$response['nazwisko'] ?></a>
                             <a href="admin.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar admin">Admin</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
@@ -49,7 +45,7 @@
 
                     <nav class="navigation">
                         <div class="bar">
-                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
+                            <a href="php/sendUsersExams.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
                     </nav>
@@ -101,6 +97,7 @@
             <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>
         <main class="main">
+            <input type="text" class="exam-id" value="" hidden>
             <div class="result">
                 <div class="result-title"></div>
                 <div class="wynik"></div>

@@ -62,7 +62,7 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                     let odpowiedz = answer.querySelector('.odp');
                     if(poprawneOdp == odpowiedz.textContent){
                         odpowiedz.classList.add('odpgood');
-                        console.log("true")
+                       // console.log("true")
                     }else{
                         odpowiedz.classList.add('odpbad');
                         let answersElement = odpowiedz.parentElement;
@@ -72,13 +72,13 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                                 answer.classList.add('active');
                             }
                         })
-                        console.log("false")
+                       // console.log("false")
                     }
                 }
         })
     })
     pokazWynik(dobreOdpowiedzi,wszystkie,wynikProcentowy)
-
+    
     let sprawdz = document.querySelector('.sprawdz');
     sprawdz.classList.add('schowaj');
 }
@@ -121,7 +121,7 @@ async function fetchData(dbID, count){
         let zaszyfrowaneDane = szyfrowanieDanych(dataToStorage)
         sessionStorage.setItem('response', zaszyfrowaneDane);
         let data = sessionStorage.getItem('response');
-        generateData(JSON.parse(deszyfrowanieDanych(data))); 
+        generateData(JSON.parse(deszyfrowanieDanych(data)),dbID); 
     }catch(error){
         console.log(error);
     }    
@@ -147,11 +147,14 @@ function deszyfrowanieDanych(encryptedData){
 }
 
 // funkcja generuje wszystkie pytania
-function generateData(response){
+function generateData(response,id){
     let main = document.querySelector('.question-center');
     let dobre_odpowiedzi = [];
-
+    let elements = [];
+    let examID = document.querySelector('.exam-id');
     let sprawdz = document.createElement('div');
+
+    examID.value = id
 
     sprawdz.classList.add('sprawdz');
     sprawdz.textContent = "Sprawdz Odpowiedzi";
@@ -190,9 +193,9 @@ function generateData(response){
             })
 
             dobre_odpowiedzi.push({poprawna: res.poprawna_odp});
-
-            sprawdzanie(element,dobre_odpowiedzi)
+            elements.push(element)
         })    
+        sprawdzanie(elements,dobre_odpowiedzi)
     }else {
         console.log("No data to generate.")
     }
@@ -204,18 +207,21 @@ function generateData(response){
 // po kliknięci na tej samej zasadze co funkcja loadDataFromStorage
 function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
-    let answers = element.querySelectorAll('.answer');
+    element.forEach(el => {
+        let answers = el.querySelectorAll('.answer');
 
-    answers.forEach((answer) => {
-        answer.addEventListener('click' ,(e) => {
-            let currentAnswer = e.currentTarget;
-            answers.forEach(a => {
-                a.classList.remove('odp')
+        answers.forEach((answer) => {
+            answer.addEventListener('click' ,(e) => {
+                let currentAnswer = e.currentTarget;
+                answers.forEach(a => {
+                    a.classList.remove('odp')
+                })
+                currentAnswer.classList.add('odp');
+                dodajOdpowiedziUzytkownikaDoTablicy();
             })
-            currentAnswer.classList.add('odp');
-            dodajOdpowiedziUzytkownikaDoTablicy();
         })
     })
+
 
     // sprawdanie odpowiedzi
     let sprawdz = document.querySelector('.sprawdz');
@@ -234,6 +240,10 @@ function sprawdzanie(element,poprawne){
 function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
     let result = 0;
     let answers = document.querySelectorAll('.odp');
+    let examID = document.querySelector('.exam-id').value;
+
+    let id = examID.slice(0,5);
+
     answers.forEach((answer,i) => {
         
         if(answer.textContent == user_odp[i].odp){
@@ -255,6 +265,30 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
 
     let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
     pokazWynik(result,poprawne.length,wynik);
+    if(poprawne.length == 40){
+        sendExamData(wynik,id);
+    }
+}
+
+async function sendExamData(wynik, id){
+    try{
+        let data = new Date().toDateString();
+        let formData = new FormData();
+        formData.append("date",data);
+        formData.append("wynik",wynik);
+        formData.append("exam-id",id);
+
+        let request = await fetch('php/storageExam.php',{
+            method: 'post',
+            body: formData
+        })
+
+        let response = await request.text()
+
+        // console.log(response)
+    }catch(error){
+        console.log(error)
+    }
 }
  
 // dodaje odpowiedzi użytkownika z klasą odp do tablicy
