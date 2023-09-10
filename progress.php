@@ -22,15 +22,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
     <title>Panel użytkownika</title>
 </head>
 <body>
-    <main class="main">
-        <header class="header">
-        </header>
-        <section class="container">
+    <header class="header">
+        <div class="logo">
+            <a href="main.php"><img src="./img/logo.png" alt="logo" width="125px" height="50px"></a>
+        </div>
+        <div class="nav">
+            <div class="user-panel">
+                <?= $response['imie']." ".$response['nazwisko'] ?>
+            </div>
+            <div class="menu">
+                <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
+            </div>
+        </div>
+    </header>
+    <section class="container">
 
-        </section>
-    </main>
+    </section>
 </body>
 </html>

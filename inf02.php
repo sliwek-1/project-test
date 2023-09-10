@@ -10,7 +10,7 @@
 <body>
     <header class="header">
         <ol class="list">
-            <li class="list-item db-btn" data-db="powrot"><a href="./index.php"><ion-icon name="arrow-back-outline"></ion-icon></a></li>
+            <li class="list-item db-btn" data-db="powrot"><a href="./main.php"><ion-icon name="arrow-back-outline"></ion-icon></a></li>
             <li class="list-item db-btn" data-db="inf02"><a href="./inf02.php">Inf.02</a></li>
             <li class="list-item db-btn" data-db="inf03"><a href="./inf03.php">Inf.03</a></li>
         </ol>

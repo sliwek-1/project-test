@@ -256,7 +256,7 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
     let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
     pokazWynik(result,poprawne.length,wynik);
 }
-
+ 
 // dodaje odpowiedzi użytkownika z klasą odp do tablicy
 function dodajOdpowiedziUzytkownikaDoTablicy(){
     let odpowiedzi_user = [];

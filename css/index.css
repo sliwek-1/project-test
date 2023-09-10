@@ -321,6 +321,21 @@ ol > li > ul > li:hover{
     box-shadow: 5px 5px 0px rgb(109, 146, 255);
 }
 
+/* PROGRESS.PHP */
+
+.nav{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* PROGRESS.PHP */
+
 @media (orientation:portrait) {
     body{
         overflow-x: hidden;
