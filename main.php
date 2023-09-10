@@ -35,7 +35,7 @@
                 <?php if($response['permision'] == "admin") { ?>
                     <nav class="navigation">
                         <div class="bar">
-                            <a href="php/sendUsersExams.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress"> <?= $response['imie']." ".$response['nazwisko'] ?></a>
+                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress"> <?= $response['imie']." ".$response['nazwisko'] ?></a>
                             <a href="admin.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar admin">Admin</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
@@ -45,7 +45,7 @@
 
                     <nav class="navigation">
                         <div class="bar">
-                            <a href="php/sendUsersExams.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
+                            <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress">Profil</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
                     </nav>
@@ -73,8 +73,8 @@
             <div class="side-content">
                 <h2>Bazy Pytań</h2>
                 <ol class="list">
-                    <li class="db-btn"><a href="./inf02.php">Inf.02</a></li>
-                    <li class="db-btn"><a href="./inf03.php">Inf.03</a></li>
+                    <a href="./inf02.php"><li class="db-btn">Inf.02</li></a>
+                    <a href="./inf03.php"><li class="db-btn">Inf.03</li></a>
                 </ol>
             </div>
             <div class="side-content">

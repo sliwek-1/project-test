@@ -7,11 +7,10 @@
 
     $sql2 = "SELECT * FROM egzaminy WHERE userID = :userID";
     $request2 = $pdo->prepare($sql2);
-    $request2->bindParam(':userID',$_GET['userID']);
+    $request2->bindParam(':userID',$_SESSION['id']);
     $request2->execute();
     $response2 = $request2->fetchAll(PDO::FETCH_ASSOC);
 
-    if($response2){
-        header('Location: ./../progress.php');
-    }
+
+    print_r(json_encode($response2,  JSON_UNESCAPED_UNICODE));
 ?>

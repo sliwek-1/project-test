@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.header{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: #333;
+    padding: 0px 10px;
+}
+
+.nav{
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+.egzaminy{
+    width: 200px;
+    height: 35px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    position: absolute;
+    top: -35px;
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}
+
+.egzaminy .egzamin{
+    padding: 0px 25px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.egzaminy .egzamin:hover{
+    background-color: #555;
+    cursor: pointer;
+}
+
+.container{
+    width: 100vw;
+    height: 90vh;
+    background-color: #444;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(12,1fr);
+}
+
+.user-results{
+    margin-left: 25px;
+    grid-column: 1/5;
+    grid-row: 2/12;
+    background-color: #666;
+    position: relative;
+}
+
