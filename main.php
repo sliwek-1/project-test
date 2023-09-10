@@ -36,7 +36,7 @@
                     <nav class="navigation">
                         <div class="bar">
                             <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress"> <?= $response['imie']." ".$response['nazwisko'] ?></a>
-                            <a href="admin.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar admin">Admin</a>
+                            <a href="admin-page.php" class="btn-bar admin">Admin</a>
                             <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
                         </div>
                     </nav>
