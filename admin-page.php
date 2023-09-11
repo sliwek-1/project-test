@@ -50,6 +50,9 @@
         <section class="section user active" data-id="user">
             <article class="user-manage">
                 <div class="nav">
+                    <button class="add-user">
+                        <img src="./img/add-user.png" alt="add-user">
+                    </button>
                     <div class="klasy">
                         <ol class="klasy">
                             <li class="klasa">Wszystkie</li>
@@ -62,13 +65,39 @@
                         </ol>
                     </div>  
                 </div>
+                <article class="content">
+                    <div class="display-users article active">
+                        <h1>SHOW USERS</h1>
+                    </div>
+                    <div class="add-user-form article">
+                        <h1>Dodaj użytkownika</h1>
+                        <form action="#" class="form-add-user">
+                            <input type="text" name="user-name" placeholder="Imie">
+                            <input type="text" name="user-surname" placeholder="Nazwisko">
+                            <input type="text" name="user-login" placeholder="Login">
+                            <div class="password-section">
+                                <input type="password" class="password-input" name="user-password" placeholder="Hasło">
+                                <button class="random-password">
+                                    <img src="./img/casino.png" style="width: 20px; height: 20px;" alt="cube img">
+                                </button>
+                            </div>
+                            <select name="select-klasa" id="select-klasa">
+                                <option value="1Ti">1Ti</option>
+                                <option value="1Tai">1Tai</option>
+                                <option value="2Ti">2Ti</option>
+                                <option value="3Tli">3Tli</option>
+                                <option value="4Ti">4Ti</option>
+                                <option value="5Ti">5Ti</option>
+                            </select>
+                            <button type="submit" class="send-user-data">Dodaj</button>
+                        </form>
+                    </div>
+                </article>
             </article>
         </section>
         <section class="section user-group" data-id="user-group">
-            <h1>user group</h1>
         </section>
         <section class="section user-stats" data-id="stats">
-            <h1>stats</h1>
         </section>
     </main>
 </body>
