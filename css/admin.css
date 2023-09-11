@@ -44,6 +44,14 @@
     border-radius: 5px;
 }
 
+.menu .list-item.active{
+    background-color: #bbb;
+}
+
+.menu .list-item.active:hover{
+    background-color: #bbb;
+}
+
 .menu .list-item:hover{
     background-color: #ccc;
     cursor: pointer;
@@ -52,4 +60,42 @@
 .nav-img{
     width: 18px;
     height: 18px;
+}
+
+.section{
+    grid-column: 3/13;
+    grid-row: 1/13;
+    margin: 30px;
+    background-color: #333;
+    color: white;
+    display: none;
+    position: relative;
+}
+
+.section.active{
+    display: block;
+}
+
+.klasy{
+    position: absolute;
+    top: -12.5px;
+    left: 0;
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}
+
+.klasa{
+    width: 100px;
+    height: 25px;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.klasa:hover{
+    background-color: #777;
 }
