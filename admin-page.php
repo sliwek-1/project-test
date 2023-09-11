@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/admin.css">
     <script src="./js/change-page-admin.js" defer></script>
+    <script src="./js/sendUserData.js" defer></script>
     <title>Panel Administratora</title>
 </head>
 <body>
