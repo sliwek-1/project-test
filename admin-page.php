@@ -68,7 +68,10 @@
                 </div>
                 <article class="content">
                     <div class="display-users article active">
-                        <h1>SHOW USERS</h1>
+                        <div class="users-nav"></div>
+                        <div class="users">
+
+                        </div>
                     </div>
                     <div class="add-user-form article">
                         <h1>Dodaj użytkownika</h1>

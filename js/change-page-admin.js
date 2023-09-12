@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     showMainOpstions();
     showUserOptions();
+    getData("wszystkie")
 })
 
 function showMainOpstions(){
@@ -47,26 +48,52 @@ function showUserOptions(){
     })
 
     klasaBtns.forEach(btn => {
-        btn.addEventListener('click',async (e) => {
-            try{
-                let currentElement = e.target;
-                let id = currentElement.dataset.id;
-                addUserForm.classList.remove('active');
-                displayUser.classList.add('active');
+        let usersElement = document.querySelector('.users');
+        btn.addEventListener('click',(e) => {
+            usersElement.innerHTML = "";
+            let currentElement = e.target;
+            let id = currentElement.dataset.id;
+            addUserForm.classList.remove('active');
+            displayUser.classList.add('active');
 
-                let request = await fetch('php/getKlasaData.php',{
-                    method: 'post',
-                    body: "klasaID="+id,
-                    headers:{
-                        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                    }
-                })
+            getData(id)
+        })
+    })
+}
 
-                let response = await request.text();
-                console.log(response)
-            }catch(error){
-                console.log(error);
+async function getData(id){
+    try{
+        let request = await fetch('php/getKlasaData.php',{
+            method: 'post',
+            body: "klasaID="+id,
+            headers:{
+                'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
         })
+    
+        let response = await request.json();
+        
+        generateData(response);
+    }catch(error){
+        console.log(error)
+    }
+}
+
+function generateData(data){
+    let usersElement = document.querySelector('.users');
+    data.forEach((element,i) => {
+       
+        let el = document.createElement('article');
+        el.classList.add('users-item');
+        let text = `
+            <span class="user-number">${i + 1}</span>
+            <div class="user-name">${element.imie} ${element.nazwisko}</div>
+            <div class="user-login">${element.login}</div>
+            <button type="submit" class="edit-btn btn"><img src="./img/edit.png" class="option-btn" style="width: 17px; height: 17px;" alt="edit"></button>
+            <button type="submit" class="delete-btn btn"><img src="./img/bin.png" class="option-btn" style="width: 17px; height: 17px;" alt="bin"></button>
+        `;
+        el.innerHTML = text;
+
+        usersElement.append(el);
     })
 }
