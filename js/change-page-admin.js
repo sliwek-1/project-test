@@ -25,13 +25,15 @@ function showMainOpstions(){
 
             sections.forEach(section => {
                 if(section.dataset.id == currentID){
-                        console.log("true")
+                        //console.log("true")
                         section.classList.add('active');
                 }
             })
         })
     })
 }
+
+
 
 function showUserOptions(){
     let addUserBtn = document.querySelector('.add-user');
@@ -45,9 +47,26 @@ function showUserOptions(){
     })
 
     klasaBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            addUserForm.classList.remove('active');
-            displayUser.classList.add('active');
+        btn.addEventListener('click',async (e) => {
+            try{
+                let currentElement = e.target;
+                let id = currentElement.dataset.id;
+                addUserForm.classList.remove('active');
+                displayUser.classList.add('active');
+
+                let request = await fetch('php/getKlasaData.php',{
+                    method: 'post',
+                    body: "klasaID="+id,
+                    headers:{
+                        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    }
+                })
+
+                let response = await request.text();
+                console.log(response)
+            }catch(error){
+                console.log(error);
+            }
         })
     })
 }

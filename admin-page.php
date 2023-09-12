@@ -56,13 +56,13 @@
                     </button>
                     <div class="klasy">
                         <ol class="klasy">
-                            <li class="klasa">Wszystkie</li>
-                            <li class="klasa">1Ti</li>
-                            <li class="klasa">1Tai</li>
-                            <li class="klasa">2Ti</li>
-                            <li class="klasa">3Tli</li>
-                            <li class="klasa">4Ti</li>
-                            <li class="klasa">5Ti</li>
+                            <li class="klasa" data-id="wszystkie">Wszystkie</li>
+                            <li class="klasa" data-id="1ti">1Ti</li>
+                            <li class="klasa" data-id="1tai">1Tai</li>
+                            <li class="klasa" data-id="2ti">2Ti</li>
+                            <li class="klasa" data-id="3tli">3Tli</li>
+                            <li class="klasa" data-id="4ti">4Ti</li>
+                            <li class="klasa" data-id="5ti">5Ti</li>
                         </ol>
                     </div>  
                 </div>
