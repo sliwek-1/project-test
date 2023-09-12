@@ -55,7 +55,7 @@
                     <input type="text" class="user-name" name="user-name" placeholder="Imię">
                     <input type="text" class="user-surrname" name="user-surrname" placeholder="Nazwisko">
                     <input type="text" class="user-login" name="user-login" placeholder="Login">
-                    <input type="text"  class="user-passwd" name="user-passwd" placeholder="Haslo">
+                    <input type="password"  class="user-passwd" name="user-passwd" placeholder="Haslo">
                     <select name="select-klasa" id="select-klasa">
                         <option value="1Ti">1Ti</option>
                         <option value="1Tai">1Tai</option>

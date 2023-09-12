@@ -151,10 +151,21 @@ async function editUser(id){
     }
 }
 
-async function confirmEdit(id){
-    try{
-        
-    }catch(error){
-        console.log(error)
-    }
+function confirmEdit(id){
+    let editBtn = document.querySelector('.edit-user-data-btn');
+    let form = document.querySelector('.edit-user-data');
+    let formData = new FormData(form);
+    editBtn.addEventListener('click',async (a) => {
+        try{    
+            let request = await fetch('php/editUserData.php', {
+                method: 'post',
+                body: formData,
+            })
+    
+            let response = await request.text();            
+        }catch(error){  
+            console.log(error);
+        }
+    })
+
 }
