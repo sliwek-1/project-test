@@ -86,14 +86,37 @@ function generateData(data){
         let el = document.createElement('article');
         el.classList.add('users-item');
         let text = `
-            <span class="user-number">${i + 1}</span>
-            <div class="user-name">${element.imie} ${element.nazwisko}</div>
-            <div class="user-login">${element.login}</div>
-            <button type="submit" class="edit-btn btn"><img src="./img/edit.png" class="option-btn" style="width: 17px; height: 17px;" alt="edit"></button>
-            <button type="submit" class="delete-btn btn"><img src="./img/bin.png" class="option-btn" style="width: 17px; height: 17px;" alt="bin"></button>
-        `;
+            <span class="user-number option">${i + 1}</span>
+            <div class="user-name option">${element.imie} ${element.nazwisko}</div>
+            <div class="user-login option">${element.login}</div>
+            <div class="btns-section">
+                <button type="submit" class="edit-btn btn">
+                    <img src="./img/edit.png" class="option-btn" style="width: 17px; height: 17px;" alt="edit">
+                </button>
+                <button type="submit" class="delete-btn btn">
+                    <img src="./img/bin.png" class="option-btn" style="width: 17px; height: 17px;" alt="bin">
+                </button>
+            </div>`;
         el.innerHTML = text;
+
+        let editBtn = el.querySelector('.edit-btn');
+        let editUserSection = document.querySelector('.edit-section-user');
+        let closeBtn = document.querySelector('.close-btn');
+
+        closeBtn.addEventListener('click', () => {
+            editUserSection.classList.remove('active');
+        })
+
+        editBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            editUserSection.classList.add('active')
+            editUser(element.id);
+        })
 
         usersElement.append(el);
     })
+}
+
+function editUser(id){
+    console.log(id)
 }

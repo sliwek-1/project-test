@@ -49,6 +49,16 @@
             </ol>
         </nav>
         <section class="section user active" data-id="user">
+            <div class="edit-section-user">
+                <button type="submit" class="close-btn"><img src="./img/cancel.png" style="width: 20px; height: 20px;" alt="cancel"></button>
+                <form action="#" class="edit-user-data">
+                    <input type="text" name="user-name" placeholder="Imię">
+                    <input type="text" name="user-surrname" placeholder="Nazwisko">
+                    <input type="text" name="user-login" placeholder="Login">
+                    <input type="text" name="user-passwd" placeholder="Haslo">
+                    <button type="submit" class="edit-user-data-btn">Edytuj</button>
+                </form>
+            </div>
             <article class="user-manage">
                 <div class="nav">
                     <button class="add-user">

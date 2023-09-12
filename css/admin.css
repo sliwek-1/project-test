@@ -136,7 +136,7 @@
     gap: 15px;
 }
 
-.add-user-form form{
+form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,7 +144,7 @@
     gap: 10px;
 }
 
-.add-user-form form input{
+form input{
     width: 250px;
     height: 35px;
     padding: 5px;
@@ -153,7 +153,7 @@
     outline: none;
 }
 
-.add-user-form form select{
+form select{
     width: 250px;
     height: 30px;
     background-color: #444;
@@ -162,7 +162,7 @@
     color: white;
 }
 
-.add-user-form form select option:checked{
+form select option:checked{
     background-color: #666;
 }
 
@@ -189,7 +189,7 @@
     background-color: #ddd;
 }
 
-.send-user-data{
+.send-user-data,.edit-user-data-btn{
     border: none;
     outline: none;
     width: 250px;
@@ -200,10 +200,26 @@
 }
 
 .users{
+    height: 50vh;
+    width: 70vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 5px;
+    position: relative;
+}
+
+.option{
+    width: 250px;
+    text-align: center;
+}
+
+.option:first-child{
+    width: 50px;
+}
+
+.option:last-child{
+    width: 100px;
+    text-align: left;
 }
 
 .users-item{
@@ -221,4 +237,60 @@
 
 .users-item:hover{
     background-color: #555;
+}
+
+.btns-section {
+    width: 5vw;
+    height: 4.5vh;
+    position: absolute;
+    right: -0.5vw;
+    display: flex;
+}
+
+.btn{
+    width: 35px;
+    height: 4.5vh;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn:last-child{
+    border-radius: 0px 5px 5px 0px;
+}
+
+.edit-btn:hover{
+    background-color: royalblue;
+}
+
+.delete-btn:hover{
+    background-color: rgba(249, 61, 61);
+}
+
+.edit-section-user{
+    display: none;
+}
+
+.edit-section-user.active{
+    display: block;
+    width: 25vw;
+    height: 45vh;
+    background-color: #222;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    z-index: 999;
+    left: 22.5vw;
+    top: 10vh;
+}
+
+.close-btn{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: transparent;
+    border: none;
+    outline: none;
 }
