@@ -52,10 +52,22 @@
             <div class="edit-section-user">
                 <button type="submit" class="close-btn"><img src="./img/cancel.png" style="width: 20px; height: 20px;" alt="cancel"></button>
                 <form action="#" class="edit-user-data">
-                    <input type="text" name="user-name" placeholder="Imię">
-                    <input type="text" name="user-surrname" placeholder="Nazwisko">
-                    <input type="text" name="user-login" placeholder="Login">
-                    <input type="text" name="user-passwd" placeholder="Haslo">
+                    <input type="text" class="user-name" name="user-name" placeholder="Imię">
+                    <input type="text" class="user-surrname" name="user-surrname" placeholder="Nazwisko">
+                    <input type="text" class="user-login" name="user-login" placeholder="Login">
+                    <input type="text"  class="user-passwd" name="user-passwd" placeholder="Haslo">
+                    <select name="select-klasa" id="select-klasa">
+                        <option value="1Ti">1Ti</option>
+                        <option value="1Tai">1Tai</option>
+                        <option value="2Ti">2Ti</option>
+                        <option value="3Tli">3Tli</option>
+                        <option value="4Ti">4Ti</option>
+                        <option value="5Ti">5Ti</option>
+                    </select>
+                    <select name="select-permision" id="select-permision">
+                        <option value="user">user</option>
+                        <option value="admin">admin</option>
+                    </select>
                     <button type="submit" class="edit-user-data-btn">Edytuj</button>
                 </form>
             </div>

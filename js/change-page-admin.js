@@ -111,12 +111,50 @@ function generateData(data){
             e.preventDefault();
             editUserSection.classList.add('active')
             editUser(element.id);
+            confirmEdit(element.id);
         })
 
         usersElement.append(el);
     })
 }
 
-function editUser(id){
-    console.log(id)
+async function editUser(id){
+    try{    
+        let editUserSection = document.querySelector('.edit-section-user');
+
+        let request = await fetch('php/getEditData.php',{
+            method: 'post',
+            body: "userID=" + id,
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            }
+        })
+
+        let response = await request.json();
+
+        let userName = document.querySelector('.user-name')
+        let userSurrname = document.querySelector('.user-surrname')
+        let userLogin = document.querySelector('.user-login');
+        let passwd = document.querySelector('.user-passwd');
+        let selectKlasa = document.querySelector('#select-klasa');
+        let selectPermission = document.querySelector('#select-permision');
+        
+        userName.value = response.imie;
+        userSurrname.value = response.nazwisko;
+        userLogin.value = response.login;
+        passwd.value = response.haslo;
+        selectKlasa.value = response.klasa;
+        selectPermission.value = response.permision;
+        
+    }catch(error){
+        console.log(error);
+    }
+}
+
+async function confirmEdit(id){
+    try{
+        
+    }catch(error){
+        console.log(error)
+    }
 }

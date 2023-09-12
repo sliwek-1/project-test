@@ -284,6 +284,7 @@ form select option:checked{
     z-index: 999;
     left: 22.5vw;
     top: 10vh;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .close-btn{
@@ -293,4 +294,5 @@ form select option:checked{
     background: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
 }
