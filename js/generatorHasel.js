@@ -1,0 +1,1 @@
+let randomBtn = document.querySelector('.random-password');

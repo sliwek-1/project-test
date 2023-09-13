@@ -72,7 +72,6 @@ async function getData(id){
         })
     
         let response = await request.json();
-        
         generateData(response);
     }catch(error){
         console.log(error)
@@ -82,14 +81,17 @@ async function getData(id){
 function generateData(data){
     let usersElement = document.querySelector('.users');
     usersElement.innerHTML = "";
-    data.forEach((element) => {
+    data.forEach((element, i) => {
        
         let el = document.createElement('article');
         el.classList.add('users-item');
         let text = `
+            <span class="user-index option">${i + 1}</span>
             <span class="user-number option">${element.id}</span>
             <div class="user-name option">${element.imie} ${element.nazwisko}</div>
             <div class="user-login option">${element.login}</div>
+            <div class="user-klasa option">${element.klasa}</div>
+            <div class="user-permision option">${element.permision}</div>
             <div class="btns-section">
                 <button type="submit" class="edit-btn btn">
                     <img src="./img/edit.png" class="option-btn" style="width: 17px; height: 17px;" alt="edit">
@@ -131,7 +133,7 @@ function generateData(data){
     editBtns.forEach(editBtn => {
         editBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            let currentElement = e.target.parentElement.parentElement.parentElement;
+            let currentElement = e.currentTarget.parentElement.parentElement.parentElement;
             let currentID = currentElement.querySelector('.user-number').textContent
             editUserSection.classList.add('active')
             editUser(currentID);
@@ -141,8 +143,6 @@ function generateData(data){
 
 async function editUser(id){
     try{    
-        let editUserSection = document.querySelector('.edit-section-user');
-
         let request = await fetch('php/getEditData.php',{
             method: 'post',
             body: "userID=" + id,

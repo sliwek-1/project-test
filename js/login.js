@@ -14,7 +14,7 @@ submit.addEventListener('click', async (e) => {
         let response = await request.text()
 
         if(response == "success"){
-            location.href = "/quiz/quiz-aplication//main.php";
+            location.href = "/project-test-kopia/quiz-aplication/main.php";
         }
     }catch(error){
         console.log(error)

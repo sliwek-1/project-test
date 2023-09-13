@@ -121,6 +121,7 @@
 .content{
     width: auto;
     height: auto;
+    padding: 5px;
 }
 
 .article{
@@ -208,18 +209,28 @@ form select option:checked{
     position: relative;
 }
 
+.users .option{
+    width: 12vw;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 .option{
-    width: 250px;
-    text-align: center;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .option:first-child{
-    width: 50px;
+    justify-content: left;
+    padding-left: 15px;
 }
 
-.option:last-child{
-    width: 100px;
-    text-align: left;
+.option:nth-child(2){
+    justify-content: left;
+    padding-left: 30px;
 }
 
 .users-item{
@@ -228,8 +239,7 @@ form select option:checked{
     background-color: #666;
     display: flex;
     align-items: center;
-    justify-content: left;
-    gap: 10px;
+    justify-content: space-between;
     border-radius: 5px;
     padding: 0px 10px;
     cursor: pointer;
@@ -242,8 +252,6 @@ form select option:checked{
 .btns-section {
     width: 5vw;
     height: 4.5vh;
-    position: absolute;
-    right: -0.5vw;
     display: flex;
 }
 
@@ -253,6 +261,7 @@ form select option:checked{
     border: none;
     outline: none;
     cursor: pointer;
+    background-color: transparent;
 }
 
 .btn:last-child{
@@ -295,4 +304,13 @@ form select option:checked{
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+.users-nav{
+    width: 70vw;
+    height: 5vh;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
 }

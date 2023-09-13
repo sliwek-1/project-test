@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="./css/admin.css">
     <script src="./js/change-page-admin.js" defer></script>
     <script src="./js/sendUserData.js" defer></script>
+    <script src="./js/generatorHasel.js" defer></script>
     <title>Panel Administratora</title>
 </head>
 <body>
@@ -91,7 +92,15 @@
                 </div>
                 <article class="content">
                     <div class="display-users article active">
-                        <div class="users-nav"></div>
+                        <div class="users-nav">
+                            <span class="user-index option">Lp.</span>
+                            <span class="user-number option">ID użytkownika</span>
+                            <div class="user-name option">Imie/Nazwisko</div>
+                            <div class="user-login option">Login</div>
+                            <div class="user-klasa option">Klasa</div>
+                            <div class="user-permision option">Permisje</div>
+                            <div class="btns-section"></div>
+                        </div>
                         <div class="users">
 
                         </div>
@@ -123,8 +132,10 @@
             </article>
         </section>
         <section class="section user-group" data-id="user-group">
+
         </section>
         <section class="section user-stats" data-id="stats">
+
         </section>
     </main>
 </body>
