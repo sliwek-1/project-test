@@ -52,11 +52,12 @@
             <div class="edit-section-user">
                 <button type="submit" class="close-btn"><img src="./img/cancel.png" style="width: 20px; height: 20px;" alt="cancel"></button>
                 <form action="#" class="edit-user-data">
+                    <input type="text" class="edit-id" value="" hidden>
                     <input type="text" class="user-name" name="user-name" placeholder="Imię">
                     <input type="text" class="user-surrname" name="user-surrname" placeholder="Nazwisko">
                     <input type="text" class="user-login" name="user-login" placeholder="Login">
                     <input type="password"  class="user-passwd" name="user-passwd" placeholder="Haslo">
-                    <select name="select-klasa" id="select-klasa">
+                    <select name="select-klasa" id="select-klasy">
                         <option value="1Ti">1Ti</option>
                         <option value="1Tai">1Tai</option>
                         <option value="2Ti">2Ti</option>

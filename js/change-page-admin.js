@@ -81,12 +81,13 @@ async function getData(id){
 
 function generateData(data){
     let usersElement = document.querySelector('.users');
-    data.forEach((element,i) => {
+    usersElement.innerHTML = "";
+    data.forEach((element) => {
        
         let el = document.createElement('article');
         el.classList.add('users-item');
         let text = `
-            <span class="user-number option">${i + 1}</span>
+            <span class="user-number option">${element.id}</span>
             <div class="user-name option">${element.imie} ${element.nazwisko}</div>
             <div class="user-login option">${element.login}</div>
             <div class="btns-section">
@@ -98,23 +99,42 @@ function generateData(data){
                 </button>
             </div>`;
         el.innerHTML = text;
+        usersElement.append(el);
+    })
 
-        let editBtn = el.querySelector('.edit-btn');
-        let editUserSection = document.querySelector('.edit-section-user');
-        let closeBtn = document.querySelector('.close-btn');
+    let editBtnData = document.querySelector('.edit-user-data-btn');
+    let editBtns = document.querySelectorAll('.edit-btn');
+    let editUserSection = document.querySelector('.edit-section-user');
+    let closeBtn = document.querySelector('.close-btn');
 
-        closeBtn.addEventListener('click', () => {
-            editUserSection.classList.remove('active');
-        })
+    editBtnData.addEventListener('click',async (e) =>{
+        e.preventDefault();
+        let form = document.querySelector('.edit-user-data');
+        let formData = new FormData(form);
+        try{    
+            let request = await fetch('php/editUserData.php', {
+                method: 'post',
+                body: formData,
+            })
+        
+            let response = await request.text();            
+        }catch(error){  
+            console.log(error);
+        }
+    })
 
+    closeBtn.addEventListener('click', () => {
+        editUserSection.classList.remove('active');
+    })
+
+    editBtns.forEach(editBtn => {
         editBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            let currentElement = e.target.parentElement.parentElement.parentElement;
+            let currentID = currentElement.querySelector('.user-number').textContent
             editUserSection.classList.add('active')
-            editUser(element.id);
-            confirmEdit(element.id);
+            editUser(currentID);
         })
-
-        usersElement.append(el);
     })
 }
 
@@ -132,40 +152,16 @@ async function editUser(id){
 
         let response = await request.json();
 
-        let userName = document.querySelector('.user-name')
-        let userSurrname = document.querySelector('.user-surrname')
-        let userLogin = document.querySelector('.user-login');
-        let passwd = document.querySelector('.user-passwd');
-        let selectKlasa = document.querySelector('#select-klasa');
-        let selectPermission = document.querySelector('#select-permision');
+        let editId = document.querySelector('.edit-id').value = response.id;
+        let userName = document.querySelector('.user-name').value = response.imie;
+        let userSurrname = document.querySelector('.user-surrname').value = response.nazwisko;
+        let userLogin = document.querySelector('.user-login').value = response.login;
+        let passwd = document.querySelector('.user-passwd').value = response.haslo;
+        let selectKlasa = document.querySelector('#select-klasa').value = response.klasa;
+        let selectPermission = document.querySelector('#select-permision').value = response.permision;
         
-        userName.value = response.imie;
-        userSurrname.value = response.nazwisko;
-        userLogin.value = response.login;
-        passwd.value = response.haslo;
-        selectKlasa.value = response.klasa;
-        selectPermission.value = response.permision;
-        
+
     }catch(error){
         console.log(error);
     }
-}
-
-function confirmEdit(id){
-    let editBtn = document.querySelector('.edit-user-data-btn');
-    let form = document.querySelector('.edit-user-data');
-    let formData = new FormData(form);
-    editBtn.addEventListener('click',async (a) => {
-        try{    
-            let request = await fetch('php/editUserData.php', {
-                method: 'post',
-                body: formData,
-            })
-    
-            let response = await request.text();            
-        }catch(error){  
-            console.log(error);
-        }
-    })
-
 }
