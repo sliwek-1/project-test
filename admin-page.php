@@ -52,7 +52,7 @@
             <div class="edit-section-user">
                 <button type="submit" class="close-btn"><img src="./img/cancel.png" style="width: 20px; height: 20px;" alt="cancel"></button>
                 <form action="#" class="edit-user-data">
-                    <input type="text" class="edit-id" value="" hidden>
+                    <input type="text" class="edit-id" name="user-number" value="" hidden>
                     <input type="text" class="user-name" name="user-name" placeholder="Imię">
                     <input type="text" class="user-surrname" name="user-surrname" placeholder="Nazwisko">
                     <input type="text" class="user-login" name="user-login" placeholder="Login">

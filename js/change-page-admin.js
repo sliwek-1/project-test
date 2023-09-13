@@ -117,7 +117,8 @@ function generateData(data){
                 body: formData,
             })
         
-            let response = await request.text();            
+            let response = await request.text();
+            console.log(response)            
         }catch(error){  
             console.log(error);
         }
