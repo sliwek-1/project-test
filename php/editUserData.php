@@ -11,6 +11,20 @@
     $permisionSelect = $_POST['select-permision'];
     
 
-    $sql = "UPDATE users SET imie = :imie, nazwisko = :nazwisko, login = :login, haslo = :haslo, klasa = :klasa, permision = :permision";
+    $sql = "UPDATE users SET imie = :imie, nazwisko = :nazwisko, login = :login, haslo = :haslo, klasa = :klasa, permision = :permision WHERE ";
+    $request = $pdo->prepare($sql);
+
+    $request->bindParam(':imie', $userName);
+    $request->bindParam(':nazwisko', $userSurrname);
+    $request->bindParam(':login', $userLogin);
+    $request->bindParam(':haslo', $userPasswd);
+    $request->bindParam(':klasa', $klasaSelect);
+    $request->bindParam(':permision', $permisionSelect);
+
+    $request->execute();
+
+    if($request){
+        echo "SUCCESS";
+    }
 
 ?>
