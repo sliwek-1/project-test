@@ -136,9 +136,10 @@ a{
 
 .question-center{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 50px;
+    flex-direction: column;
     height: auto;
 }
 
@@ -296,6 +297,32 @@ ol > li > ul > li:hover{
 
 .answer.odpbad{
     background-color: red;
+}
+
+.btn-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.losuj{
+    width: 250px;
+    height: 75px;
+    color: white;
+    padding: 10px;
+    background-color: royalblue;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.losuj:hover{
+    background-color: rgb(55, 91, 199);
+    box-shadow: 5px 5px 0px rgb(109, 146, 255);
 }
 
 .sprawdz{

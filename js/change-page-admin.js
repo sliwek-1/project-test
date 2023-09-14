@@ -72,6 +72,7 @@ async function getData(id){
         })
     
         let response = await request.json();
+
         generateData(response);
     }catch(error){
         console.log(error)
@@ -133,7 +134,7 @@ function generateData(data){
     editBtns.forEach(editBtn => {
         editBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            let currentElement = e.currentTarget.parentElement.parentElement.parentElement;
+            let currentElement = e.currentTarget.parentElement.parentElement;
             let currentID = currentElement.querySelector('.user-number').textContent
             editUserSection.classList.add('active')
             editUser(currentID);

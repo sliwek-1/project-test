@@ -3,8 +3,9 @@ const iv = CryptoJS.lib.WordArray.random(16);
 
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
-    let main = document.querySelector('.question-center');
     let data = sessionStorage.getItem('response');
+
+    
 
     if(data !== null){
         generateData(JSON.parse(deszyfrowanieDanych(data)));
@@ -17,28 +18,46 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             let currentElement = e.currentTarget;
             let id = currentElement.dataset.id;
-            let resultTitle = document.querySelector('.result-title')
-            let resultWynik = document.querySelector('.wynik')
-            let resultProcent = document.querySelector('.procent')
-            resultTitle.textContent = "";
-            resultProcent.textContent = "";
-            resultWynik.textContent = "";
-            main.innerHTML = "";
-            sessionStorage.removeItem('response');
-            sessionStorage.removeItem('odpowiedzi_user');
-            sessionStorage.removeItem('poprawne');
-            sessionStorage.removeItem('results');
+            clear(id)
             sendData(id);
         })
     })
+
     let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
     let poprawne = sessionStorage.getItem('poprawne');
-
 
     if (odpowiedzi !== null && poprawne !== null) {
         loadDataFromStorage(JSON.parse(odpowiedzi), JSON.parse(poprawne));
     }
 })
+
+function losujPonownie(){
+    let losuj = document.querySelector('.losuj');
+    losuj.addEventListener('click', () => {
+        let id = sessionStorage.getItem('exam-id');
+        console.log("click")
+        clear(id)
+        sendData(id) 
+    })
+}
+
+function clear(id){
+    let main = document.querySelector('.question-center');
+    let btnCenter = document.querySelector('.btn-center');
+    let resultTitle = document.querySelector('.result-title')
+    let resultWynik = document.querySelector('.wynik')
+    let resultProcent = document.querySelector('.procent')
+    resultTitle.textContent = "";
+    resultProcent.textContent = "";
+    resultWynik.textContent = "";
+    main.innerHTML = "";
+    btnCenter.innerHTML = "";
+    sessionStorage.setItem('exam-id', id);
+    sessionStorage.removeItem('response');
+    sessionStorage.removeItem('odpowiedzi_user');
+    sessionStorage.removeItem('poprawne');
+    sessionStorage.removeItem('results');
+}
 
 
 // funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
@@ -149,6 +168,7 @@ function deszyfrowanieDanych(encryptedData){
 // funkcja generuje wszystkie pytania
 function generateData(response,id){
     let main = document.querySelector('.question-center');
+    let btnCenter = document.querySelector('.btn-center');
     let dobre_odpowiedzi = [];
     let elements = [];
     let examID = document.querySelector('.exam-id');
@@ -158,7 +178,13 @@ function generateData(response,id){
 
     sprawdz.classList.add('sprawdz');
     sprawdz.textContent = "Sprawdz Odpowiedzi";
-    main.append(sprawdz)
+    btnCenter.append(sprawdz)
+
+    let losuj = document.createElement('div');
+
+    losuj.classList.add('losuj');
+    losuj.textContent = "Losuj Dalej";
+    btnCenter.append(losuj)
 
     let element_sprawdz = document.querySelector('.sprawdz');
     if(response && response.length > 0){
@@ -183,7 +209,7 @@ function generateData(response,id){
             let element = document.createElement('div');
             element.classList.add('pytanie')
             element.innerHTML = text;
-            main.insertBefore(element,element_sprawdz);
+            main.append(element);
 
             let answers = [res.A,res.B,res.C,res.D];
             let answerEl = element.querySelectorAll('.answer');
@@ -196,6 +222,7 @@ function generateData(response,id){
             elements.push(element)
         })    
         sprawdzanie(elements,dobre_odpowiedzi)
+        losujPonownie();
     }else {
         console.log("No data to generate.")
     }
