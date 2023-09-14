@@ -1,5 +1,5 @@
 let randomBtn = document.querySelector('.random-password');
-
+let passwdInput = document.querySelector('.password-input');
 let smallLetters = 'qwertyuiopasdfghjklzxcvbnm';
 let bigLetters = 'QWERTYUIOPASDFGHJKLZXCVBNM'
 let numbers = '1234567890';
@@ -16,6 +16,5 @@ randomBtn.addEventListener('click', (e) => {
 
         result += smallLetters.charAt(smallLetterRandom) + numbers.charAt(numberRandom) + bigLetters.charAt(bigLetterRandom) + specialCharacters.charAt(specialCharsRandom);
     }
-
-    console.log(result)
+    passwdInput.value = result
 })

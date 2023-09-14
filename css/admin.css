@@ -145,7 +145,7 @@ form{
     gap: 10px;
 }
 
-form input{
+form input:not(.password-show){
     width: 250px;
     height: 35px;
     padding: 5px;

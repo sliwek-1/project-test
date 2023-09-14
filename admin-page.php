@@ -117,6 +117,9 @@
                                     <img src="./img/casino.png" style="width: 20px; height: 20px;" alt="cube img">
                                 </button>
                             </div>
+                            <div class="show-passwd">
+                            Pokaż hasło:  <input type="checkbox" class="password-show">
+                            </div>
                             <select name="select-klasa" id="select-klasa">
                                 <option value="1Ti">1Ti</option>
                                 <option value="1Tai">1Tai</option>
