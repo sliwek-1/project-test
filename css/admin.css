@@ -306,6 +306,31 @@ form select option:checked{
     cursor: pointer;
 }
 
+.user-stats-chart{
+    display: none;
+}
+
+.user-stats-chart.active{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.send-klasa-stats{
+    width: 250px;
+    height: 35px;
+    background-color: #444;
+    border-radius: 2px;
+    border: 2px solid royalblue;
+    color: white;
+    cursor: pointer;
+}
+
+.send-klasa-stats:hover{
+    background-color: #555;
+}
+
 .users-nav{
     width: 70vw;
     height: 5vh;
@@ -314,3 +339,8 @@ form select option:checked{
     align-items: center;
     border-radius: 5px;
 }
+.center-stats{
+    width: 100vw;
+    height: 75vh;  
+}
+

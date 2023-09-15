@@ -28,6 +28,8 @@
     <script src="./js/change-page-admin.js" defer></script>
     <script src="./js/sendUserData.js" defer></script>
     <script src="./js/generatorHasel.js" defer></script>
+    <script src="./js/send-stats.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Panel Administratora</title>
 </head>
 <body>
@@ -74,22 +76,7 @@
                 </form>
             </div>
             <article class="user-manage">
-                <div class="nav">
-                    <button class="add-user">
-                        <img src="./img/add-user.png" alt="add-user">
-                    </button>
-                    <div class="klasy">
-                        <ol class="klasy">
-                            <li class="klasa" data-id="wszystkie">Wszystkie</li>
-                            <li class="klasa" data-id="1ti">1Ti</li>
-                            <li class="klasa" data-id="1tai">1Tai</li>
-                            <li class="klasa" data-id="2ti">2Ti</li>
-                            <li class="klasa" data-id="3tli">3Tli</li>
-                            <li class="klasa" data-id="4ti">4Ti</li>
-                            <li class="klasa" data-id="5ti">5Ti</li>
-                        </ol>
-                    </div>  
-                </div>
+                <?php include_once('nav.php') ?>
                 <article class="content">
                     <div class="display-users article active">
                         <div class="users-nav">
@@ -137,8 +124,29 @@
         <section class="section user-group" data-id="user-group">
 
         </section>
-        <section class="section user-stats" data-id="stats">
-
+        <section class="section user-stats-chart" data-id="stats">
+            <header class="stats-header">
+                <form action="#" class="stats-form">
+                    <select name="select-exam-stats" id="select-exam-stats">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="inf02">Inf.02</option>
+                        <option value="inf03">Inf.03</option>
+                    </select>
+                    <select name="select-klasa-stats" id="select-klasa-stats">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="1Ti">1Ti</option>
+                        <option value="1Tai">1Tai</option>
+                        <option value="2Ti">2Ti</option>
+                        <option value="3Tli">3Tli</option>
+                        <option value="4Ti">4Ti</option>
+                        <option value="5Ti">5Ti</option>
+                    </select>
+                    <button type="submit" class="send-klasa-stats">Wyświetl</button>
+                </form>
+            </header>
+            <article class="center-stats">
+                <canvas id="klasa-stats" width="200px" height="200px"></canvas>
+            </article>
         </section>
     </main>
 </body>
