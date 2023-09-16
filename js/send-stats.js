@@ -7,12 +7,13 @@ let myCharts = "";
 
 async function initialData(){
     try{
+        let formData = new FormData();
+        formData.append('select-klasa-stats', '4Ti');
+        formData.append('select-exam-stats', 'inf02');
+        
         let request = await fetch('php/getKlasyStats.php', {
             method: 'post',
-            body: "select-klasa-stats=" + "wszystkie",
-            headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-            }
+            body: formData,
         })
 
         let response = await request.json();

@@ -128,12 +128,10 @@
             <header class="stats-header">
                 <form action="#" class="stats-form">
                     <select name="select-exam-stats" id="select-exam-stats">
-                        <option value="wszystkie">Wszystkie</option>
                         <option value="inf02">Inf.02</option>
                         <option value="inf03">Inf.03</option>
                     </select>
                     <select name="select-klasa-stats" id="select-klasa-stats">
-                        <option value="wszystkie">Wszystkie</option>
                         <option value="1Ti">1Ti</option>
                         <option value="1Tai">1Tai</option>
                         <option value="2Ti">2Ti</option>
