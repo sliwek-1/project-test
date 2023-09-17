@@ -109,6 +109,7 @@ function generateData(data){
     let editBtns = document.querySelectorAll('.edit-btn');
     let editUserSection = document.querySelector('.edit-section-user');
     let closeBtn = document.querySelector('.close-btn');
+    let deleteBtns = document.querySelectorAll('.delete-btn');
 
     editBtnData.addEventListener('click',async (e) =>{
         e.preventDefault();
@@ -138,6 +139,27 @@ function generateData(data){
             let currentID = currentElement.querySelector('.user-number').textContent
             editUserSection.classList.add('active')
             editUser(currentID);
+        })
+    })
+    
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener('click', async (e) => {
+            try{
+                let currentElement = e.target.parentElement.parentElement.parentElement;
+                let id = currentElement.querySelector('.user-number').textContent;
+                let request = await fetch('php/deleteUser.php',{
+                    method: 'post',
+                    body: "userID=" + id,
+                    headers: {
+                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    }
+                })
+
+                let response = await request.text();
+                console.log(response)
+            }catch(error){
+                console.log(error)
+            }
         })
     })
 }
