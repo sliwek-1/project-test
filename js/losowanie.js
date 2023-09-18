@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let id = currentElement.dataset.id;
             clear(id)
             sendData(id);
+            setStartedData();
         })
     })
 
@@ -30,6 +31,17 @@ window.addEventListener('DOMContentLoaded', () => {
         loadDataFromStorage(JSON.parse(odpowiedzi), JSON.parse(poprawne));
     }
 })
+
+function setStartedData(){
+    sessionStorage.removeItem('startedExamData')
+    let data = new Date();
+    let hours = data.getHours();
+    let minutes = data.getMinutes();
+    let seconds = data.getSeconds();
+
+    let dataToSend = data.toDateString() + " " + hours + ":" + minutes + ":" + seconds;
+    sessionStorage.setItem('startedExamData', dataToSend);
+}
 
 function losujPonownie(){
     let losuj = document.querySelector('.losuj');
@@ -299,11 +311,19 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
 
 async function sendExamData(wynik, id){
     try{
-        let data = new Date().toDateString();
+        let dataStart = sessionStorage.getItem('startedExamData');
+        let data = new Date()
         let formData = new FormData();
-        formData.append("date",data);
+
+        let hours = data.getHours();
+        let minutes = data.getMinutes();
+        let seconds = data.getSeconds();
+        let dataToSend = data.toDateString() + " " + hours + ":" + minutes + ":" + seconds;
+
+        formData.append("date-end",dataToSend);
         formData.append("wynik",wynik);
         formData.append("exam-id",id);
+        formData.append("data-start",dataStart);
 
         let request = await fetch('php/storageExam.php',{
             method: 'post',
@@ -354,3 +374,4 @@ function pokazWynik(result,wszystkie_odp,wynik){
 
     sessionStorage.setItem('results', JSON.stringify({odp_dobrze: result, wszystkie_odp: wszystkie_odp,wynik: wynik}));
 }
+
