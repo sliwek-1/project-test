@@ -7,7 +7,7 @@
                 <?= $response['imie']." ".$response['nazwisko'] ?>
             </div>
             <div class="menu">
-                <a href="logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
+                <a href="php/logout.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar logout">Wyloguj</a>
             </div>
         </div>
 </header>
