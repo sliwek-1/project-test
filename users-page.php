@@ -4,6 +4,8 @@
 
     $id = $_GET['userID'];
     $i = 1;
+    $array = [];
+    $wynik = 0;
 
     if(!isset($id)){
         header("Location: admin-page.php");
@@ -22,7 +24,15 @@
         $minuty = floor($timeGap / 60000);
         $sekundy = floor(($timeGap % 60000) / 1000); 
 
-        echo $minuty.":".$sekundy;
+        echo $minuty."m ".": ".$sekundy."s";
+    }
+
+    function computeDate($date){
+        $timestamp_in_seconds = $date / 1000;
+        $formatted_date = date('Y-m-d H:i:s', $timestamp_in_seconds);
+        $milliseconds = substr($date, -3);
+        $formatted_time = $formatted_date . '.' . $milliseconds;
+        echo "$formatted_time";
     }
 ?>
 
@@ -48,10 +58,21 @@
                 <span class="exam-typ"><?= $row['egzamin_typ']; ?></span>
                 <span class="wynik"><?= $row['wynik']."%"; ?></span>
                 <span class="time"> <?php computeTime($row['dataStart'],$row['egzamin_data']) ?> </span>
+                <span class="data-start"><?php computeDate($row['dataStart']) ?></span>
             </div>
 
+            <?php array_push($array, $row['wynik']); ?>
             <?php $i++; ?>
         <?php } ?>
-        </section>
+    </section>
+    <span>Średni wynik: 
+        <?php 
+            foreach($array as $ar){ 
+                $wynik += $ar;
+            }
+
+            echo floor($wynik/count($array))."%";
+        ?>
+    </span>
 </body>
 </html>
