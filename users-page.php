@@ -4,19 +4,28 @@
 
     $id = $_GET['userID'];
     $i = 1;
-    $array = [];
+    $inf02 = [];
+    $inf03 = [];
     $wynik = 0;
 
     if(!isset($id)){
         header("Location: admin-page.php");
     }
-    $sql = "SELECT * FROM egzaminy WHERE userID = :id";
+    $sql = "SELECT * FROM egzaminy WHERE userID = :id ORDER BY id DESC";
     $request = $pdo->prepare($sql);
     $request->bindParam(':id',  $id);
 
     $request->execute();
 
     $response = $request->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql2 = "SELECT imie, nazwisko FROM users WHERE id = :id";
+    $request2 = $pdo->prepare($sql2);
+    $request2->bindParam(':id',  $id);
+
+    $request2->execute();
+
+    $response2 = $request2->fetch(PDO::FETCH_ASSOC);
 
     function computeTime($dataStart, $dataEnd){
         $timeGap = $dataEnd - $dataStart;
@@ -30,8 +39,7 @@
     function computeDate($date){
         $timestamp_in_seconds = $date / 1000;
         $formatted_date = date('Y-m-d H:i:s', $timestamp_in_seconds);
-        $milliseconds = substr($date, -3);
-        $formatted_time = $formatted_date . '.' . $milliseconds;
+        $formatted_time = $formatted_date;
         echo "$formatted_time";
     }
 ?>
@@ -43,36 +51,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/header.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/user-data.css">
+    <title>Panel Użytkownika</title>
 </head>
 <body>
     <header class="header">
         <div class="logo">
             <a href="main.php"><img src="./img/logo.png" alt="logo" width="125px" height="50px"></a>
         </div>
+        <?= $response2['imie']." ".$response2['nazwisko'] ?>
     </header>
     <section class="user-ezam-list">
         <?php foreach($response as $row) { ?>
             <div class="exam">
-                <span class="exam-number"><?= $i ?></span>
-                <span class="exam-typ"><?= $row['egzamin_typ']; ?></span>
-                <span class="wynik"><?= $row['wynik']."%"; ?></span>
-                <span class="time"> <?php computeTime($row['dataStart'],$row['egzamin_data']) ?> </span>
-                <span class="data-start"><?php computeDate($row['dataStart']) ?></span>
+                <span class="exam-number input"><?= $i ?></span>
+                <span class="exam-typ input"><?= $row['egzamin_typ']; ?></span>
+                <span class="wynik input"><?= $row['wynik']."%"; ?></span>
+                <span class="time input"> <?php computeTime($row['dataStart'],$row['egzamin_data']) ?> </span>
+                <span class="data-start input"><?php computeDate($row['dataStart']) ?></span>
             </div>
 
-            <?php array_push($array, $row['wynik']); ?>
+            <?php 
+                if($row['egzamin_typ'] == 'inf02'){
+                    array_push($inf02, $row['wynik']); 
+                }else{
+                    array_push($inf03, $row['wynik']); 
+                }
+            
+            ?>
             <?php $i++; ?>
         <?php } ?>
     </section>
-    <span>Średni wynik: 
-        <?php 
-            foreach($array as $ar){ 
-                $wynik += $ar;
-            }
+    <div class="exam-results">
+        <span class="result">
+            Średni wynik inf02: 
+            <?php 
+                $wynik = 0;
+                foreach($inf02 as $ar){ 
+                    $wynik += $ar;
+                }
 
-            echo floor($wynik/count($array))."%";
-        ?>
-    </span>
+                echo floor($wynik/count($inf02))."%";
+            ?>
+        </span>
+        <span class="result">
+            Średni wynik inf03: 
+            <?php 
+                $wynik = 0;
+                foreach($inf03 as $ar){ 
+                    $wynik += $ar;
+                }
+
+                echo floor($wynik/count($inf03))."%";
+            ?>
+        </span>
+    </div>
 </body>
 </html>
