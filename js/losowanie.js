@@ -34,13 +34,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function setStartedData(){
     sessionStorage.removeItem('startedExamData')
-    let data = new Date();
-    let hours = data.getHours();
-    let minutes = data.getMinutes();
-    let seconds = data.getSeconds();
-
-    let dataToSend = data.toDateString() + " " + hours + ":" + minutes + ":" + seconds;
-    sessionStorage.setItem('startedExamData', dataToSend);
+    let data = new Date().getTime();
+    sessionStorage.setItem('startedExamData', data);
 }
 
 function losujPonownie(){
@@ -312,15 +307,11 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
 async function sendExamData(wynik, id){
     try{
         let dataStart = sessionStorage.getItem('startedExamData');
-        let data = new Date()
+        let data = new Date().getTime();
         let formData = new FormData();
 
-        let hours = data.getHours();
-        let minutes = data.getMinutes();
-        let seconds = data.getSeconds();
-        let dataToSend = data.toDateString() + " " + hours + ":" + minutes + ":" + seconds;
 
-        formData.append("date-end",dataToSend);
+        formData.append("date-end",data);
         formData.append("wynik",wynik);
         formData.append("exam-id",id);
         formData.append("data-start",dataStart);

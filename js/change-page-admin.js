@@ -94,6 +94,11 @@ function generateData(data){
             <div class="user-klasa option">${element.klasa}</div>
             <div class="user-permision option">${element.permision}</div>
             <div class="btns-section">
+                <a href="users-page.php?userID=${element.id}">
+                    <button type="submit" class="show-user-data btn">
+                        <img src="./img/user.png" class="option-btn" style="width: 17px; height: 17px;" alt="bin">
+                    </button>
+                </a>
                 <button type="submit" class="edit-btn btn">
                     <img src="./img/edit.png" class="option-btn" style="width: 17px; height: 17px;" alt="edit">
                 </button>
@@ -110,6 +115,7 @@ function generateData(data){
     let editUserSection = document.querySelector('.edit-section-user');
     let closeBtn = document.querySelector('.close-btn');
     let deleteBtns = document.querySelectorAll('.delete-btn');
+
 
     editBtnData.addEventListener('click',async (e) =>{
         e.preventDefault();
