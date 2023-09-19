@@ -8,7 +8,7 @@
         header("Location: admin-page.php");
     }
 
-    $sql = "SELECT users.imie,users.nazwisko, users.klasa, egzaminy.* FROM users INNER JOIN egzaminy ON users.id = egzaminy.userID WHERE users.id = :id";
+    $sql = "SELECT * FROM egzaminy WHERE userID = :id";
     $request = $pdo->prepare($sql);
     $request->bindParam(':id',  $id);
 
@@ -26,6 +26,13 @@
     <title>Użytkownik</title>
 </head>
 <body>
-
+    <?php foreach($response as $row) { ?>
+        <?php 
+            $dataStart = $row['dataStart'];
+            $dataEnd = $row['egzamin_data'];
+            
+            echo ($dataEnd/1000) - ($dataStart/1000);
+        ?>
+    <?php } ?>
 </body>
 </html>
