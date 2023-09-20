@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="./css/progress.css">
     <link rel="stylesheet" href="./css/header.css">
     <script src="./js/generateExamData.js" defer></script>
+    <script src="./js/change-passwd.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Panel użytkownika</title>
 </head>
@@ -52,7 +53,8 @@
                 <li>Posiadać conajmniej jedną cyfre, dużą litere oraz znak specjalny np: %$#?!</li>
             </ul>
             <form action="#" class="chnage-passwd">
-                <input type="passwd" placeholder="Zmień hasło" name="passwd">
+                <input type="password" placeholder="Zmień hasło" name="passwd">
+                <input type="text" name="userID" value="<?= $_SESSION['id'] ?>" hidden>
                 <button type="submit" class="change-passwd-btn">Zmień</button>
             </form>
         </div>

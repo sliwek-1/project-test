@@ -73,3 +73,4 @@ function drawChart(result,length){
         data: date,
     });
 }
+

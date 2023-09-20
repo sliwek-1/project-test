@@ -53,7 +53,7 @@
                 <?php } ?>
 
             <?php } else { ?>
-                <a href="./login.php" class="btn-bar login-btn">
+                <a href="./index.php" class="btn-bar login-btn">
                     <img src="./img/user.png" class="login-img" alt="user img">
                     Zaloguj
                 </a>
