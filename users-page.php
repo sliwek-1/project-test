@@ -87,22 +87,29 @@
             Średni wynik inf02: 
             <?php 
                 $wynik = 0;
-                foreach($inf02 as $ar){ 
-                    $wynik += $ar;
+                if(count($inf02) > 0){
+                    foreach($inf02 as $ar){ 
+                        $wynik += $ar;
+                    }
+    
+                    echo floor($wynik/count($inf02))."%";
+                }else{
+                    echo "0%";
                 }
-
-                echo floor($wynik/count($inf02))."%";
             ?>
         </span>
         <span class="result">
             Średni wynik inf03: 
             <?php 
                 $wynik = 0;
-                foreach($inf03 as $ar){ 
-                    $wynik += $ar;
+                if(count($inf03) > 0){
+                    foreach($inf03 as $ar){ 
+                        $wynik += $ar;
+                    }
+                    echo floor($wynik/count($inf03))."%";
+                }else{
+                    echo "0%";
                 }
-
-                echo floor($wynik/count($inf03))."%";
             ?>
         </span>
     </div>
