@@ -41,6 +41,24 @@
                 </div>
             </div>
         </div>
+        <div class="change-passwd-container">
+            <div class="close-btn-section">
+                <button class="close-change-passwd-btn">
+                    <img src="./img/cancel.png" alt="zamknij" style="width: 18px; height: 18px;">
+                </button>
+            </div>
+            <ul class="info">
+                <li>Hasło powinno mieć przynajmniej z 8 znaków</li>
+                <li>Posiadać conajmniej jedną cyfre, dużą litere oraz znak specjalny np: %$#?!</li>
+            </ul>
+            <form action="#" class="chnage-passwd">
+                <input type="passwd" placeholder="Zmień hasło" name="passwd">
+                <button type="submit" class="change-passwd-btn">Zmień</button>
+            </form>
+        </div>
     </section>
+    <button class="change-passwd-user" type="submit">
+        <img src="./img/key.png" alt="zmien haslo" style="width: 35px; height: 35px;">
+    </button>
 </body>
 </html>

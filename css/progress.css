@@ -44,3 +44,89 @@
     position: relative;
 }
 
+.change-passwd-user{
+    position: absolute;
+    top: 90vh;
+    right: 2.5vw;
+    border: none;
+    border-radius: 5px;
+    background-color: #666;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.change-passwd-user:hover{
+    background-color: #777;
+}
+
+.change-passwd-container{
+   display: none;
+}
+
+.change-passwd-container.active{
+    width: 20vw;
+    height: 45vh;
+    position: absolute;
+    top: 15vh;
+    left: 40vw;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.change-passwd-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.info{
+    padding: 35px;
+    text-align: justify;
+    font-size: 0.7rem;
+    color: white;
+}
+
+.change-passwd-container form input{
+    width: 17vw;
+    height: 4vh;
+    padding: 5px;
+    border: 1px solid royalblue;
+    outline: none;
+}
+
+.change-passwd-container form button{
+    width: 15vw;
+    height: 4vh;
+    color: white;
+    outline: none;
+    border: 1px solid royalblue;
+    background-color: #333;
+    cursor: pointer;
+}
+
+.change-passwd-container form button:hover{
+    background-color: #444;
+}
+
+.close-btn-section{
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    justify-content: right;
+}
+
+.close-change-passwd-btn{
+    border: none;
+    outline: none;
+    background-color: #333;
+    margin-right: 10px;
+    cursor: pointer;
+}
