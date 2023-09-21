@@ -357,7 +357,7 @@ function pokazWynik(result,wszystkie_odp,wynik){
     }else{
         resultElement.classList.remove('zdany');
         resultElement.classList.add('niezdany')
-        resultTitle.textContent = `Gratulacje NIE zdałeś egzaminu`;
+        resultTitle.textContent = `NIE zdałeś egzaminu`;
     }
 
     resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
