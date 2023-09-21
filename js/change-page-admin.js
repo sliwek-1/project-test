@@ -131,7 +131,9 @@ function generateData(data){
             })
         
             let response = await request.text();
-            console.log(response)            
+            
+            editUserSection.classList.add('active')
+            location.reload();
         }catch(error){  
             console.log(error);
         }
@@ -172,7 +174,7 @@ function generateData(data){
             })
 
             let response = await request.text();
-            
+
             deleteSection.classList.remove('active');
             location.reload();
         }catch(error){
