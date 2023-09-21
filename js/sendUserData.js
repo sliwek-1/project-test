@@ -7,6 +7,7 @@ addUserBtn.addEventListener('click', (e) => {
 
 async function sendData(){
     let form = document.querySelector('.form-add-user');
+    let formInputs = document.querySelector('.form-add-user input');
     let formData = new FormData(form);
     try{
         let request = await fetch('php/addUser.php',{
@@ -15,7 +16,8 @@ async function sendData(){
         })
 
         let response = await request.text();
-        //console.log(response)
+        
+        location.reload()
     }catch(error){
         console.log(error)
     }

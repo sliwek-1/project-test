@@ -131,7 +131,7 @@ function generateData(data){
             })
         
             let response = await request.text();
-            
+
             editUserSection.classList.add('active')
             location.reload();
         }catch(error){  
