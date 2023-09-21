@@ -115,6 +115,9 @@ function generateData(data){
     let editUserSection = document.querySelector('.edit-section-user');
     let closeBtn = document.querySelector('.close-btn');
     let deleteBtns = document.querySelectorAll('.delete-btn');
+    let deleteSection = document.querySelector('.delete-section');
+    let btnYes = document.querySelector('.yes');
+    let btnNo = document.querySelector('.no');
 
 
     editBtnData.addEventListener('click',async (e) =>{
@@ -150,23 +153,35 @@ function generateData(data){
     
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', async (e) => {
-            try{
-                let currentElement = e.target.parentElement.parentElement.parentElement;
-                let id = currentElement.querySelector('.user-number').textContent;
-                let request = await fetch('php/deleteUser.php',{
-                    method: 'post',
-                    body: "userID=" + id,
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    }
-                })
-
-                let response = await request.text();
-                console.log(response)
-            }catch(error){
-                console.log(error)
-            }
+            let currentElement = e.target.parentElement.parentElement.parentElement;
+            let id = currentElement.querySelector('.user-number').textContent;
+            deleteSection.classList.add('active');
+            sessionStorage.setItem('user-to-del', id);
         })
+    })
+
+    btnYes.addEventListener('click', async () => {
+        try{
+            let id = sessionStorage.getItem('user-to-del');
+            let request = await fetch('php/deleteUser.php',{
+                method: 'post',
+                body: "userID=" + id,
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                }
+            })
+
+            let response = await request.text();
+            
+            deleteSection.classList.remove('active');
+            location.reload();
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    btnNo.addEventListener('click', () => {
+        deleteSection.classList.remove('active');
     })
 }
 

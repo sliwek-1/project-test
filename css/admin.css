@@ -344,3 +344,64 @@ form select option:checked{
     height: 75vh;  
 }
 
+.delete-section{
+    display: none;
+}
+
+.delete-section.active{
+    display: block;
+    width: 20vw;
+    height: 20vh;
+    background-color: #222;
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 0px 100px rgba(0,0,0,0.5);
+}
+
+.info-delete{
+    padding: 10px 50px 0px 50px;
+}
+
+.btn-sec-del{
+    width: 20vw;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+    gap: 10px;
+}
+
+
+.btn-sec-del button{
+    width: 7.5vw;
+    height: 6.5vh;
+    background-color: #444;
+    border-radius: 0px;
+}
+
+
+.btn-sec-del .yes{
+    background-color: rgb(173, 0, 0);
+    color: white;
+    border-radius: 10px;
+}
+
+.btn-sec-del .yes:hover{
+    background-color: rgb(202, 0, 0);
+}
+
+.btn-sec-del .no{
+    border-radius: 10px;
+    background-color: royalblue;
+    color: white;
+}
+
+.btn-sec-del .no:hover{
+    background-color: rgb(71, 115, 246);
+}

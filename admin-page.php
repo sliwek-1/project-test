@@ -91,6 +91,13 @@
                         <div class="users">
 
                         </div>
+                        <div class="delete-section">
+                            <p class="info-delete">Lorem ipsum dolor sit, amet consectetur</p>
+                            <div class="btn-sec-del">
+                                <button type="submit" class="btn no">Nie</button>   
+                                <button type="submit" class="btn yes">Tak</button>
+                            </div>
+                        </div>  
                     </div>
                     <div class="add-user-form article">
                         <h1>Dodaj użytkownika</h1>
