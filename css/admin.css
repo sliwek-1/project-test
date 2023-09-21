@@ -364,7 +364,9 @@ form select option:checked{
 }
 
 .info-delete{
+    width: 20vw;
     padding: 10px 50px 0px 50px;
+    text-align: center;
 }
 
 .btn-sec-del{

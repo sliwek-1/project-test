@@ -157,7 +157,7 @@ function generateData(data){
         deleteBtn.addEventListener('click', async (e) => {
             let currentElement = e.target.parentElement.parentElement.parentElement;
             let id = currentElement.querySelector('.user-number').textContent;
-            deleteSection.classList.add('active');
+            deleteSection.classList.toggle('active');
             sessionStorage.setItem('user-to-del', id);
         })
     })
