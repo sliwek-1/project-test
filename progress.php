@@ -29,6 +29,7 @@
 </head>
 <body>
     <?php include_once('header.php') ?>
+    <input type="text" class="klasa-id" value="<?= $response['klasa'] ?>" hidden>
     <section class="container">
         <div class="user-results">
             <div class="avarage-result">
@@ -50,7 +51,7 @@
                     <li class="egzamin-klasa input" data-id="inf03">INF.03</li>
                 </ol>
                 <div class="result">
-                    <canvas id="wynik-chart" width="200" height="200"></canvas>
+                    <canvas id="klasa-wynik-chart" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
