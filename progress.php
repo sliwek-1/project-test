@@ -33,9 +33,21 @@
         <div class="user-results">
             <div class="avarage-result">
                 <ol class="egzaminy">
-                    <li class="egzamin" data-id="wszystkie">Wszystkie</li>
-                    <li class="egzamin" data-id="inf02">INF.02</li>
-                    <li class="egzamin" data-id="inf03">INF.03</li>
+                    <li class="egzamin input" data-id="wszystkie">Wszystkie</li>
+                    <li class="egzamin input" data-id="inf02">INF.02</li>
+                    <li class="egzamin input" data-id="inf03">INF.03</li>
+                </ol>
+                <div class="result">
+                    <canvas id="wynik-chart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="klasa-results">
+            <div class="avarage-result">
+                <ol class="egzaminy">
+                    <li class="egzamin-klasa input" data-id="wszystkie">Wszystkie</li>
+                    <li class="egzamin-klasa input" data-id="inf02">INF.02</li>
+                    <li class="egzamin-klasa input" data-id="inf03">INF.03</li>
                 </ol>
                 <div class="result">
                     <canvas id="wynik-chart" width="200" height="200"></canvas>

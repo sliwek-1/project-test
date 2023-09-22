@@ -11,6 +11,7 @@
     if(!isset($id)){
         header("Location: admin-page.php");
     }
+
     $sql = "SELECT * FROM egzaminy WHERE userID = :id ORDER BY id DESC";
     $request = $pdo->prepare($sql);
     $request->bindParam(':id',  $id);
@@ -42,6 +43,8 @@
         $formatted_time = $formatted_date;
         echo "$formatted_time";
     }
+
+    
 ?>
 
 
