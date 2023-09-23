@@ -130,3 +130,31 @@
     margin-right: 10px;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1200px) {
+    .user-results{
+        grid-column: 1/8;
+        grid-row: 2/12;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+     .user-results{
+        grid-column: 1/10;
+        grid-row: 2/9;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .user-results{
+        grid-column: 1/12;
+        grid-row: 2/8;
+        
+    }
+
+    .egzaminy .egzamin{
+        padding: 0px 18px;
+    }
+}

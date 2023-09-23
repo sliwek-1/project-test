@@ -119,9 +119,11 @@
 }
 
 .content{
-    width: auto;
-    height: auto;
+    position: relative;
+    width: 80vw;
+    height: 90vh;
     padding: 5px;
+    overflow-x: scroll;
 }
 
 .article{
@@ -406,4 +408,62 @@ form select option:checked{
 
 .btn-sec-del .no:hover{
     background-color: rgb(71, 115, 246);
+}
+
+@media only screen and (max-width: 1200px) {
+    .user-manage{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .klasy{
+        width: 70vw;
+        flex-wrap: wrap;
+    }
+
+    .content{
+        width: 80vw;
+        overflow-x: scroll;
+    }
+
+    .user-item{
+        align-items: end;
+        width: 100vw;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .klasy{
+        position: relative;
+        width: 70vw;
+        flex-wrap: wrap;
+    }
+
+    .content{
+        overflow-x: scroll;
+        width: 80vw;
+    }
+
+    .users{
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .klasy{
+        position: relative;
+        width: 70vw;
+        flex-wrap: wrap;
+    }
+
+    .content{
+        overflow-x: scroll;
+        width: 80vw;
+    }
+
+    .users{
+        width: 80vw;
+    }
 }

@@ -20,6 +20,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 25px;
 }
 
 .login-form{
@@ -33,7 +34,7 @@ body{
     z-index: 1;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px -5px 0px rgba(0,0,0,0.5);
 }
 
 .form{
@@ -69,4 +70,55 @@ body{
     position: absolute;
     background-image: url('../img/svg.png');
     filter: blur(10px);
+}
+
+.info-login{
+    opacity: 0;
+    width: 35vw;
+    height: 10vh;
+    background-color: rgb(255, 180, 180);
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgb(255, 77, 77);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px rgb(255, 116, 116);
+}
+
+.info-login.active{  
+    opacity: 1;
+}
+
+@media only screen and (max-width: 1200px) {
+    .login-form{
+        width: 50vw;
+    }
+
+    .info-login{
+        width: 50vw;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .login-form{
+        width: 60vw;
+    }
+
+    .info-login{
+        width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .login-form{
+        width: 80vw;
+    }
+
+    .info-login{
+        width: 80vw;
+    }
 }

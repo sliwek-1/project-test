@@ -13,6 +13,9 @@ submit.addEventListener('click', async (e) => {
 
         let response = await request.text()
 
+        let loginInfo = document.querySelector('.info-login');
+        loginInfo.classList.add('active');
+        loginInfo.textContent = response;
         if(response == "success"){
             location.href = "/quiz-aplication/main.php";
         }

@@ -9,6 +9,9 @@
 </head>
 <body>
     <main class="main-login">
+        <div class="info-login">
+                
+        </div>
         <div class="login-form">
             <h1>Logowanie</h1>
             <form action="#" class="form">
