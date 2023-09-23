@@ -33,6 +33,7 @@ function filterData(exam,data){
 
 function generateData(data){
     let btns = document.querySelectorAll('.egzamin');
+    let btnsKlasa = document.querySelectorAll('.egzamin-klasa')
 
     filterData("wszystkie",data)
     
@@ -43,6 +44,15 @@ function generateData(data){
             let id = currentBtn.dataset.id;
             filterData(id,data)
             console.log("heloo")
+        })
+    })
+
+    btnsKlasa.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            myChart.destroy();
+            let currentBtn = e.target;
+            let id = currentBtn.dataset.id;
+            filterData(id,data)
         })
     })
 }

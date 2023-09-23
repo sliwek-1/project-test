@@ -13,7 +13,7 @@
     gap: 5px;
 }
 
-.egzaminy .egzamin{
+.egzaminy .input{
     padding: 0px 25px;
     background-color: #333;
     display: flex;
@@ -22,7 +22,7 @@
     border-radius: 5px 5px 0px 0px;
 }
 
-.egzaminy .egzamin:hover{
+.egzaminy .input:hover{
     background-color: #555;
     cursor: pointer;
 }
@@ -39,6 +39,14 @@
 .user-results{
     margin-left: 25px;
     grid-column: 1/5;
+    grid-row: 2/12;
+    background-color: #666;
+    position: relative;
+}
+
+.klasa-results{
+    margin-left: 25px;
+    grid-column: 5/10;
     grid-row: 2/12;
     background-color: #666;
     position: relative;
