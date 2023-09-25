@@ -516,6 +516,10 @@ form select option:checked{
         width: calc((100vw/7) - 5vw);
     }
 
+    .klasy .klasa:first-child{
+        width: 20vw;
+    }
+
     .menu .list-item{
         justify-content: center;
     }

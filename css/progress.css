@@ -140,29 +140,21 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    .user-results{
-        grid-column: 1/8;
-        grid-row: 2/12;
-    }
-    
-}
-
-@media only screen and (max-width: 800px) {
-     .user-results{
-        grid-column: 1/10;
-        grid-row: 2/9;
+    .egzaminy .egzamin,.egzamin-klasa{
+        width: 25vw;
     }
 
-}
-
-@media only screen and (max-width: 600px) {
     .user-results{
         grid-column: 1/12;
-        grid-row: 2/8;
-        
+        grid-row: 2/6;
+    }
+    
+    .klasa-results{
+        grid-column: 1/12;
+        grid-row: 7/13;
     }
 
-    .egzaminy .egzamin{
-        padding: 0px 18px;
+    .result{
+        height: 28vh;
     }
 }
