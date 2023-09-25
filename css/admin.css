@@ -12,6 +12,7 @@
     display: grid;
     grid-template-columns: repeat(12,1fr);
     grid-template-rows: repeat(12,1fr);
+    overflow-x: hidden;
 }
 
 .navigation{
@@ -478,6 +479,7 @@ form select option:checked{
         background-color: #444;
         top: 55vh;
         left: 55vw;
+        z-index: 999;
     }
 
     .add-user:hover{
