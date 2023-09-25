@@ -12,7 +12,6 @@
     display: grid;
     grid-template-columns: repeat(12,1fr);
     grid-template-rows: repeat(12,1fr);
-    overflow-x: hidden;
 }
 
 .navigation{
@@ -414,6 +413,7 @@ form select option:checked{
     .main{
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
     }
 
     .klasy{
@@ -484,6 +484,17 @@ form select option:checked{
 
     .add-user:hover{
         background-color: #555;
+    }
+
+    .user-stats-chart{
+        flex-direction: column;
+        align-items: reverse;
+        gap: 5vw;
+        padding: 5vh;
+    }
+
+    .center-stats{
+        width: 80vw;
     }
 }
 

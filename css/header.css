@@ -40,22 +40,23 @@ a{
 }
 
 @media only screen and (max-width: 1200px) {
-   .nav{
-        width: 40vw;
-        gap: 100px;
+   .header{
+        justify-content: left;
+        gap: 25vw;
+        font-size: 0.7rem;
    }
 
+   .nav{
+    gap: 15vw;
+   }
 }
 
 @media only screen and (max-width: 800px) {
-    .nav{
-        width: 40vw;
-    }
+
 }
 
 @media only screen and (max-width: 600px) {
     .nav{
-        width: 40vw;
         padding-left: 50px;
     }
 }
