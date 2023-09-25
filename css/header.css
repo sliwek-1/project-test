@@ -34,23 +34,28 @@ a{
     gap: 5vw;
 }
 
+.menu{
+    align-items: center;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 1200px) {
    .nav{
-        width: 60vw;
+        width: 40vw;
+        gap: 100px;
    }
 
 }
 
 @media only screen and (max-width: 800px) {
     .nav{
-        width: 70vw;
+        width: 40vw;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .nav{
-        width: 80vw;
-        gap: 5vw;
-        padding: 0px 50px;
+        width: 40vw;
+        padding-left: 50px;
     }
 }

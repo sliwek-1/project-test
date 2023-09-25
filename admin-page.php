@@ -39,15 +39,15 @@
             <ol class="menu">
                 <li class="list-item"  data-id="user">
                     <img src="./img/user.png" class="nav-img" alt="user">
-                    Użytkownicy
+                    <span>Użytkownicy</span>
                 </li>
                 <li class="list-item"  data-id="user-group">
                     <img src="./img/group.png" class="nav-img" alt="user">
-                    Grupy użytkowników
+                    <span>Grupy użytkowników</span>
                 </li>
                 <li class="list-item" data-id="stats">
                     <img src="./img/stats.png" class="nav-img" alt="user">   
-                    Statystyki
+                    <span>Statystyki</span>
                 </li>
             </ol>
         </nav>

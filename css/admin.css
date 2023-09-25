@@ -120,7 +120,6 @@
 
 .content{
     position: relative;
-    width: 80vw;
     height: 90vh;
     padding: 5px;
     overflow-x: scroll;
@@ -410,60 +409,157 @@ form select option:checked{
     background-color: rgb(71, 115, 246);
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1000px) {
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .klasy{
+        display: flex;
+        width: 100vw;
+        height: 10vw;
+        top: -12.5px;
+        left: 0;
+        justify-content: center;
+    }
+
+    .navigation .menu{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .menu .list-item{
+        width: 30vw;
+        margin-bottom: 5vw;
+    }
+
     .user-manage{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 100vw;
+        margin: 0;
     }
 
     .klasy{
-        width: 70vw;
+        width: 80vw;
         flex-wrap: wrap;
     }
 
+    .klasy .klasa{
+        width: calc((100vw/7) - 5vw);
+    }
+    
     .content{
-        width: 80vw;
-        overflow-x: scroll;
+        width: 100vw;
+        height: 80vh;
+    }
+
+    .section{
+        margin: 0;
+        margin-top: 30px;
     }
 
     .user-item{
-        align-items: end;
         width: 100vw;
-        margin: 0;
+    }
+
+    .users-nav{
+        justify-content: space-between;
+    }
+
+    .add-user{
+        position: relative;
+        border: none;
+        border-radius: 10px;
+        height: 10vh;
+        background-color: #444;
+        top: 55vh;
+        left: 55vw;
+    }
+
+    .add-user:hover{
+        background-color: #555;
     }
 }
 
 @media only screen and (max-width: 800px) {
     .klasy{
-        position: relative;
-        width: 70vw;
-        flex-wrap: wrap;
+        display: flex;
+        width: 100vw;
+        height: 10vw;
+        top: -12.5px;
+        left: 0;
+        justify-content: center;
     }
 
-    .content{
-        overflow-x: scroll;
-        width: 80vw;
+    .user-item{
+        width: 95vw;
     }
 
-    .users{
-        width: 80vw;
+    .klasy .klasa{
+        width: calc((100vw/7) - 5vw);
+    }
+
+    .menu .list-item{
+        justify-content: center;
+    }
+
+    .menu .list-item span{
+        display: none;
+    }
+
+    .menu .list-item{
+        width: 25vw;
+        margin-bottom: 5vw;
+    }
+
+    .option:not(.user-index, .user-name){
+        display: none;
+    }
+
+    .users-nav{
+        justify-content: space-between;
+    }
+
+    .user-name{
+        width: 50vw;
+    }
+
+    .btns-section{
+        margin-right: 5vw;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .klasy{
-        position: relative;
+    .klasy .klasa{
+        width: calc((100vw/7) - 5vw);
+    }
+
+    .users-item{
         width: 70vw;
-        flex-wrap: wrap;
     }
 
-    .content{
-        overflow-x: scroll;
-        width: 80vw;
+    .menu .list-item{
+        justify-content: center;
     }
 
-    .users{
-        width: 80vw;
+    .menu .list-item span{
+        display: none;
+    }
+
+    .menu .list-item{
+        width: 20vw;
+        margin-bottom: 5vw;
+    }
+
+    .option:not(.user-index, .user-name){
+        display: none;
+    }
+
+    .users-nav{
+        justify-content: space-between;
     }
 }
