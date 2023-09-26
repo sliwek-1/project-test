@@ -477,6 +477,7 @@ form select option:checked{
 
     .users-item{
         width: 85vw;
+        font-size: 0.7rem;
     }
 
     .users-nav{
