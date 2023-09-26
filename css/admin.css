@@ -463,11 +463,24 @@ form select option:checked{
         margin-top: 30px;
     }
 
+    .users{
+        width: 85vw;
+    }
+
     .user-item{
-        width: 100vw;
+        width: 85vw;
+    }
+
+    .btns-section{
+        width: 10vw;
+    }
+
+    .users-item{
+        width: 85vw;
     }
 
     .users-nav{
+        width:85vw;
         justify-content: space-between;
     }
 
@@ -475,10 +488,10 @@ form select option:checked{
         position: relative;
         border: none;
         border-radius: 10px;
-        height: 10vh;
+        height: 7.5vh;
         background-color: #444;
-        top: 55vh;
-        left: 55vw;
+        top: 0vh;
+        left: -7.5vw;
         z-index: 999;
     }
 
@@ -506,10 +519,6 @@ form select option:checked{
         top: -12.5px;
         left: 0;
         justify-content: center;
-    }
-
-    .user-item{
-        width: 95vw;
     }
 
     .klasy .klasa{
@@ -553,10 +562,6 @@ form select option:checked{
 @media only screen and (max-width: 600px) {
     .klasy .klasa{
         width: calc((100vw/7) - 5vw);
-    }
-
-    .users-item{
-        width: 70vw;
     }
 
     .menu .list-item{

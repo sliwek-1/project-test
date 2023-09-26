@@ -47,3 +47,30 @@
     left: 8vw;
     border-radius: 5px;
 }
+
+@media only screen and (max-width: 1000px) {
+    .exam{
+        width: 80vw;
+    }
+
+    .exam:first-child{
+        margin-top: 15vh;
+    }
+
+    .exam-results{
+        width: 80vw;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .exam{
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .exam{
+        width: 80vw;
+    }
+}
