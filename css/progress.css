@@ -31,25 +31,28 @@
     width: 100vw;
     height: 90vh;
     background-color: #444;
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    grid-template-rows: repeat(12,1fr);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 8vh;
 }
 
 .user-results{
-    margin-left: 25px;
-    grid-column: 1/5;
-    grid-row: 2/12;
+    width: 30vw;
+    height: 80vh;
     background-color: #666;
     position: relative;
+    border-radius: 0px 10px 10px 10px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
 }
 
-.klasa-results{
-    margin-left: 25px;
-    grid-column: 5/10;
-    grid-row: 2/12;
-    background-color: #666;
+.timeline-results{
+    width: 60vw;
+    height: 60vh;
+    background-color: white;
+    padding: 15px;
     position: relative;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
 
 .change-passwd-user{
@@ -62,7 +65,7 @@
     outline: none;
     padding: 5px;
     cursor: pointer;
-    border: 1px solid #333;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .change-passwd-user:hover{
@@ -143,16 +146,6 @@
 @media only screen and (max-width: 1200px) {
     .egzaminy .egzamin,.egzamin-klasa{
         width: 25vw;
-    }
-
-    .user-results{
-        grid-column: 1/12;
-        grid-row: 2/6;
-    }
-    
-    .klasa-results{
-        grid-column: 1/12;
-        grid-row: 7/13;
     }
 
     .result{

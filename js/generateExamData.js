@@ -4,11 +4,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 let myChart = "";
 
+
 async function getData(){
     try{
         let request = await fetch('php/sendUsersExams.php')
 
         let response = await request.json();
+        console.log(response)
         generateData(response)
     }catch(error){
         console.log(error)
@@ -33,21 +35,10 @@ function filterData(exam,data){
 
 function generateData(data){
     let btns = document.querySelectorAll('.egzamin');
-    let btnsKlasa = document.querySelectorAll('.egzamin-klasa')
 
     filterData("wszystkie",data)
     
     btns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            myChart.destroy();
-            let currentBtn = e.target;
-            let id = currentBtn.dataset.id;
-            filterData(id,data)
-            console.log("heloo")
-        })
-    })
-
-    btnsKlasa.forEach(btn => {
         btn.addEventListener('click', (e) => {
             myChart.destroy();
             let currentBtn = e.target;
@@ -59,7 +50,7 @@ function generateData(data){
 
 function getResult(data,ilosc){
     let ctx = document.getElementById('wynik-chart').getContext('2d');
-    let date= {
+    let date = {
         labels: ['Dobrych odpowiedzi: ', 'Złych odpowiedzi'],
         datasets: [{
             data: [(data/ilosc).toFixed(2), 100-(data/ilosc).toFixed(2)],
@@ -72,5 +63,5 @@ function getResult(data,ilosc){
     myChart = new Chart(ctx, {
         type: 'doughnut',
         data: date,
-    });
+    });  
 }
