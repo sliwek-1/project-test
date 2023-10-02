@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="./css/progress.css">
     <link rel="stylesheet" href="./css/header.css">
     <script src="./js/generateExamData.js" defer></script>
+    <script src="./js/showLastFiveExams.js" defer></script>
     <script src="./js/change-passwd.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Panel użytkownika</title>
@@ -43,17 +44,8 @@
                 </div>
             </div>
         </div>
-        <div class="klasa-results">
-            <div class="avarage-result">
-                <ol class="egzaminy">
-                    <li class="egzamin-klasa input" data-id="wszystkie">Wszystkie</li>
-                    <li class="egzamin-klasa input" data-id="inf02">INF.02</li>
-                    <li class="egzamin-klasa input" data-id="inf03">INF.03</li>
-                </ol>
-                <div class="result">
-                    <canvas id="klasa-wynik-chart" width="200" height="200"></canvas>
-                </div>
-            </div>
+        <div class="timeline-results">
+            <canvas id="timeline"></canvas>
         </div>
         <div class="change-passwd-container">
             <div class="close-btn-section">
