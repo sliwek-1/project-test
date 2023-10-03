@@ -44,8 +44,17 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-results">
-            <canvas id="timeline"></canvas>
+        <div class="timeline-content">
+            <div class="nav">
+                <ol>
+                    <li class="list-item" data-id="Wszystkie">Wszystkie</li>
+                    <li class="list-item" data-id="inf02">INF.02</li>
+                    <li class="list-item" data-id="inf03">INF.03</li>
+                </ol>
+            </div>
+            <div class="timeline-results">
+                <canvas id="timeline"></canvas>
+            </div>
         </div>
         <div class="change-passwd-container">
             <div class="close-btn-section">
