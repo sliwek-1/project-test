@@ -1,11 +1,32 @@
 window.addEventListener('DOMContentLoaded', () => {
-    getTimelineData();
+    getTimelineData("Wszystkie");
+    getExamsType();
 })
 
-async function getTimelineData(){
-    try{
-        let request = await fetch('php/getTimeline.php');
+let myChart2 = ""
 
+function getExamsType(){
+    let btns = document.querySelectorAll('.list-item');
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            myChart2.destroy()
+            let element = e.target;
+            let id = element.dataset.id;
+            getTimelineData(id)
+        })
+    })
+}
+
+async function getTimelineData(data){
+    try{
+        let request = await fetch('php/getTimeline.php',{
+            method: 'post',
+            body: `id=${data}`,
+            headers: {
+                'Content-type': "application/x-www-form-urlencoded",
+            }
+        });
         let response = await request.json();
 
         console.log(response)
@@ -40,7 +61,7 @@ function showResults(response){
 
     let ctx = document.getElementById('timeline').getContext('2d');
 
-    let myLineChart = new Chart(ctx, {
+    myChart2 = new Chart(ctx, {
         type: 'line', 
         data: data, 
         options: options 
