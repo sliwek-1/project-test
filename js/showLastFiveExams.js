@@ -45,7 +45,7 @@ function showResults(response){
             borderColor: 'rgb(4, 175, 217, 1)',
             backgroundColor: 'rgb(4, 175, 217, 1)',
             borderWidth: 2
-        }]
+        }],
     };
 
     let options = {
