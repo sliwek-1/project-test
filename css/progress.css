@@ -148,20 +148,32 @@
     height: 60vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-.nav > ol{
+.timeline-content .nav{
     width: 200px;
     height: 35px;
-    display: flex; 
-    gap: 5px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    position: absolute;
+    left: 60px;
+    top: -35px;
     list-style: none;
-    cursor: pointer;
+    display: flex;
+    gap: 5px;
+}
+
+.nav > ol {
+    display: flex;
+    gap: 5px;
 }
 
 .nav .list-item{
     color: white;
-    padding: 0px 25px;
+    padding: 10px 25px;
     background-color: #333;
     display: flex;
     justify-content: center;
@@ -173,11 +185,20 @@
     background-color: #666;
 }
 
-
-
 @media only screen and (max-width: 1200px) {
     .egzaminy .egzamin,.egzamin-klasa{
         width: 25vw;
+    }
+
+    .container{
+        flex-direction: column;
+        padding-left: 5vw;
+        gap: 10vh;
+    }
+
+    .user-results, .timeline-results{
+        width: 90vw;
+        height: 30vh;
     }
 
     .result{

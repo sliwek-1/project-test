@@ -71,8 +71,6 @@
     color: white;
     display: none;
     position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .section.active{
@@ -211,6 +209,12 @@ form select option:checked{
     flex-direction: column;
     gap: 5px;
     position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.users::-webkit-scrollbar{
+    width: 0;
 }
 
 .users .option{
