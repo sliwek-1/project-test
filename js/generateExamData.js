@@ -10,7 +10,7 @@ async function getData(){
         let request = await fetch('php/sendUsersExams.php')
 
         let response = await request.json();
-        console.log(response)
+        //console.log(response)
         generateData(response)
     }catch(error){
         console.log(error)
