@@ -12,7 +12,7 @@
     $login = validate($_POST['login']);
     $passwd = validate($_POST['passwd']);
 
-    if(!empty($login) & !empty($passwd)){
+    if(!empty($login) && !empty($passwd)){
         $regex = '/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
         if(preg_match($regex,$passwd)){
             $sql = "SELECT count(*) as 'count' FROM users WHERE login = :login AND haslo = :passwd";

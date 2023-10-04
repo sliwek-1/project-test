@@ -1,7 +1,7 @@
 <?php 
 
     $user = "root";
-    $passwd = "qqq123";
+    $passwd = "";
     $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4");
     try{
         $pdo = new PDO('mysql:host=localhost;dbname=inf02;charset=utf8mb4', $user, $passwd, $options);
