@@ -41,10 +41,6 @@
                     <img src="./img/user.png" class="nav-img" alt="user">
                     <span>Użytkownicy</span>
                 </li>
-                <li class="list-item"  data-id="user-group">
-                    <img src="./img/group.png" class="nav-img" alt="user">
-                    <span>Grupy użytkowników</span>
-                </li>
                 <li class="list-item" data-id="stats">
                     <img src="./img/stats.png" class="nav-img" alt="user">   
                     <span>Statystyki</span>
@@ -127,9 +123,6 @@
                     </div>
                 </article>
             </article>
-        </section>
-        <section class="section user-group" data-id="user-group">
-
         </section>
         <section class="section user-stats-chart" data-id="stats">
             <header class="stats-header">
