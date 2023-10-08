@@ -12,6 +12,7 @@
     display: grid;
     grid-template-columns: repeat(12,1fr);
     grid-template-rows: repeat(12,1fr);
+    overflow-y: hidden;
 }
 
 .navigation{
@@ -208,6 +209,12 @@ form select option:checked{
     flex-direction: column;
     gap: 5px;
     position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.users::-webkit-scrollbar{
+    width: 0;
 }
 
 .users .option{

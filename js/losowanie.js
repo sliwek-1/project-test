@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if(data !== null){
         generateData(JSON.parse(deszyfrowanieDanych(data)));
     }else{
-        console.log("e")
+        //console.log("e")
     }
 
     
@@ -231,7 +231,7 @@ function generateData(response,id){
         sprawdzanie(elements,dobre_odpowiedzi)
         losujPonownie();
     }else {
-        console.log("No data to generate.")
+        //console.log("No data to generate.")
     }
 }
 

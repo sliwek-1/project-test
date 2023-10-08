@@ -77,7 +77,7 @@ async function getData(pageNum){
                     showBtn.addEventListener('click', () => {
                         answerEl.forEach(answer => {
                             let poprawna = res.poprawna_odp.slice(3,res.poprawna_odp.length);
-                            console.log(answer.textContent+" = "+poprawna)
+                           // console.log(answer.textContent+" = "+poprawna)
                             if(answer.textContent === poprawna){
                                 answer.classList.toggle('active');
                             }

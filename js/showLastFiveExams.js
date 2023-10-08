@@ -29,7 +29,7 @@ async function getTimelineData(data){
         });
         let response = await request.json();
 
-        console.log(response)
+       // console.log(response)
         showResults(response)
     }catch(error){
         console.log(error)
