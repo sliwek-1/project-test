@@ -80,7 +80,16 @@ async function getData(pageNum){
                         answer.classList.toggle('active');
                     }
                 })
-            })
+             })
+
+
+            //answerEl.forEach(answer => {
+            //    let poprawna = res.poprawna_odp.slice(3,res.poprawna_odp.length);
+            //    console.log(answer.textContent+" = "+poprawna)
+            //    if(answer.textContent === poprawna){
+            //       answer.classList.toggle('active');
+            //    }
+            // })
         })
     }catch(error){
         console.log(error);
