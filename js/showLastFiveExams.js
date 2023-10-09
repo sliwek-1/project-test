@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
     getTimelineData("Wszystkie");
     getExamsType();
 })
-
+    
 let myChart2 = ""
 
 function getExamsType(){
