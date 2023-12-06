@@ -41,7 +41,6 @@ async function getData(pageNum){
                             <img src="${res.obrazek}" alt="">
                         </div>
                         <div class="title">
-                            ${res.title}
                         </div>
                         <div class="answers">
                             <ul class="answers-list">
@@ -57,6 +56,9 @@ async function getData(pageNum){
                     element.classList.add('pytanie');
                     element.innerHTML = text;
                     main.insertBefore(element, loadMore);
+
+                    let title = element.querySelector('.title');
+                    title.textContent = res.title
 
                     let answers = [res.A,res.B,res.C,res.D];
                     let newAnswer = [];

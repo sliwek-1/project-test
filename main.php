@@ -1,17 +1,4 @@
-<?php 
-    session_start();
-    include_once('./php/connection-users.php');
 
-    $sql = "SELECT id, imie, nazwisko, permision FROM users WHERE id = :id";
-
-    $request = $pdo->prepare($sql);
-
-    $request->bindParam(':id', $_SESSION['id']);
-
-    $request->execute();
-
-    $response = $request->fetch(PDO::FETCH_ASSOC);
-?>
 
 <!DOCTYPE html>
 <html lang="pl">

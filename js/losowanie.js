@@ -1,6 +1,6 @@
 const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
 const iv = CryptoJS.lib.WordArray.random(16);
-
+let odpowiedzi_user = new Array(40).fill({odp: "Brak odpowiedzi", id: "Brak ID"});
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let data = sessionStorage.getItem('response');
@@ -42,7 +42,6 @@ function losujPonownie(){
     let losuj = document.querySelector('.losuj');
     losuj.addEventListener('click', () => {
         let id = sessionStorage.getItem('exam-id');
-        console.log("click")
         clear(id)
         sendData(id) 
     })
@@ -54,6 +53,7 @@ function clear(id){
     let resultTitle = document.querySelector('.result-title')
     let resultWynik = document.querySelector('.wynik')
     let resultProcent = document.querySelector('.procent')
+    odpowiedzi_user = new Array(40).fill({odp: "Brak odpowiedzi", id: "Brak ID"});;
     resultTitle.textContent = "";
     resultProcent.textContent = "";
     resultWynik.textContent = "";
@@ -70,7 +70,7 @@ function clear(id){
 // funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
 // co poswala widzieć dobre i złe odpowiedzi udzielone podczas testu po odświeżeniu strony
 function loadDataFromStorage(odpowiedzi, poprawne){
-    let answers = document.querySelectorAll('.pytanie');
+    let answers = document.querySelectorAll('.answers-list');
     let dataResult = sessionStorage.getItem('results');
     let data = JSON.parse(dataResult);
     let dobreOdpowiedzi = data.odp_dobrze;
@@ -78,17 +78,17 @@ function loadDataFromStorage(odpowiedzi, poprawne){
     let wynikProcentowy = data.wynik;
     
     answers.forEach((answer, i) => {
-        let odpowiedziUser = odpowiedzi[i].odp;
+        let array = odpowiedzi.slice(1, odpowiedzi.length)
+        let odpowiedziUser = array[i];
         let odpowiedziEl = answer.querySelectorAll('.answer');
         let poprawneOdp = poprawne[i].poprawna;
 
         odpowiedziEl.forEach(odp => {
-                if(odp.textContent == odpowiedziUser){
+                if(odp.textContent == odpowiedziUser?.odp){
                     odp.classList.add('odp');
                     let odpowiedz = answer.querySelector('.odp');
                     if(poprawneOdp == odpowiedz.textContent){
                         odpowiedz.classList.add('odpgood');
-                       // console.log("true")
                     }else{
                         odpowiedz.classList.add('odpbad');
                         let answersElement = odpowiedz.parentElement;
@@ -98,7 +98,7 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                                 answer.classList.add('active');
                             }
                         })
-                       // console.log("false")
+                       
                     }
                 }
         })
@@ -197,12 +197,11 @@ function generateData(response,id){
     if(response && response.length > 0){
         response.forEach((res, i) => {
             let text = `
-                <div class="id">Pytanie: ${i+1}</div>
+                <div class="id-element">Pytanie: <div class="id">${i+1}</div></div>
                 <div class="img">
                     <img src="${res.obrazek}" alt="">
                 </div>
                 <div class="title">
-                    ${res.title}
                 </div>
                 <div class="answers">
                     <ul class="answers-list">
@@ -215,8 +214,12 @@ function generateData(response,id){
     
             let element = document.createElement('div');
             element.classList.add('pytanie')
+            element.classList.add(i+1)
             element.innerHTML = text;
             main.append(element);
+
+            let title = element.querySelector('.title');
+            title.textContent = res.title
 
             let answers = [res.A,res.B,res.C,res.D];
             let answerEl = element.querySelectorAll('.answer');
@@ -243,7 +246,6 @@ function sprawdzanie(element,poprawne){
     //dodawanie odpowiedzi do egzaminu
     element.forEach(el => {
         let answers = el.querySelectorAll('.answer');
-
         answers.forEach((answer) => {
             answer.addEventListener('click' ,(e) => {
                 let currentAnswer = e.currentTarget;
@@ -251,11 +253,10 @@ function sprawdzanie(element,poprawne){
                     a.classList.remove('odp')
                 })
                 currentAnswer.classList.add('odp');
-                dodajOdpowiedziUzytkownikaDoTablicy();
+                dodajOdpowiedziUzytkownikaDoTablicy(e);
             })
         })
     })
-
 
     // sprawdanie odpowiedzi
     let sprawdz = document.querySelector('.sprawdz');
@@ -271,31 +272,36 @@ function sprawdzanie(element,poprawne){
 
 // funkcja zlicza poprawne odpowiedzi gdzy odpowiedz użydkownika do komkretnego pytania jest zgodna z poprawną
 // nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
-function sprawdzCzyOdpowiedziUzytkownikaPoprawne(user_odp, poprawne){
+function sprawdzCzyOdpowiedziUzytkownikaPoprawne(odp, poprawne){
     let result = 0;
-    let answers = document.querySelectorAll('.odp');
+    let answersList = document.querySelectorAll('.answers-list');
     let examID = document.querySelector('.exam-id').value;
+
+    let user_odp = odp.slice(1, odp.length)
 
     let id = examID.slice(0,5);
 
-    answers.forEach((answer,i) => {
-        
-        if(answer.textContent == user_odp[i].odp){
-            if(poprawne[i].poprawna == user_odp[i].odp){
-                answer.classList.add('odpgood');
-                result++;
-            }else{
-                answer.classList.add('odpbad');
-                let answersElement = answer.parentElement;
-                let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                otherAnswers.forEach(answer => {
-                    if(answer.textContent == poprawne[i].poprawna){
-                        answer.classList.add('active');
-                    }
-                })
-            }
-        }
-    })    
+    answersList.forEach((ans, i) => {
+        let answers = ans.querySelectorAll('.answer');
+        answers.forEach(answer => {
+            if(answer.textContent == user_odp[i].odp){
+                //console.log(i ,answer.textContent, user_odp[i]?.odp)
+                if(poprawne[i].poprawna == user_odp[i]?.odp){
+                    answer.classList.add('odpgood');
+                    result++;
+                }else if(poprawne[i].poprawna != user_odp[i]?.odp){  
+                    answer.classList.add('odpbad');
+                    let answersElement = answer.parentElement;
+                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
+                    otherAnswers.forEach(answer => {
+                        if(answer.textContent == poprawne[i].poprawna){
+                                answer.classList.add('active');
+                        }
+                    })
+                }
+           }
+        })
+    })
 
     let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
     pokazWynik(result,poprawne.length,wynik);
@@ -330,15 +336,11 @@ async function sendExamData(wynik, id){
 }
  
 // dodaje odpowiedzi użytkownika z klasą odp do tablicy
-function dodajOdpowiedziUzytkownikaDoTablicy(){
-    let odpowiedzi_user = [];
-    let odpowiedzi = document.querySelectorAll('.odp');
-
-    odpowiedzi.forEach((odp) => {
-        let index = Array.from(odpowiedzi).indexOf(odp);
-        odpowiedzi_user[index] = {odp: odp.textContent}
-    })
-
+function dodajOdpowiedziUzytkownikaDoTablicy(e){
+    let currentOdp = e.target;
+    let IdElement = currentOdp.parentElement.parentElement.parentElement;
+    let id = IdElement.querySelector('.id').textContent;
+    odpowiedzi_user[id] = {odp: currentOdp.textContent, id: id};
     sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
 }
 
@@ -365,4 +367,3 @@ function pokazWynik(result,wszystkie_odp,wynik){
 
     sessionStorage.setItem('results', JSON.stringify({odp_dobrze: result, wszystkie_odp: wszystkie_odp,wynik: wynik}));
 }
-
