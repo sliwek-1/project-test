@@ -299,6 +299,10 @@ ol > li > ul > li:hover{
     background-color: red;
 }
 
+.answer .blankanswer{
+    background-color: royalblue;
+}
+
 .btn-center{
     display: flex;
     justify-content: center;

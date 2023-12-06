@@ -1,6 +1,6 @@
 const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
 const iv = CryptoJS.lib.WordArray.random(16);
-let odpowiedzi_user = new Array(40).fill({odp: "Brak odpowiedzi", id: "Brak ID"});
+let odpowiedzi_user = new Array(41).fill({odp: "Brak odpowiedzi", id: "Brak ID"});
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let data = sessionStorage.getItem('response');
@@ -53,7 +53,7 @@ function clear(id){
     let resultTitle = document.querySelector('.result-title')
     let resultWynik = document.querySelector('.wynik')
     let resultProcent = document.querySelector('.procent')
-    odpowiedzi_user = new Array(40).fill({odp: "Brak odpowiedzi", id: "Brak ID"});;
+    odpowiedzi_user = new Array(41).fill({odp: "Brak odpowiedzi", id: "Brak ID"});;
     resultTitle.textContent = "";
     resultProcent.textContent = "";
     resultWynik.textContent = "";
@@ -100,6 +100,12 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                         })
                        
                     }
+                }
+
+                if(odpowiedziUser?.odp == "Brak odpowiedzi"){
+                   if(odp.textContent == poprawneOdp){
+                        odp.style.background = 'royalblue';
+                   }
                 }
         })
     })
@@ -289,7 +295,7 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(odp, poprawne){
                 if(poprawne[i].poprawna == user_odp[i]?.odp){
                     answer.classList.add('odpgood');
                     result++;
-                }else if(poprawne[i].poprawna != user_odp[i]?.odp){  
+                }else{
                     answer.classList.add('odpbad');
                     let answersElement = answer.parentElement;
                     let otherAnswers = [...answersElement.querySelectorAll('.answer')];
@@ -299,7 +305,14 @@ function sprawdzCzyOdpowiedziUzytkownikaPoprawne(odp, poprawne){
                         }
                     })
                 }
-           }
+            }
+
+           if(user_odp[i]?.odp == "Brak odpowiedzi"){  
+                if(answer.textContent == poprawne[i].poprawna){
+                    //console.log(poprawne[i].poprawna)
+                    answer.style.background = 'royalblue';
+                }
+            }
         })
     })
 
