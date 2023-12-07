@@ -347,6 +347,10 @@ ol > li > ul > li:hover{
     display: none;
 }
 
+.id-element{
+    display: flex;
+}
+
 .sprawdz:hover{
     background-color: rgb(55, 91, 199);
     box-shadow: 5px 5px 0px rgb(109, 146, 255);

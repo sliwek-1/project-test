@@ -203,7 +203,11 @@ function generateData(response,id){
     if(response && response.length > 0){
         response.forEach((res, i) => {
             let text = `
-                <div class="id-element">Pytanie: <div class="id">${i+1}</div></div>
+                <div class="id-element">
+                    <span>
+                        Pytanie: <span class="id">${i+1}</span>
+                    </span>
+                </div>
                 <div class="img">
                     <img src="${res.obrazek}" alt="">
                 </div>
