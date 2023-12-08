@@ -19,7 +19,6 @@ function showMainOpstions(){
 
             currentBtn.classList.add('active');
         
-
             sections.forEach(section => {
                 section.classList.remove('active')
             })

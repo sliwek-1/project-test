@@ -1,5 +1,16 @@
+<?php 
+    session_start(); 
+    require_once('php/connection-users.php');
 
+    $sql = "SELECT * FROM users WHERE id = :id";
 
+    $request = $pdo->prepare($sql);
+    $request->bindParam(':id', $_SESSION['id']);
+    $request->execute();
+
+    $response = $request->fetch(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,7 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <script src="./js/sidebar.js" defer></script>
-    <script src="./js/losowanie.js" defer></script>
+    <script type="module" src="./js/losowanie.js" defer></script>
+    <script type="module" src="./js/anticheat.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Baza Pytań</title>
 </head>
@@ -20,6 +32,7 @@
         <nav class="navigation">
             <?php if(isset($_SESSION['id'])) { ?>
                 <?php if($response['permision'] == "admin") { ?>
+
                     <nav class="navigation">
                         <div class="bar">
                             <a href="progress.php?userID=<?= $_SESSION['id'] ?>" class="btn-bar progress"> <?= $response['imie']." ".$response['nazwisko'] ?></a>

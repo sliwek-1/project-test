@@ -17,7 +17,7 @@ submit.addEventListener('click', async (e) => {
         loginInfo.classList.add('active');
         loginInfo.textContent = response;
         if(response == "success"){
-            location.href = "/quiz-aplication/main.php";
+            location.href = "/quiz/quiz-aplication/main.php";
         }
     }catch(error){
         console.log(error)

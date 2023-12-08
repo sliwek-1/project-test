@@ -1,26 +1,20 @@
+import { detectCheat } from "./anticheat.js";
 const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
 const iv = CryptoJS.lib.WordArray.random(16);
 let odpowiedzi_user = new Array(41).fill({odp: "Brak odpowiedzi", id: "Brak ID"});
 window.addEventListener('DOMContentLoaded', () => {
     let btnsE = document.querySelectorAll('.list-item');
     let data = sessionStorage.getItem('response');
-
     
-
     if(data !== null){
         generateData(JSON.parse(deszyfrowanieDanych(data)));
     }else{
         //console.log("e")
     }
 
-    
     btnsE.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            let currentElement = e.currentTarget;
-            let id = currentElement.dataset.id;
-            clear(id)
-            sendData(id);
-            setStartedData();
+           initial(e)
         })
     })
 
@@ -32,6 +26,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+function initial(e){
+    let currentElement = e.currentTarget;
+    let id = currentElement.dataset.id;
+    clear(id)
+    sendData(id);
+    setStartedData();
+    detectCheat();
+}
+
+
+// ustawia date rozpoczęcia egzaminu
 function setStartedData(){
     sessionStorage.removeItem('startedExamData')
     let data = new Date().getTime();
