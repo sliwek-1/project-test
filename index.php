@@ -1,4 +1,5 @@
 <?php 
+<<<<<<< HEAD
   //  session_start(); 
   //  require_once('php/connection-users.php');
 
@@ -9,6 +10,18 @@
  //   $request->execute();
 
   //  $response = $request->fetch(PDO::FETCH_ASSOC);
+=======
+    session_start(); 
+    require_once('php/connection-users.php');
+
+    $sql = "SELECT * FROM users WHERE id = :id";
+
+    $request = $pdo->prepare($sql);
+    $request->bindParam(':id', $_SESSION['id']);
+    $request->execute();
+
+    $response = $request->fetch(PDO::FETCH_ASSOC);
+>>>>>>> da5d768f38a0eb76831332f25cf80af312229c7d
 
 ?>
 <!DOCTYPE html>
