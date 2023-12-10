@@ -11,13 +11,15 @@ submit.addEventListener('click', async (e) => {
             body: formData
         })
 
-        let response = await request.text()
-
+        let response = await request.json()
+        
         let loginInfo = document.querySelector('.info-login');
         loginInfo.classList.add('active');
-        loginInfo.textContent = response;
-        if(response == "success"){
+        loginInfo.textContent = response.status;
+        if(response.status == "success"){
+            sessionStorage.setItem('userID', JSON.stringify(response.id))
             location.href = "/quiz/quiz-aplication/main.php";
+            console.log("success")
         }
     }catch(error){
         console.log(error)

@@ -26,7 +26,7 @@
             $response = $request->fetch(PDO::FETCH_ASSOC);
 
             if($response['count'] >= 1){
-                $sql2 = "SELECT id FROM users WHERE login = :login AND haslo = :passwd";
+                $sql2 = "SELECT id, permision FROM users WHERE login = :login AND haslo = :passwd";
                 $request2 = $pdo->prepare($sql2); 
 
                 $request2->bindParam(':login',$login);
@@ -38,7 +38,8 @@
 
                 if($request2){
                     $_SESSION['id'] = $response2['id'];
-                    echo "success";
+                    $array = ['status' => 'success','id' => $response2['id'], 'permision' => $response2['permision']];
+                    print_r(json_encode($array));
                 }else{
                     echo "Coś poszło nie tak";
                 }

@@ -20,7 +20,9 @@
     <script src="./js/sidebar.js" defer></script>
     <script type="module" src="./js/losowanie.js" defer></script>
     <script type="module" src="./js/anticheat.js" defer></script>
+    <script type="module" src="./js/saveStartedExamToDatabase.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
     <title>Baza Pytań</title>
 </head>
 <body>
@@ -96,6 +98,9 @@
             </div>
             <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>
+        <section class="saveExam">
+            <button class="startExam">Rozpocznij egzamin</button>
+        </section>
         <main class="main">
             <input type="text" class="exam-id" value="" hidden>
             <div class="result">

@@ -22,6 +22,7 @@ body{
     gap:50px;
     background-color: #eee;
     position: fixed;
+    z-index: 2;
 }
 
 .logo img{
@@ -85,6 +86,7 @@ a{
     position: fixed;
     left: 0;
     top: 10%;
+    z-index: 2;
 }
 
 .sidebar.active{
@@ -370,6 +372,32 @@ ol > li > ul > li:hover{
 }
 
 /* PROGRESS.PHP */
+
+.saveExam{
+    display: none;
+}
+
+.saveExam.active{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.startExam{
+    width: 10vw;
+    padding: 15px;
+    background-color: royalblue;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 @media (orientation:portrait) {
     body{
