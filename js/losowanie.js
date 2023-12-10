@@ -12,16 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
         //console.log("e")
     }
 
-    let examSaveStatus = sessionStorage.getItem('examSaveStatus');
-    if(examSaveStatus == "false"){
-        let coverScreen = document.querySelector('.saveExam');
-        coverScreen.classList.add('active')
-    }
-
     btnsE.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            let coverScreen = document.querySelector('.saveExam');
-            coverScreen.classList.add('active')
+        btn.addEventListener('click',async (e) => {
             initial(e)
         })
     })
