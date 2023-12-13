@@ -1,16 +1,3 @@
-const socket = new WebSocket('ws://localhost:8080');
-
-socket.onopen = function(event) {
-    socket.send('Hello, WebSocket Server!');
-};
-
-socket.onmessage = function(event) {
-    console.log('Message received:', event.data);
-};
-
-socket.onclose = function(event) {
-    console.log('WebSocket connection closed:', event);
-};
 
 // Funkcja sprawdza czy jest zalogowany użytkownik jeśli tak to włącza "Wielkiego brata" jeśli nie to nie robi nic
 function checkUserIsLogged(){
