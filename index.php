@@ -20,6 +20,7 @@
 
                 <button type="submit" class="submit">Zaloguj</button>
             </form>
+            <a href="./main.php">Przejdź do Bazy pytań</a>
         </div>
         <div class="background"></div>
     </main>

@@ -17,12 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <script src="./js/sidebar.js" defer></script>
-    <script type="module" src="./js/losowanie.js" defer></script>
-    <script type="module" src="./js/anticheat.js" defer></script>
-    <script type="module" src="./js/saveStartedExamToDatabase.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
-    <script type="module" src="./js/client.js" defer></script>
+    <?php if(isset($_SESSION['id'])) { ?>
+        <script type="module" src="./js/losowanie.js" defer></script>
+        <script type="module" src="./js/anticheat.js" defer></script>
+        <script type="module" src="./js/saveStartedExamToDatabase.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <?php } ?>
     <title>Baza Pytań</title>
 </head>
 <body>
@@ -80,21 +80,23 @@
                 </ol>
             </div>
             <div class="side-content">
-                <h2>Egzaminy</h2>
-                <ol class="list">
-                    <li class="list-itemE">Testy Inf.02
-                        <ul class="list">
-                            <li class="list-item" data-id="inf02-40">Losuj 40 pytań z egzaminu Inf.02</li>
-                            <li class="list-item" data-id="inf02-1">Losuj po 1 pytaniu z egzaminu Inf.02</li>
-                        </ul>
-                    </li>
-                    <li class="list-itemE">Testy Inf.03
-                        <ul class="list">
-                            <li class="list-item" data-id="inf03-40">Losuj 40 pytań z egzaminu Inf.03</li>
-                            <li class="list-item" data-id="inf03-1">Losuj po 1 pytaniu z egzaminu Inf.03</li>
-                        </ul>
-                    </li>
-                </ol>
+                <?php if(isset($_SESSION['id'])) { ?>
+                    <h2>Egzaminy</h2>
+                    <ol class="list">
+                        <li class="list-itemE">Testy Inf.02
+                            <ul class="list">
+                                <li class="list-item" data-id="inf02-40">Losuj 40 pytań z egzaminu Inf.02</li>
+                                <li class="list-item" data-id="inf02-1">Losuj po 1 pytaniu z egzaminu Inf.02</li>
+                            </ul>
+                        </li>
+                        <li class="list-itemE">Testy Inf.03
+                            <ul class="list">
+                                <li class="list-item" data-id="inf03-40">Losuj 40 pytań z egzaminu Inf.03</li>
+                                <li class="list-item" data-id="inf03-1">Losuj po 1 pytaniu z egzaminu Inf.03</li>
+                            </ul>
+                        </li>
+                    </ol>
+                <?php } ?>
             </div>
             <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>

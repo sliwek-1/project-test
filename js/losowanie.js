@@ -1,3 +1,5 @@
+import { anticheat } from "./anticheat.js";
+
 const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
 const iv = CryptoJS.lib.WordArray.random(16);
 let odpowiedzi_user = new Array(41).fill({odp: "Brak odpowiedzi", id: "Brak ID"});
@@ -33,6 +35,7 @@ function initial(e){
     clear(id)
     sendData(id);
     setStartedData();
+    anticheat();
 }
 
 
@@ -69,6 +72,7 @@ function clear(id){
     sessionStorage.removeItem('odpowiedzi_user');
     sessionStorage.removeItem('poprawne');
     sessionStorage.removeItem('results');
+    sessionStorage.removeItem('userActions');
 }
 
 
@@ -337,8 +341,9 @@ async function sendExamData(wynik, id){
         let dataStart = sessionStorage.getItem('startedExamData');
         let data = new Date().getTime();
         let formData = new FormData();
+        let userActions = sessionStorage.getItem("userActions");
 
-
+        console.log(JSON.parse(userActions))
         formData.append("date-end",data);
         formData.append("wynik",wynik);
         formData.append("exam-id",id);
