@@ -23,6 +23,11 @@ window.addEventListener('DOMContentLoaded', () => {
     let odpowiedzi = sessionStorage.getItem('odpowiedzi_user');
     let poprawne = sessionStorage.getItem('poprawne');
 
+    let userActions = sessionStorage.getItem('userActions');
+    if(userActions !== null || userActions !== undefined){
+        anticheat();
+    }
+
     if (odpowiedzi !== null && poprawne !== null) {
         loadDataFromStorage(JSON.parse(odpowiedzi), JSON.parse(poprawne));
     }
@@ -60,6 +65,7 @@ function clear(id){
     let btnCenter = document.querySelector('.btn-center');
     let resultTitle = document.querySelector('.result-title')
     let resultWynik = document.querySelector('.wynik')
+    let userActionsElement = document.querySelector('.userActions').textContent = "";
     let resultProcent = document.querySelector('.procent')
     odpowiedzi_user = new Array(41).fill({odp: "Brak odpowiedzi", id: "Brak ID"});;
     resultTitle.textContent = "";
@@ -378,15 +384,22 @@ function pokazWynik(result,wszystkie_odp,wynik){
     let resultTitle = document.querySelector('.result-title')
     let resultWynik = document.querySelector('.wynik')
     let resultProcent = document.querySelector('.procent')
+    let userActionsElement = document.querySelector('.userActions')
+
+    let userActions = JSON.parse(sessionStorage.getItem('userActions'));
+    let countUserActions = userActions.length;
+    let countText = `Liczba wykroczeń: ${countUserActions}`;
 
     if(wynik >= 50){    
         resultElement.classList.remove('niezdany')
         resultElement.classList.add('zdany');
         resultTitle.textContent = `Gratulacje zdałeś egzamin`;
+        userActionsElement.textContent = countText
     }else{
         resultElement.classList.remove('zdany');
         resultElement.classList.add('niezdany')
         resultTitle.textContent = `NIE zdałeś egzaminu`;
+        userActionsElement.textContent = countText
     }
 
     resultWynik.textContent = `[${result}/${wszystkie_odp}]`;

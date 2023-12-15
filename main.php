@@ -109,6 +109,7 @@
                 <div class="result-title"></div>
                 <div class="wynik"></div>
                 <div class="procent"></div>
+                <div class="userActions"></div>
             </div>
             <div class="question-center">
             </div>
