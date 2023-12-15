@@ -81,7 +81,6 @@ function clear(id){
     sessionStorage.removeItem('userActions');
 }
 
-
 // funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
 // co poswala widzieć dobre i złe odpowiedzi udzielone podczas testu po odświeżeniu strony
 function loadDataFromStorage(odpowiedzi, poprawne){
@@ -347,13 +346,13 @@ async function sendExamData(wynik, id){
         let dataStart = sessionStorage.getItem('startedExamData');
         let data = new Date().getTime();
         let formData = new FormData();
-        let userActions = sessionStorage.getItem("userActions");
+        let userActions = sessionStorage.getItem("userActions") ?? 0;
 
-        console.log(JSON.parse(userActions))
         formData.append("date-end",data);
         formData.append("wynik",wynik);
         formData.append("exam-id",id);
         formData.append("data-start",dataStart);
+        formData.append("userActions", userActions)
 
         let request = await fetch('php/storageExam.php',{
             method: 'post',
@@ -362,7 +361,7 @@ async function sendExamData(wynik, id){
 
         let response = await request.text()
 
-        // console.log(response)
+        console.log(response)
     }catch(error){
         console.log(error)
     }
@@ -386,8 +385,8 @@ function pokazWynik(result,wszystkie_odp,wynik){
     let resultProcent = document.querySelector('.procent')
     let userActionsElement = document.querySelector('.userActions')
 
-    let userActions = JSON.parse(sessionStorage.getItem('userActions'));
-    let countUserActions = userActions.length;
+    let userActions = JSON.parse(sessionStorage.getItem('userActions')) ?? 0;
+    let countUserActions = userActions.length ?? 0;
     let countText = `Liczba wykroczeń: ${countUserActions}`;
 
     if(wynik >= 50){    
@@ -401,7 +400,7 @@ function pokazWynik(result,wszystkie_odp,wynik){
         resultTitle.textContent = `NIE zdałeś egzaminu`;
         userActionsElement.textContent = countText
     }
-
+    
     resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
     resultProcent.textContent = `${wynik}%`;
 

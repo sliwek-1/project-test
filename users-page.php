@@ -53,6 +53,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/detailsExam.js" defer></script>
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/user-data.css">
     <title>Panel Użytkownika</title>
@@ -64,57 +65,82 @@
         </div>
         <?= $response2['imie']." ".$response2['nazwisko'] ?>
     </header>
-    <section class="user-ezam-list">
-        <?php foreach($response as $row) { ?>
-            <div class="exam">
-                <span class="exam-number input"><?= $i ?></span>
-                <span class="exam-typ input"><?= $row['egzamin_typ']; ?></span>
-                <span class="wynik input"><?= $row['wynik']."%"; ?></span>
-                <span class="time input"> <?php computeTime($row['dataStart'],$row['egzamin_data']) ?> </span>
-                <span class="data-start input"><?php computeDate($row['dataStart']) ?></span>
-            </div>
-
-            <?php 
-                if($row['egzamin_typ'] == 'inf02'){
-                    array_push($inf02, $row['wynik']); 
-                }else{
-                    array_push($inf03, $row['wynik']); 
-                }
-            
-            ?>
-            <?php $i++; ?>
-        <?php } ?>
-    </section>
-    <div class="exam-results">
-        <span class="result">
-            Średni wynik inf02: 
-            <?php 
-                $wynik = 0;
-                if(count($inf02) > 0){
-                    foreach($inf02 as $ar){ 
-                        $wynik += $ar;
+    <div class="center">
+        <section class="user-ezam-list">
+            <table>
+                <th>
+                    
+                    <td>ID.</td>
+                    <td>Typ.</td>
+                    <td>Wynik.</td>
+                    <td>Czas.</td>
+                    <td>Data Roz.</td>
+                    <td>Szczegóły.</td>
+                </th>
+                <?php foreach($response as $row) { ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td class="exam-id">
+                                <?= $row['id'] ?>
+                            </td>
+                            <td>
+                                <?= $row['egzamin_typ']; ?>
+                            </td>
+                            <td>
+                                <?= $row['wynik']."%"; ?>
+                            </td>
+                            <td>
+                                <?php computeTime($row['dataStart'],$row['egzamin_data']) ?>
+                            </td>
+                            <td>
+                                <?php computeDate($row['dataStart']) ?>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn">Więcej</button>
+                            </td>
+                        </tr>
+                    <?php 
+                        if($row['egzamin_typ'] == 'inf02'){
+                            array_push($inf02, $row['wynik']); 
+                        }else{
+                            array_push($inf03, $row['wynik']); 
+                        }
+                    ?>
+                    <?php $i++; ?>
+                <?php } ?>
+            </table>
+        </section>
+        <div class="exam-results">
+            <span class="result">
+                Średni wynik inf02: 
+                <?php 
+                    $wynik = 0;
+                    if(count($inf02) > 0){
+                        foreach($inf02 as $ar){ 
+                            $wynik += $ar;
+                        }
+        
+                        echo floor($wynik/count($inf02))."%";
+                    }else{
+                        echo "0%";
                     }
-    
-                    echo floor($wynik/count($inf02))."%";
-                }else{
-                    echo "0%";
-                }
-            ?>
-        </span>
-        <span class="result">
-            Średni wynik inf03: 
-            <?php 
-                $wynik = 0;
-                if(count($inf03) > 0){
-                    foreach($inf03 as $ar){ 
-                        $wynik += $ar;
+                ?>
+            </span>
+            <span class="result">
+                Średni wynik inf03: 
+                <?php 
+                    $wynik = 0;
+                    if(count($inf03) > 0){
+                        foreach($inf03 as $ar){ 
+                            $wynik += $ar;
+                        }
+                        echo floor($wynik/count($inf03))."%";
+                    }else{
+                        echo "0%";
                     }
-                    echo floor($wynik/count($inf03))."%";
-                }else{
-                    echo "0%";
-                }
-            ?>
-        </span>
+                ?>
+            </span>
+        </div>
     </div>
 </body>
 </html>
