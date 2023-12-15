@@ -45,7 +45,23 @@ function showDetalis(){
 }
 
 function generateData(data){
-    let detalisElement = document.querySelector('.user-details');
+    let detalisElement = document.querySelector('.details');
     
-    
+    data.forEach((element, i) => {
+        let text = `
+            <tr>
+                <td>Wykroczenie nr.:${i + 1}</td>
+                <td>${element.id}</td>
+                <td>${element.exam_id}</td>
+                <td>${element.user_id}</td>
+                <td>${element.action}</td>
+            </tr>`;
+
+        detalisElement.innerHTML += text;
+        console.log(element)
+    })
+}
+
+function computeData() {
+
 }
