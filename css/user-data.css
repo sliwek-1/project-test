@@ -23,6 +23,7 @@ body{
 table, td{
     border: 1px solid #666;
     border-collapse: collapse;
+    color: white;
 }
 
 td{
@@ -87,6 +88,10 @@ td{
     position: absolute;
     top: 20vh;
     left: 10vw;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    padding: 15px;
 }
 
 .delete-btn{
