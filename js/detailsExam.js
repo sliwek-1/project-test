@@ -1,9 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
+    let detalisElement = document.querySelector('.user-details');
+    let cover = document.querySelector('.cover');
+    let delBtn = document.querySelector('.del-btn');
+
+    delBtn.addEventListener('click', () => {
+        detalisElement.classList.remove('active');
+        cover.classList.remove('active')
+    })
+
     showDetalis();
 })
 
 function showDetalis(){
     let btns = document.querySelectorAll('.btn');
+    let detalisElement = document.querySelector('.user-details');
+    let cover = document.querySelector('.cover');
     btns.forEach(btn => {
         btn.addEventListener('click',async (e) => {
             try{
@@ -23,14 +34,18 @@ function showDetalis(){
 
                 let response = await request.json();
 
+                detalisElement.classList.add('active');
+                cover.classList.add('active')
                 generateData(response)
             }catch(error){
-                console.log(error);
+                //console.log(error);
             }
         })
     })
 }
 
 function generateData(data){
+    let detalisElement = document.querySelector('.user-details');
+    
     
 }

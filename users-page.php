@@ -115,9 +115,13 @@
                 <?php } ?>
             </table>
         </section>
-        <div class="cover active"></div>
-        <div class="user-details active">
-
+        <div class="cover"></div>
+        <div class="user-details">
+            <div class="delete-btn">
+                <button class="del-btn btn">
+                    Wyjdź
+                </button>
+            </div>
         </div>
         <div class="exam-results">
             <span class="result">
