@@ -69,8 +69,8 @@
         <section class="user-ezam-list">
             <table>
                 <th>
-                    
                     <td>ID.</td>
+                    <td>Użytkownik ID.</td>
                     <td>Typ.</td>
                     <td>Wynik.</td>
                     <td>Czas.</td>
@@ -79,7 +79,12 @@
                 </th>
                 <?php foreach($response as $row) { ?>
                         <tr>
-                            <td><?= $i ?></td>
+                            <td>
+                                <?= $i ?>
+                            </td>
+                            <td class="user-id">
+                                <?= $row['userID'] ?>
+                            </td>
                             <td class="exam-id">
                                 <?= $row['id'] ?>
                             </td>
@@ -110,6 +115,10 @@
                 <?php } ?>
             </table>
         </section>
+        <div class="cover active"></div>
+        <div class="user-details active">
+
+        </div>
         <div class="exam-results">
             <span class="result">
                 Średni wynik inf02: 

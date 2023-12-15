@@ -58,6 +58,37 @@ td{
     border-radius: 5px;
 }
 
+.cover {
+    display: none;
+}
+
+.cover.active{
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.user-details {
+    display: none;
+}
+
+.user-details.active{
+    display: block;
+    width: 80vw;
+    height: 60vh;
+    background-color: #555;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+}
+
 @media only screen and (max-width: 1000px) {
     .exam:first-child{
         margin-top: 15vh;
