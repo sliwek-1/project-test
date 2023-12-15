@@ -49,28 +49,15 @@ function generateData(data){
     let detalisElement = document.querySelector('.details');
     
     data.forEach((element, i) => {
-        let data = computeData(element.action)
         let text = `
             <tr>
                 <td>Wykroczenie nr.:${i + 1}</td>
                 <td>${element.id}</td>
                 <td>${element.exam_id}</td>
                 <td>${element.user_id}</td>
-                <td>${data}</td>
+                <td>${element.action}</td>
             </tr>`;
 
         detalisElement.innerHTML += text;
     })
-}
-
-function computeData(data) {
-    data = parseInt(data);
-
-
-    let days = Math.floor(data % (1000 * 60 * 60 * 24));
-    let hours = Math.floor((data % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((data % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((data % (1000 * 60)) / 1000);
-
-    return `${days}| ${hours}:${minutes}:${seconds}`;
 }
