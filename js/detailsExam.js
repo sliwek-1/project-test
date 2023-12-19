@@ -54,7 +54,7 @@ function generateData(data){
                 <td>Egzamin ID.</td>
                 <td>Użytkownik ID.</td>
                 <td>Data Roz.</td>
-            </th>>`;
+            </th>`;
 
     data.forEach((element, i) => {
         text += `
