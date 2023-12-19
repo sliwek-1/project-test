@@ -48,16 +48,24 @@ function showDetalis(){
 function generateData(data){
     let detalisElement = document.querySelector('.details');
     
+    let text = `       
+            <th>
+                <td>ID.</td>
+                <td>Egzamin ID.</td>
+                <td>Użytkownik ID.</td>
+                <td>Data Roz.</td>
+            </th>>`;
+
     data.forEach((element, i) => {
-        let text = `
-            <tr>
+        text += `
+            <tr class="data-row">
                 <td>Wykroczenie nr.:${i + 1}</td>
                 <td>${element.id}</td>
                 <td>${element.exam_id}</td>
                 <td>${element.user_id}</td>
                 <td>${element.action}</td>
             </tr>`;
-
-        detalisElement.innerHTML += text;
     })
+
+    detalisElement.innerHTML += text;
 }

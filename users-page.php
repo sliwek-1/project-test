@@ -124,12 +124,7 @@
             </div>
 
             <table class="details">
-                <th>
-                    <td>ID.</td>
-                    <td>Egzamin ID.</td>
-                    <td>Użytkownik ID.</td>
-                    <td>Data Roz.</td>
-                </th>
+                
             </table>
         </div>
         <div class="exam-results">
