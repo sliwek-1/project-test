@@ -35,7 +35,7 @@ async function getData(pageNum){
         let response = await request.json();
         response.forEach(res => {
             let text = `
-            <div class="id">Pytanie: ${res.id}</div>
+            <div class="id">Pytanie: ${res.ID}</div>
             <div class="img">
                 <img src="${res.obrazek}" alt="">
             </div>
