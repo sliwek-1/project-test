@@ -9,6 +9,7 @@
 
 *::selection{
     background-color: transparent;
+    cursor: pointer;
 }
 
 body{

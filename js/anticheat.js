@@ -4,8 +4,14 @@ function anticheat(){
 
     storageUserActions !== null ? userActions = JSON.parse(storageUserActions) : userActions = [];
     window.addEventListener('blur', () => {
-        let currentData = new Date();
-        let actionData = currentData;
+        let d = new Date,
+        dformat = [d.getMonth()+1,
+                   d.getDate(),
+                   d.getFullYear()].join('/')+' '+
+                  [d.getHours(),
+                   d.getMinutes(),
+                   d.getSeconds()].join(':');
+        let actionData = dformat;
         userActions.push({data: actionData});
         sessionStorage.setItem('userActions', JSON.stringify(userActions))
     })
