@@ -45,7 +45,7 @@ body{
     gap: 20px;
 }
 
-.login-form input{
+.login-form input:not(#show-passwd), label{
     padding: 10px;
     width: 250px;
     outline: none;
@@ -90,6 +90,13 @@ body{
 
 .info-login.active{  
     opacity: 1;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 @media only screen and (max-width: 1200px) {
