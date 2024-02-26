@@ -64,10 +64,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `imie`, `nazwisko`, `klasa`, `login`, `haslo`, `permision`) VALUES
-(1, 'Mateusz', 'Śliwinski', '4ti', 'msliwinski', '$Mateusz1980', 'admin'),
-(2, 'jan', 'kowalski', '1ti', 'kowalskiJ', '$Mateusz1980', 'user');
-
 --
 -- Indeksy dla zrzutów tabel
 --
