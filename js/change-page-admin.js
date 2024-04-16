@@ -36,15 +36,9 @@ function showMainOpstions(){
 
 
 function showUserOptions(){
-    let addUserBtn = document.querySelector('.add-user');
     let klasaBtns = document.querySelectorAll('.klasa');
     let addUserForm = document.querySelector('.add-user-form');
     let displayUser = document.querySelector('.display-users');
-
-    addUserBtn.addEventListener('click', () => {
-        displayUser.classList.remove('active');
-        addUserForm.classList.add('active');
-    })
 
     klasaBtns.forEach(btn => {
         let usersElement = document.querySelector('.users');

@@ -7,17 +7,16 @@
 
 .main{
     width: 100vw;
-    height: 90vh;
+    height: auto;
     background-color: #444;
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    grid-template-rows: repeat(12,1fr);
+    display: flex;
+    justify-content: space-between;
     overflow-y: hidden;
 }
 
 .navigation{
-    grid-column: 1/3;
-    grid-row: 1/13;
+    width: 15vw;
+    height: 90vh;
     background-color: #eee;
     border-right: 5px solid royalblue;
     display: flex;
@@ -30,10 +29,11 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0px 20px;
 }
 
 .menu .list-item{
-    width: 15vw;
+    width: 12.5vw;
     height: 5vh;
     background-color: #ddd;
     display: flex;
@@ -64,10 +64,8 @@
 }
 
 .section{
-    grid-column: 4/13;
-    grid-row: 1/13;
-    margin: 30px;
-    background-color: #333;
+    width: 85vw;
+    height: auto;
     color: white;
     display: none;
     position: relative;
@@ -78,39 +76,24 @@
 }
 
 .klasy{
-    position: absolute;
-    top: -12.5px;
-    left: 0;
     list-style: none;
     display: flex;
     gap: 5px;
 }
 
 .klasa{
-    width: 100px;
+    padding: 15px;
     height: 25px;
-    border-radius: 5px 5px 0px 0px;
     background-color: #666;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-align: center;
 }
 
 .klasa:hover{
     background-color: #777;
-}
-
-.add-user{
-    position: absolute;
-    border-radius: 10px 0px 0px 10px;
-    border: 3px solid royalblue;
-    outline: none;
-    cursor: pointer;
-    height: 100px;
-    width: 50px;
-    left: -50px;
-    top: 50px;
 }
 
 .add-user img{
@@ -414,6 +397,61 @@ form select option:checked{
 
 .btn-sec-del .no:hover{
     background-color: rgb(71, 115, 246);
+}
+
+textarea {
+    resize: none;
+    width: 70vw;
+    height: 75px;
+    padding: 2px;
+    outline: none;
+    border: 3px solid royalblue;
+}
+
+.user-question-section{
+    padding: 35px 0px;
+}
+
+.user-question-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-question-section .question-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-question-section .img-choose {
+    width: 35vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-question-section .img-choose div {
+    display: flex;
+    flex-direction: column;
+}
+
+#file-img, #link-img {
+    width: 15px;
+}
+
+.btn-add-quaetion {
+    width: 10vw;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: royalblue;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-add-quaetion:hover{
+    background-color: #3058d0;
 }
 
 @media only screen and (max-width: 1000px) {

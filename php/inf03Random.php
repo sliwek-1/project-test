@@ -6,8 +6,15 @@
     if(isset($_POST['count'])){
         $count = $_POST['count'];
         $data = array();
+
+        $sql2 = "SELECT count(*) as 'count' FROM inf03";
+        $request2 = $pdo->prepare($sql2);
+        $request2->execute();
+
+        $response = $request2->fetch(PDO::FETCH_ASSOC);
+
         for($i = 1; $i <= $count; $i++){
-            $randomID = random_int(1,1114);
+            $randomID = random_int(1,$response['count']);
 
             $sql = "SELECT * FROM inf03 WHERE ID = :id";
 

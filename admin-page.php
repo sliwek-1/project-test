@@ -29,6 +29,7 @@
     <script src="./js/sendUserData.js" defer></script>
     <script src="./js/generatorHasel.js" defer></script>
     <script src="./js/send-stats.js" defer></script>
+    <script src="./js/send-new-question.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Panel Administratora</title>
 </head>
@@ -39,11 +40,19 @@
             <ol class="menu">
                 <li class="list-item"  data-id="user">
                     <img src="./img/user.png" class="nav-img" alt="user">
-                    <span>Użytkownicy</span>
+                    Użytkownicy
                 </li>
                 <li class="list-item" data-id="stats">
                     <img src="./img/stats.png" class="nav-img" alt="user">   
-                    <span>Statystyki</span>
+                    Statystyki
+                </li>
+                <li class="list-item" data-id="add-question">
+                    <img src="./img/stats.png" class="nav-img" alt="user">   
+                    Dodaj Pytanie
+                </li>
+                <li class="list-item" data-id="add-user">
+                    <img src="./img/add-user.png" class="nav-img" alt="user">   
+                    Dodaj Użytkownia
                 </li>
             </ol>
         </nav>
@@ -72,9 +81,21 @@
                 </form>
             </div>
             <article class="user-manage">
-                <?php include_once('nav.php') ?>
                 <article class="content">
                     <div class="display-users article active">
+                        <div class="nav">
+                            <div class="klasy">
+                                <ol class="klasy">
+                                    <li class="klasa option" data-id="wszystkie">Wszystkie</li>
+                                    <li class="klasa option" data-id="1ti">1Ti</li>
+                                    <li class="klasa option" data-id="1tai">1Tai</li>
+                                    <li class="klasa option" data-id="2ti">2Ti</li>
+                                    <li class="klasa option" data-id="3tli">3Tli</li>
+                                    <li class="klasa option" data-id="4ti">4Ti</li>
+                                    <li class="klasa option" data-id="5ti">5Ti</li>
+                                </ol>
+                            </div>  
+                        </div>  
                         <div class="users-nav">
                             <span class="user-index option">Lp.</span>
                             <span class="user-number option">ID użytkownika</span>
@@ -94,32 +115,6 @@
                                 <button type="submit" class="btn yes">Tak</button>
                             </div>
                         </div>  
-                    </div>
-                    <div class="add-user-form article">
-                        <h1>Dodaj użytkownika</h1>
-                        <form action="#" class="form-add-user">
-                            <input type="text" name="user-name" placeholder="Imie">
-                            <input type="text" name="user-surname" placeholder="Nazwisko">
-                            <input type="text" name="user-login" placeholder="Login">
-                            <div class="password-section">
-                                <input type="password" class="password-input" name="user-password" placeholder="Hasło">
-                                <button class="random-password">
-                                    <img src="./img/casino.png" style="width: 20px; height: 20px;" alt="cube img">
-                                </button>
-                            </div>
-                            <div class="show-passwd">
-                            Pokaż hasło:  <input type="checkbox" class="password-show">
-                            </div>
-                            <select name="select-klasa" id="select-klasa">
-                                <option value="1Ti">1Ti</option>
-                                <option value="1Tai">1Tai</option>
-                                <option value="2Ti">2Ti</option>
-                                <option value="3Tli">3Tli</option>
-                                <option value="4Ti">4Ti</option>
-                                <option value="5Ti">5Ti</option>
-                            </select>
-                            <button type="submit" class="send-user-data">Dodaj</button>
-                        </form>
                     </div>
                 </article>
             </article>
@@ -145,6 +140,89 @@
             <article class="center-stats">
                 <canvas id="klasa-stats" width="200px" height="200px"></canvas>
             </article>
+        </section>
+        <section class="section" data-id="add-question">
+            <section class="user-question-section">
+                <form action="#" method="POST">
+
+                    <label for="title">Wpisz Pytanie</label>
+                    <textarea name="title" id="title" cols="30" rows="10" required></textarea>
+
+                    <div class="img-choose">
+                        <div class="img-choose-area">
+                            <label for="link-img">Link do zdjęcia</label>
+                            <input type="radio" id="link-img"  name="link-img" class="img-input" data-id="link">
+
+                            <label for="link-img">Wyślij plik na server</label>
+                            <input type="radio" id="file-img"  name="link-img" class="img-input" data-id="file">
+                        </div>
+
+                        <div class="img-area">
+                            <label for="link-img">Link do zdjęcia</label>
+                            <input type="text" id="link-img-input"  name="link-img" class="img-input">
+
+                            <label for="link-img">Wyślij plik na server</label>
+                            <input type="file" id="file-img-input"  name="file-img" class="img-input">
+                        </div>
+                    </div>
+                    
+                    <label for="poprawna_odp">Wybierz poprawną odpowiedz</label>
+                    <select name="poprawna_odp" id="poprawna_odp">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+
+                    <label for="baza">Wybierz baze danych</label>
+                    <select name="baza" id="baza">
+                        <option value="pytania">INF.02</option>
+                        <option value="inf03">INF.03</option>
+                    </select>
+
+                    <div class="question-section">
+                            <label for="A">ODP. A</label>
+                            <textarea name="A" id="A" cols="30" rows="10" required></textarea>
+
+                            <label for="B">ODP. B</label>
+                            <textarea name="B" id="B" cols="30" rows="10" required></textarea>
+
+                            <label for="C">ODP. C</label>
+                            <textarea name="C" id="C" cols="30" rows="10" required></textarea>
+ 
+                            <label for="D">ODP. D</label>
+                            <textarea name="D" id="D" cols="30" rows="10" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-add-quaetion">Wyślij</button>
+                </form>
+            </section>
+        </section>
+        <section class="section add-user-form article" data-id="add-user">
+            <h1>Dodaj użytkownika</h1>
+            <form action="#" class="form-add-user">
+                <input type="text" name="user-name" placeholder="Imie">
+                <input type="text" name="user-surname" placeholder="Nazwisko">
+                <input type="text" name="user-login" placeholder="Login">
+                <div class="password-section">
+                    <input type="password" class="password-input" name="user-password" placeholder="Hasło">
+                    <button class="random-password">
+                        <img src="./img/casino.png" style="width: 20px; height: 20px;" alt="cube img">
+                    </button>
+                </div>
+                <div class="show-passwd">
+                    Pokaż hasło:  <input type="checkbox" class="password-show">
+                </div>
+                <select name="select-klasa" id="select-klasa">
+                    <option value="1Ti">1Ti</option>
+                    <option value="1Tai">1Tai</option>
+                    <option value="2Ti">2Ti</option>
+                    <option value="3Tli">3Tli</option>
+                    <option value="4Ti">4Ti</option>
+                    <option value="5Ti">5Ti</option>
+                </select>
+                <button type="submit" class="send-user-data">Dodaj</button>
+            </form>
         </section>
     </main>
 </body>
