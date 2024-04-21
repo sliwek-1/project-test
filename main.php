@@ -100,10 +100,10 @@
             </div>
             <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>
-        <section class="saveExam">
-            <button class="startExam">Rozpocznij egzamin</button>
-        </section>
         <main class="main">
+            <nav class="nav-questions"> 
+                    
+            </nav>
             <input type="text" class="exam-id" value="" hidden>
             <div class="result">
                 <div class="result-title"></div>

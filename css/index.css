@@ -232,6 +232,11 @@ ol > li > ul > li:hover{
 }
 
 .pytanie{
+    display: none;
+}
+
+.pytanie.active {
+    display: block;
     width: auto;
     height: auto;
     background-color: #666;
@@ -402,6 +407,30 @@ ol > li > ul > li:hover{
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.nav-questions {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-item-id {
+    padding: 7.5px;
+    background-color: #888;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-item-id.good {
+    background-color: green;
+} 
+
+.nav-item-id.bad {
+    background-color: red;
+}
+
+.nav-item-id.unanswer {
+    background-color: royalblue;
 }
 
 @media (orientation:portrait) {
