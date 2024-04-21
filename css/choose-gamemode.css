@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    width: 100vw;
+    height:10vh;
+    display:flex;
+    padding-left: 1vw;
+    justify-content: left;
+    align-items: center;
+    gap:50px;
+    background-color: #eee;
+    position: fixed;
+    z-index: 2;
+}
+
+.logo img{
+    width: 100px;
+    height: 50px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.navigation{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 15vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation .bar{
+    display: flex;
+}
+
+.btn-bar{
+    display: block;
+    font-size: .9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 50px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.btn-bar:hover:not(.logout){
+    background-color:#ccc;
+}
+
+.logout:hover{
+    background-color: red;
+    color: white;
+}
+
+.login-img{
+    width: 15px;
+    height: 15px;
+}
+
+.main-choose {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #555;
+}
+
+.option {
+    width: 25vw;
+    height: 50vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
+    transform: translateY(0px);
+    transition: 100ms ease-in-out;
+}
+
+.option p {
+    display: block;
+    width: 12.5vw;
+    text-align: center;
+    color: gray;
+}
+
+.option h1 {
+    font-size: 200%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: royalblue;
+    text-transform: uppercase;
+}
+
+.option .choose-btn {
+    background-color: royalblue;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    width: 20vw;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.option .choose-btn:hover {
+    background-color: #3058d0;
+}
+
+.option:hover {
+    transform: translateY(-20px);
+    transition: 150ms ease-in-out;
+}

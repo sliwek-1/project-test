@@ -20,7 +20,5 @@ export function checkIdIsValid() {
                 element.classList.add('unanswer');
             }
         }
-
-
     })
 }

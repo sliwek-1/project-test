@@ -111,8 +111,8 @@
                         <div class="delete-section">
                             <p class="info-delete">Czy napewno chcecz usunąć użytkownika?</p>
                             <div class="btn-sec-del">
-                                <button type="submit" class="btn no">Nie</button>   
                                 <button type="submit" class="btn yes">Tak</button>
+                                <button type="submit" class="btn no">Nie</button>   
                             </div>
                         </div>  
                     </div>
