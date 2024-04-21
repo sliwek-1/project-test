@@ -28,7 +28,7 @@ export function generateData(response,id){
 
         for(let i = 0; i < response.length; i++) {
             let element = document.createElement('div');
-            element.textContent = i + 1;
+            element.textContent = i;
             element.classList.add('nav-item-id');
             element.setAttribute('data-id', i);
 
@@ -39,7 +39,7 @@ export function generateData(response,id){
             let text = `
                 <div class="id-element">
                     <span>
-                        Pytanie: <span class="id">${i + 1}</span>
+                        Pytanie: <span class="id">${i}</span>
                     </span>
                 </div>
                 <div class="img">

@@ -32,7 +32,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (odpowiedzi !== null && poprawne !== null) {
         loadDataFromStorage(JSON.parse(odpowiedzi), JSON.parse(poprawne));
-        checkIdIsValid();
     }
 })
 
@@ -89,16 +88,26 @@ function clear(id){
 // funkcja pobiera dane z sessionStorage przeglądargi gdy są dostępne a następnie je wyświetla
 // co poswala widzieć dobre i złe odpowiedzi udzielone podczas testu po odświeżeniu strony
 function loadDataFromStorage(odpowiedzi, poprawne){
-    let answers = document.querySelectorAll('.answers-list');
     let dataResult = sessionStorage.getItem('results');
     let data = JSON.parse(dataResult);
     let dobreOdpowiedzi = data.odp_dobrze;
     let wszystkie = data.wszystkie_odp;
     let wynikProcentowy = data.wynik;
     
+    colorAnswersAfterChecking(odpowiedzi, poprawne);
+    checkIdIsValid();
+    pokazWynik(dobreOdpowiedzi,wszystkie,wynikProcentowy)
+    
+    let sprawdz = document.querySelector('.sprawdz');
+    sprawdz.classList.add('schowaj');
+}
+
+
+function colorAnswersAfterChecking(odpowiedzi, poprawne) {
+    let answers = document.querySelectorAll('.answers-list');
+    console.log(answers)
     answers.forEach((answer, i) => {
-        let array = odpowiedzi.slice(0, odpowiedzi.length)
-        let odpowiedziUser = array[i];
+        let odpowiedziUser = odpowiedzi[i];
         let odpowiedziEl = answer.querySelectorAll('.answer');
         let poprawneOdp = poprawne[i].poprawna;
 
@@ -128,10 +137,6 @@ function loadDataFromStorage(odpowiedzi, poprawne){
                 }
         })
     })
-    pokazWynik(dobreOdpowiedzi,wszystkie,wynikProcentowy)
-    
-    let sprawdz = document.querySelector('.sprawdz');
-    sprawdz.classList.add('schowaj');
 }
 
 // funkcja wywołuje funlcje fetchData z odpowiedznimi parametrami do każdego egzaminu
@@ -233,41 +238,12 @@ export function sprawdzanie(element,poprawne){
 // nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
 function sprawdzCzyOdpowiedziUzytkownikaPoprawne(odp, poprawne){
     let result = 0;
-    let answersList = document.querySelectorAll('.answers-list');
     let examID = document.querySelector('.exam-id').value;
-
-    let user_odp = odp.slice(0, odp.length)
-
     let id = examID.slice(0,5);
 
-    answersList.forEach((ans, i) => {
-        let answers = ans.querySelectorAll('.answer');
-        answers.forEach(answer => {
-            if(answer.textContent == user_odp[i].odp){
-                //console.log(i ,answer.textContent, user_odp[i]?.odp)
-                if(poprawne[i].poprawna == user_odp[i]?.odp){
-                    answer.classList.add('odpgood');
-                    result++;
-                }else{
-                    answer.classList.add('odpbad');
-                    let answersElement = answer.parentElement;
-                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                    otherAnswers.forEach(answer => {
-                        if(answer.textContent == poprawne[i].poprawna){
-                                answer.classList.add('active');
-                        }
-                    })
-                }
-            }
-
-           if(user_odp[i]?.odp == "Brak odpowiedzi"){  
-                if(answer.textContent == poprawne[i].poprawna){
-                    //console.log(poprawne[i].poprawna)
-                    answer.style.background = 'royalblue';
-                }
-            }
-        })
-    })
+    
+    checkIdIsValid();
+    colorAnswersAfterChecking(odp, poprawne)
 
     let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
     pokazWynik(result,poprawne.length,wynik);
@@ -310,7 +286,6 @@ function dodajOdpowiedziUzytkownikaDoTablicy(e){
     odpowiedzi_user[id] = {odp: currentOdp.textContent, id: id};
     sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
 }
-
 
 // funckja wyswietla element z wynikiem testu
 function pokazWynik(result,wszystkie_odp,wynik){
