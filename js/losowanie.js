@@ -1,5 +1,5 @@
 import { anticheat } from "./anticheat.js";
-import { generateData } from "./generate/generate-default.js";
+import { checkWithModeIsOn } from "./gamemode/choose-gamemode.js";
 import { checkIdIsValid } from "./sprawdzanie/checkIdIsValid.js";
 
 const secretKey = "#$HaLaBaRdAtOBrOnSReDnOwIeCzA1410";
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let data = sessionStorage.getItem('response');
 
     if(data !== null){
-        generateData(JSON.parse(deszyfrowanieDanych(data)));
+        checkWithModeIsOn(JSON.parse(deszyfrowanieDanych(data)));
     }else{
         //console.log("e")
     }
@@ -177,7 +177,7 @@ async function fetchData(dbID, count){
         let zaszyfrowaneDane = szyfrowanieDanych(dataToStorage)
         sessionStorage.setItem('response', zaszyfrowaneDane);
         let data = sessionStorage.getItem('response');
-        generateData(JSON.parse(deszyfrowanieDanych(data)),dbID); 
+        checkWithModeIsOn(JSON.parse(deszyfrowanieDanych(data)),dbID); 
     }catch(error){
         console.log(error);
     }    
@@ -234,78 +234,7 @@ export function sprawdzanie(element,poprawne){
     })
 }
 
-// funkcja zlicza poprawne odpowiedzi gdzy odpowiedz użydkownika do komkretnego pytania jest zgodna z poprawną
-// nadaje odpowiednie klasy dla dobrej oraz złej odpowiedzi ponadto zlicza procentowy wynik oraz przekazuje te parametry do funkcji wyświetlającej wynik
-function sprawdzCzyOdpowiedziUzytkownikaPoprawne(odp, poprawne){
-    let answersList = document.querySelectorAll('.answers-list');
-    let result = 0;
-    let examID = document.querySelector('.exam-id').value;
-    let id = examID.slice(0,5);
 
-    
-    checkIdIsValid()
-
-    answersList.forEach((ans, i) => {
-        let answers = ans.querySelectorAll('.answer');
-        answers.forEach(answer => {
-            if(answer.textContent == odp[i].odp){
-                //console.log(i ,answer.textContent, user_odp[i]?.odp)
-                if(poprawne[i].poprawna == odp[i]?.odp){
-                    answer.classList.add('odpgood');
-                    result++;
-                }else{
-                    answer.classList.add('odpbad');
-                    let answersElement = answer.parentElement;
-                    let otherAnswers = [...answersElement.querySelectorAll('.answer')];
-                    otherAnswers.forEach(answer => {
-                        if(answer.textContent == poprawne[i].poprawna){
-                                answer.classList.add('active');
-                        }
-                    })
-                }
-            }
-
-           if(odp[i]?.odp == "Brak odpowiedzi"){  
-                if(answer.textContent == poprawne[i].poprawna){
-                    //console.log(poprawne[i].poprawna)
-                    answer.style.background = 'royalblue';
-                }
-            }
-        })
-    })
-
-    let wynik = (result/parseInt(poprawne.length) * 100).toFixed(1);
-    pokazWynik(result,poprawne.length,wynik);
-    if(poprawne.length == 40){
-        sendExamData(wynik,id);
-    }
-}
-
-async function sendExamData(wynik, id){
-    try{
-        let dataStart = sessionStorage.getItem('startedExamData');
-        let data = new Date().getTime();
-        let formData = new FormData();
-        let userActions = sessionStorage.getItem("userActions") ?? 0;
-
-        formData.append("date-end",data);
-        formData.append("wynik",wynik);
-        formData.append("exam-id",id);
-        formData.append("data-start",dataStart);
-        formData.append("userActions", userActions)
-
-        let request = await fetch('php/storageExam.php',{
-            method: 'post',
-            body: formData
-        })
-
-        let response = await request.text()
-
-        console.log(response)
-    }catch(error){
-        console.log(error)
-    }
-}
  
 // dodaje odpowiedzi użytkownika z klasą odp do tablicy
 function dodajOdpowiedziUzytkownikaDoTablicy(e){
@@ -314,34 +243,4 @@ function dodajOdpowiedziUzytkownikaDoTablicy(e){
     let id = IdElement.querySelector('.id').textContent;
     odpowiedzi_user[id] = {odp: currentOdp.textContent, id: id};
     sessionStorage.setItem('odpowiedzi_user', JSON.stringify(odpowiedzi_user));
-}
-
-// funckja wyswietla element z wynikiem testu
-function pokazWynik(result,wszystkie_odp,wynik){
-    let resultElement = document.querySelector('.result')
-    let resultTitle = document.querySelector('.result-title')
-    let resultWynik = document.querySelector('.wynik')
-    let resultProcent = document.querySelector('.procent')
-    let userActionsElement = document.querySelector('.userActions')
-
-    let userActions = JSON.parse(sessionStorage.getItem('userActions')) ?? 0;
-    let countUserActions = userActions.length ?? 0;
-    let countText = `Liczba wykroczeń: ${countUserActions}`;
-
-    if(wynik >= 50){    
-        resultElement.classList.remove('niezdany')
-        resultElement.classList.add('zdany');
-        resultTitle.textContent = `Gratulacje zdałeś egzamin`;
-        userActionsElement.textContent = countText
-    }else{
-        resultElement.classList.remove('zdany');
-        resultElement.classList.add('niezdany')
-        resultTitle.textContent = `NIE zdałeś egzaminu`;
-        userActionsElement.textContent = countText
-    }
-    
-    resultWynik.textContent = `[${result}/${wszystkie_odp}]`;
-    resultProcent.textContent = `${wynik}%`;
-
-    sessionStorage.setItem('results', JSON.stringify({odp_dobrze: result, wszystkie_odp: wszystkie_odp,wynik: wynik}));
 }

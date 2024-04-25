@@ -2,7 +2,7 @@ import { losujPonownie } from "../losowanie.js";
 import { sprawdzanie } from "../losowanie.js";
 
 // funkcja generuje wszystkie pytania
-export function generateData(response,id){
+export function generateDataCustom(response,id){
     let main = document.querySelector('.question-center');
     let btnCenter = document.querySelector('.btn-center');
     let dobre_odpowiedzi = [];
