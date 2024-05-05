@@ -17,7 +17,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/choose-gamemode.css">
-    <script src="./js/gamemode/choose-gamemode.js" defer></script>
     <title>Technik Informatyk Egzamin</title>
 </head>
 <body>
@@ -28,21 +27,27 @@
                 <p>
                    Klasyczny tryb
                 </p>
-                <button class="choose-btn" data-id="classic">Wybierz</button>
+                <a href="./classic-gamemode.php">
+                    <button class="choose-btn" data-id="classic">Wybierz</button>
+                </a>
             </section>
             <section class="option">
                 <h1>Custom mode</h1>
                 <p>
                     Wyświetlaj po jednym pytaniu
                 </p>
-                <button class="choose-btn" data-id="custom">Wybierz</button>
+                <a href="./custom-gamemode.php">
+                    <button class="choose-btn" data-id="custom">Wybierz</button>
+                </a>
             </section>
             <section class="option">
                 <h1>Custom mode 2.0</h1>
                 <p>
                     Wyświetlaj po jednym pytaniu i odrazu uzyskaj odpowiedz
                 </p>
-                <button class="choose-btn" data-id="custom-2.0">Wybierz</button>
+                <a href="./custom2.0-gamemode.php">
+                    <button class="choose-btn" data-id="custom-2.0">Wybierz</button>
+                </a>
             </section>
     </main>
 </body>

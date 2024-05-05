@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Wrz 12, 2023 at 09:30 AM
--- Wersja serwera: 10.4.28-MariaDB
--- Wersja PHP: 8.2.4
+-- Host: localhost
+-- Generation Time: May 03, 2024 at 06:03 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `egzaminy`
+-- Table structure for table `egzaminy`
 --
 
 CREATE TABLE `egzaminy` (
@@ -47,7 +47,7 @@ INSERT INTO `egzaminy` (`id`, `userID`, `egzamin_data`, `egzamin_typ`, `wynik`) 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -64,18 +64,21 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`id`, `imie`, `nazwisko`, `klasa`, `login`, `haslo`, `permision`) VALUES
+(3, 'Mateusz', 'Śliwinski', '4ti', 'msliwinski', '$Mateusz1980', 'admin');
+
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `egzaminy`
+-- Indexes for table `egzaminy`
 --
 ALTER TABLE `egzaminy`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
@@ -94,7 +97,7 @@ ALTER TABLE `egzaminy`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

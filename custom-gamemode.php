@@ -15,10 +15,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/custom-gamemode.css">
     <script src="./js/sidebar.js" defer></script>
     <?php if(isset($_SESSION['id'])) { ?>
-        <script type="module" src="./js/core/classic-gamemode.js" defer></script>
+        <script type="module" src="./js/core/custom-mode.js" defer></script>
         <script type="module" src="./js/anticheat.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <?php } ?>
@@ -71,6 +71,9 @@
             <p class="copyright">&copy; Mateusz Śliwinski</p>
         </aside>
         <main class="main">
+            <nav class="nav-questions"> 
+                    
+            </nav>
             <input type="text" class="exam-id" value="" hidden>
             <div class="result">
                 <div class="result-title"></div>

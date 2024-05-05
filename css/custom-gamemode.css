@@ -231,7 +231,11 @@ ol > li > ul > li:hover{
     margin-left: 10px;
 }
 
-.pytanie {
+.pytanie{
+    display: none;
+}
+
+.pytanie.active {
     display: block;
     width: auto;
     height: auto;

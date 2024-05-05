@@ -1,4 +1,5 @@
-import { checkIdIsValid } from "../sprawdzanie/checkIdIsValid";
+import { checkIdIsValid } from "../sprawdzanie/checkIdIsValid.js";
+import { pokazWynik } from "./show-result.js";
 
 
 
